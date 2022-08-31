@@ -5,9 +5,123 @@
     <body>
         <div class="table-responsive">
             <div>
-                <a href="{{ route('addUserForm') }}"><button class="btn btn-primary">Add User</button></a>
+                {{-- add users --}}
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#modal_adduser">
+                    Add User
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="modal_adduser" tabindex="-1"
+                    aria-labelledby="modal_adduser" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">add user</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form method="get" action="{{ route('addUser') }}">
+                                <div class="modal-body">
+                                    <div class="col-md-12">
 
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="title">ชื่อ-สกุล</label>
+                                            <input type="hidden"  name="id">
+                                            <input type="text" name="name" class="form-control"
+                                                placeholder="ชื่อ-สกุล" >
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="title">ชื่อ-สกุล (อังกฤษ)</label>
+                                            <input type="text" name="name_en" class="form-control"
+                                                placeholder="ชื่อ-สกุล (อังกฤษ)">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="title">อีเมล</label>
+                                            <input type="text" name="email" class="form-control"
+                                                placeholder="อีเมล">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="title">รหัสผ่าน</label>
+                                            <input type="text" name="password" class="form-control"
+                                                placeholder="รหัสผ่าน">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="user_tel">เบอร์โทร</label>
+                                            <input type="text" name="user_tel" class="form-control"
+                                                placeholder="รหัสผ่าน" >
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="note">รหัสนักศึกษาหรือรหัสอาจารย์</label>
+                                            <input type="text" name="note" class="form-control"
+                                                placeholder="รหัสนักศึกษาหรือรหัสอาจารย์">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="generation">รุ่น ปีการศึกษาที่เข้าเรียน</label>
+                                            <select class="form-control" id="exampleFormControlSelect1" name="generation"
+                                                placeholder="รุ่น ปีการศึกษาที่เข้าเรียน">
+                                                <option selected>เลือกปีการศึกษาที่เข้าเรียน</option>
+                                                <option value="65">65</option>
+                                                <option value="64">64</option>
+                                                <option value="63">63</option>
+                                                <option value="62">62</option>
+                                                <option value="61">61</option>
+                                                <option value="60">60</option>
+                                                <option value="59">59</option>
+                                                <option value="58">58</option>
+                                                <option value="57">57</option>
+                                                <option value="56">56</option>
+                                                <option value="55">55</option>
+                                                <option value="54">54</option>
+                                                <option value="53">53</option>
+                                                <option value="52">52</option>
+                                                <option value="51">51</option>
+                                                <option value="50">50</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="level">ระดับผู้ใช้</label>
+                                            <select class="form-control" id="exampleFormControlSelect1" name="level"
+                                                placeholder="รหัสนักศึกษา">
+                                                <option selected>เลือกระดับผู้ใช้</option>
+                                                <option value="ผู้ดูแลระบบ">1 : ผู้ดูแลระบบ</option>
+                                                <option value="อาจารย์">2 : อาจารย์</option>
+                                                <option value="นักศึกษา">3 : นักศึกษา</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="note">สถานะ</label>
+                                            <select class="form-control" id="exampleFormControlSelect1" name="status"
+                                                placeholder="สถานะผู้ใช้">
+                                                <option value="0">off</option>
+                                                <option value="1">on</option>
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" href="{{ route('alluser') }}">Save
+                                        changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                
             </div>
+            {{-- show user --}}
             <table class="table table-striped table-hover table-condensed">
                 <thead>
                     <tr>
@@ -16,6 +130,8 @@
                         <th><strong>ชื่อ (อังกฤษ)</strong></th>
                         <th><strong>อีเมล</strong></th>
                         <th><strong>ระดับผู้ใช้</strong></th>
+                        <th><strong>รหัสนักศึกษาหรือรหัสอาจารย์</strong></th>
+                        <th><strong>รุ่น</strong></th>
                         <th><strong>สถานะ</strong></th>
                         <th><strong>เบอร์โทร</strong></th>
                         <th><strong>Action</strong></th>
@@ -29,15 +145,13 @@
                             <th>{{ $user->name_en }}</th>
                             <th>{{ $user->email }}</th>
                             <th>{{ $user->level }}</th>
+                            <th>{{ $user->note }}</th>
+                            <th>{{ $user->generation }}</th>
                             <th>{{ $user->status }}</th>
                             <th>{{ $user->user_tel }}</th>
                             <th>
-                                <a href="/edituser/{{ $user->id }}">
-                                    <button type="button" class="btn btn-success">แก้ไข</button>
-                                </a>
-                                <a href=" /deleteUser/{{ $user->id }}">
-                                    <button type="button" class="btn btn-danger" onclick="alert">ลบ</button>
-                                </a>
+                        
+                               
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modal_{{ $user->id }}">
@@ -110,6 +224,30 @@
                                                         </div>
 
                                                         <div class="form-group">
+                                                            <label for="generation">รุ่น ปีการศึกษาที่เข้าเรียน</label>
+                                                            <select class="form-control" id="exampleFormControlSelect1"
+                                                                name="generation" placeholder="รุ่น ปีการศึกษาที่เข้าเรียน">
+                                                                <option selected>เลือกปีการศึกษาที่เข้าเรียน</option>
+                                                                <option value="65">65</option>
+                                                                <option value="64">64</option>
+                                                                <option value="63">63</option>
+                                                                <option value="62">62</option>
+                                                                <option value="61">61</option>
+                                                                <option value="60">60</option>
+                                                                <option value="59">59</option>
+                                                                <option value="58">58</option>
+                                                                <option value="57">57</option>
+                                                                <option value="56">56</option>
+                                                                <option value="55">55</option>
+                                                                <option value="54">54</option>
+                                                                <option value="53">53</option>
+                                                                <option value="52">52</option>
+                                                                <option value="51">51</option>
+                                                                <option value="50">50</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group">
                                                             <label for="level">ระดับผู้ใช้</label>
                                                             <select class="form-control" id="exampleFormControlSelect1"
                                                                 name="level" placeholder="รหัสนักศึกษา"
@@ -136,13 +274,18 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary" href="{{route('alluser')}}">Save
+                                                    <button type="submit" class="btn btn-primary"
+                                                        href="{{ route('alluser') }}">Save
                                                         changes</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
+                                {{-- end modal --}}
+                                <a href=" /deleteUser/{{ $user->id }}">
+                                    <button type="button" class="btn btn-danger" onclick="alert">ลบ</button>
+                                </a>
                             </th>
                         </tr>
                     @endforeach

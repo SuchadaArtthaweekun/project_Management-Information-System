@@ -13,6 +13,7 @@
                     <tr>
                         <th><strong>id</strong></th>
                         <th><strong>ชื่อ</strong></th>
+                        <th><strong>Action</strong></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,14 +22,11 @@
                             <th>{{ $category->cate_id }}</th>
                             <th>{{ $category->catename }}</th>
                             <th>
-                                <a href="/editcate/{{ $category->cate_id }}">
+                                {{-- <a href="/editcate/{{ $category->cate_id }}">
                                     <button type="button" class="btn btn-success">แก้ไข</button>
-                                </a>
+                                </a> --}}
 
-                                <a href="/deletecate/{{ $category->cate_id }}">
-                                    <button type="button" class="btn btn-danger"
-                                        onclick="delcate({{ $category->cate_id }})">ลบ</button>
-                                </a>
+                               
 
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -74,6 +72,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                <a href="/deletecate/{{ $category->cate_id }}">
+                                    <button type="button" class="btn btn-danger"
+                                        onclick="delcate({{ $category->cate_id }})">ลบ</button>
+                                </a>
 
 
                             </th>

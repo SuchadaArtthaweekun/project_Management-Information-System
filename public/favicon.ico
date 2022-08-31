@@ -1,0 +1,2 @@
+<link rel="icon" href="{{ url('img/Logo.png') }}">
+<link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">

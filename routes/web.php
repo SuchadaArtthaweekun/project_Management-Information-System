@@ -61,4 +61,7 @@ Route::get('edituser',[\App\Http\Controllers\UserController::class, 'updateuser'
 Route::get('edituser/{id}',[\App\Http\Controllers\UserController::class, 'updateFormUser'])->name('updateFormUser');
 
 //Project
-Route::post('createProject',[\App\Http\Controllers\UserController::class, 'insertProject']);
+Route::get('/allproject', [\App\Http\Controllers\ProjectController::class, 'allProject'])->name('allproject');
+Route::get('/editproject', [\App\Http\Controllers\ProjectController::class, 'editproject'])->name('editproject');
+Route::get('/addProject', [\App\Http\Controllers\ProjectController::class, 'addProject'])->name('addProject');
+Route::get('/deletepro/{project_id}', [\App\Http\Controllers\ProjectController::class, 'deletepro'])->name('deletepro');

@@ -29,6 +29,8 @@ class Projects extends Migration
             $table->integer('view_counter');
             $table->unsignedInteger('cate_id')->unsigned;
             $table->foreign('cate_id')->references('cate_id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedInteger('id')->unsigned();
+            $table->foreign('id')->references('id')->on('users')->onDelete('setnull')->onUpdate('setnull');
         });
 
     }

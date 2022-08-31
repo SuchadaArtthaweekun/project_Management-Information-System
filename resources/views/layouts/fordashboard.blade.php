@@ -36,8 +36,8 @@
                 <a href="https://www.facebook.com/it.bru.ac.th" class="nav-link">Contact</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a  class="nav-link" href="#" id="navbarDropdown2" role="button"
-                     aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#" id="navbarDropdown2" role="button" aria-haspopup="true"
+                    aria-expanded="false">
                     Help
                 </a>
             </li>
@@ -61,17 +61,17 @@
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <!-- Messages Dropdown Menu -->
-            
-                <div class="logout">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
+
+            <div class="logout">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <x-responsive-nav-link :href="route('logout')"
+                        onclick="event.preventDefault();
                                 this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
-                    </form>
-                </div>
+                        {{ __('Log Out') }}
+                    </x-responsive-nav-link>
+                </form>
+            </div>
             <!-- Notifications Dropdown Menu -->
         </ul>
     </nav>
@@ -107,42 +107,40 @@
                     <!-- Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library -->
                     <li class="nav-item menu-open">
-                        <a href="{{route('dashboard')}}" class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                dashboard
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('alluser')}}" class="nav-link">
+                                <a href="{{ route('dashboard') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        dashboard
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('alluser') }}" class="nav-link">
                                     <i class="fa-solid fa-folder"></i>
                                     <p>User</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('allcate')}}" class="nav-link active">
+                                <a href="{{ route('allcate') }}" class="nav-link">
                                     <i class="fa-solid fa-address-book"></i>
                                     <p>Category</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="allproject" class="nav-link">
                                     <i class="fa-solid fa-folder"></i>
                                     <p>Projects</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa-solid fa-folder"></i>
+                                    <p>Report</p>
+                                </a>
+                            </li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Simple Link
-                                <span class="right badge badge-danger">New</span>
-                            </p>
-                        </a>
                     </li>
                 </ul>
             </nav>

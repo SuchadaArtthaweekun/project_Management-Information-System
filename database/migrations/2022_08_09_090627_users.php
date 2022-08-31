@@ -23,9 +23,10 @@ class Users extends Migration
             $table->string('password');
             $table->string('user_tel');
             $table->string('note')->nullable();
+            $table->string('generation')->nullable();
             $table->string('status');
-            $table->unsignedInteger('project_id')->unsigned();
-            $table->foreign('project_id')->references('project_id')->on('projects')->onDelete('cascade')->onUpdate('cascade');
+            // $table->unsignedInteger('project_id')->unsigned();
+            // $table->foreign('project_id')->references('project_id')->on('projects')->onDelete('cascade')->onUpdate('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

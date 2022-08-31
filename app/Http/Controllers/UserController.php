@@ -25,9 +25,9 @@ class UserController extends Controller
         $user_tel = $request->input('user_tel');
         $status = $request->input('status');
         $note = $request->input('note');
-        $project_id = null;
+        $generation = $request->input('generation');
         $data=array('name'=>$name, 'name_en'=>$name_en, 'email'=>$email, 'level'=>$level, 'password'=>$password, 
-        'user_tel'=>$user_tel, 'note'=>$note, 'status'=>$status, 'project_id'=>$project_id, );
+        'user_tel'=>$user_tel, 'note'=>$note,'generation'=>$generation, 'status'=>$status );
         DB::table('users')->insert($data);
 
         return redirect()->route('alluser');
@@ -38,7 +38,7 @@ class UserController extends Controller
         $users = User::find($id)->delete();
         
         // DB::table('users')->where('id')->delete();
-        return redirect('alluser');
+        return redirect('users.alluser');
        
     }
 
@@ -51,6 +51,7 @@ class UserController extends Controller
         $level = $request->level;
         $user_tel = $request->user_tel;
         $note = $request->note;
+        $generation = $request->generation;
         $status = $request->status;
         $users = User::find($request->id);
         $users-> name = $name;
@@ -60,9 +61,10 @@ class UserController extends Controller
         $users-> level = $level;
         $users-> user_tel = $user_tel;
         $users-> note = $note;
+        $users-> generation = $generation;
         $users-> status = $status;
         $users->save();
-        return redirect('users.alluser');
+        return redirect('alluser');
 
     }
 

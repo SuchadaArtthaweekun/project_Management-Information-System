@@ -129,9 +129,15 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="allproject" class="nav-link">
+                                <a href="{{ route('allproject') }}" class="nav-link">
                                     <i class="fa-solid fa-folder"></i>
                                     <p>Projects</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('alladviser') }}" class="nav-link">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                    <p>Advisers</p>
                                 </a>
                             </li>
                             <li class="nav-item">

@@ -8,18 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Projects extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'author',
-        'co_auther',
+        'co_author',
         'title_th',
         'title_en',
         'edition',
         'article',
         'abtract',
         'adviser',
+        'co_adviser',
         'branch',
-        'published',
-        'view_counter',
         'cate_id',
+        'gen',
     ];
+
+    protected $primaryKey = "project_id";
+
+    protected $table='projects';
 }

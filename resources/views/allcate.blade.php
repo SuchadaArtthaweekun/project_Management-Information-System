@@ -31,7 +31,7 @@
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modal_{{ $category->cate_id }}">
-                                    แก้ไข
+                                    <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
 
                                 <!-- Modal -->
@@ -74,7 +74,7 @@
                                 </div>
                                 <a href="/deletecate/{{ $category->cate_id }}">
                                     <button type="button" class="btn btn-danger"
-                                        onclick="delcate({{ $category->cate_id }})">ลบ</button>
+                                        onclick="delcate({{ $category->cate_id }})"><i class="fa-solid fa-trash"></i></button>
                                 </a>
 
 

@@ -131,7 +131,6 @@
                         <th><strong>อีเมล</strong></th>
                         <th><strong>ระดับผู้ใช้</strong></th>
                         <th><strong>รหัสนักศึกษาหรือรหัสอาจารย์</strong></th>
-                        <th><strong>รุ่น</strong></th>
                         <th><strong>สถานะ</strong></th>
                         <th><strong>เบอร์โทร</strong></th>
                         <th><strong>Action</strong></th>
@@ -146,7 +145,6 @@
                             <th>{{ $user->email }}</th>
                             <th>{{ $user->level }}</th>
                             <th>{{ $user->note }}</th>
-                            <th>{{ $user->generation }}</th>
                             <th>{{ $user->status }}</th>
                             <th>{{ $user->user_tel }}</th>
                             <th>
@@ -155,7 +153,7 @@
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modal_{{ $user->id }}">
-                                    แก้ไข
+                                    <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
 
                                 <!-- Modal -->
@@ -284,7 +282,7 @@
                                 </div>
                                 {{-- end modal --}}
                                 <a href=" /deleteUser/{{ $user->id }}">
-                                    <button type="button" class="btn btn-danger" onclick="alert">ลบ</button>
+                                    <button type="button" class="btn btn-danger" ><i class="fa-solid fa-trash"></i></button>
                                 </a>
                             </th>
                         </tr>
@@ -295,40 +293,5 @@
         </div>
     </body>
 
-    <script>
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
-        })
-
-        swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-                swalWithBootstrapButtons.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
-            } else if (
-                /* Read more about handling dismissals below */
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
-                    'error'
-                )
-            }
-        })
-    </script>
+    
 @endsection

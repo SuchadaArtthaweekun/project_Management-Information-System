@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Adviser extends Migration
+class CreateAdvisersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -24,7 +24,6 @@ class Adviser extends Migration
             $table->unsignedInteger('project_id')->unsigned();
             $table->foreign('project_id')->references('projects')->on('projects')->onDelete('setnull')->onUpdate('setnull');
         });
-
     }
 
     /**
@@ -34,6 +33,6 @@ class Adviser extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('advisers');
     }
 }

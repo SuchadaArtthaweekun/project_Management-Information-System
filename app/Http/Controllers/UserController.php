@@ -51,7 +51,6 @@ class UserController extends Controller
         $level = $request->level;
         $user_tel = $request->user_tel;
         $note = $request->note;
-        $generation = $request->generation;
         $status = $request->status;
         $users = User::find($request->id);
         $users-> name = $name;
@@ -61,7 +60,6 @@ class UserController extends Controller
         $users-> level = $level;
         $users-> user_tel = $user_tel;
         $users-> note = $note;
-        $users-> generation = $generation;
         $users-> status = $status;
         $users->save();
         return redirect('alluser');

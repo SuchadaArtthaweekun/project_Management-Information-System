@@ -13,7 +13,8 @@
     margin: 25%;
 }
 .content {
-    width: 83%;
+    padding: 1%;
+    width: 80%;
     float: right;
 }
 .logout a {
@@ -22,4 +23,18 @@
     border-style: solid;
     border-radius: 16px;
     text-decoration: none;
+}
+body:not(.layout-fixed) .main-sidebar{
+    height: inherit;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    width: 20%; 
+}
+ul.navbar-nav{
+    width: 80%;
+    justify-content: right;
+}
+.showdatafile{
+    justify-content: center;
 }

@@ -16,9 +16,18 @@
             <label for="email">อีเมล</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="อีเมล">
         </div>
-        <div class="mt-4">
+        {{-- <div class="mt-4">
             <label for="password">รหัสผ่าน</label>
             <input id="password" class="form-control"
+                            type="password"
+                            name="password"
+                            required autocomplete="new-password" />
+        </div> --}}
+
+        <div class="mt-4">
+            <x-label for="password" :value="__('Password')" />
+
+            <x-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
                             required autocomplete="new-password" />

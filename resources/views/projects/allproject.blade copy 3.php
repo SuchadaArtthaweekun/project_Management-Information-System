@@ -291,61 +291,6 @@
                                         onclick="delcate({{ $pro->project_id }})">
                                         <i class="fa-solid fa-trash"></i></button>
                                 </a>
-                                {{-- add file --}}
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_file_{{ $pro->project_id }}">
-                                    Add file
-                                </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="modal_file_{{ $pro->project_id }}" tabindex="-1"
-                                    aria-labelledby="modal_file_{{ $pro->project_id }}" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Add file</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            {{-- <form method="get" action="{{ route('addproject') }}"> --}}
-                                            <form method="post" action="{{ route('storeAgain') }}" enctype="multipart/form-data">
-                                                <div class="modal-body">
-                                                    <div class="col-md-12">
-                        
-                                                        @csrf
-                                                        <div>
-                                                            
-                                                            <input type="text" name="project_id" placeholder="Choose file" id="project_id" value="{{ $pro->project_id }}">
-                                                          
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <input type="file" name="file[]" placeholder="Choose file" id="file" multiple="multiple">
-                                                                @error('file')
-                                                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                        
-                                                        <div class="form-group">
-                                                            <label for="exampleFormControlSelect1">ประเเภทไฟล์</label>
-                                                            <select class="form-control" id="exampleFormControlSelect1" name="type" placeholder="">
-                                                                <option value="โครงงาน">โครงงาน</option>
-                                                                <option value="แบบเสนอ">แบบเสนอ</option>
-                                                            </select>
-                                                        </div>
-                        
-                                                      
-                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary" href="{{ route('allproject') }}">Save
-                                                        changes</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{-- end add file --}}
                                 <a href="/addfile/{{ $pro->project_id }}">
                                     <button type="button" class="btn btn-warning"><i class="fa-solid fa-plus"></i>
                                         <i class="fa-solid fa-file"></i></button>
@@ -354,13 +299,9 @@
                                     <button type="button" class="btn btn-warning">
                                         <i class="fa-solid fa-file"></i></button>
                                 </a>
-                                <a href="/Doc/{{$pro->project_id}}">
+                                <a href="/documents/{{ $pro->title_th }}">
                                     <button type="button" class="btn btn-warning">
                                         <i class="fa-solid fa-file"></i></button>
-                                </a>
-                                <a href="/allFiles">
-                                    <button type="button" class="btn btn-warning">
-                                        allFiles</button>
                                 </a>
 
                     </th>

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Document;
+use App\Models\File;
 use App\Models\Projects;
 use Categories;
-use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -16,22 +16,26 @@ use stdClass;
 class ProjectController extends Controller
 {
 
-    public function allProject() {
+    public function allProject()
+    {
         $projects = DB::table('projects')->get();
         $categories = DB::table('categories')->get();
-        return view('projects.allproject', ['projects' => $projects,'categories' => $categories]);
+        return view('projects.allproject', ['projects' => $projects, 'categories' => $categories]);
     }
-    public function editproject() {
+    public function editproject()
+    {
         $projects = DB::table('projects')->get();
         return view('projects.editproject', ['projects' => $projects]);
     }
 
 
-    public function insertformProject(){
+    public function insertformProject()
+    {
         return view('project_create');
-        }
+    }
 
-    public function insertProject(Request $request){
+    public function insertProject(Request $request)
+    {
         $title = $request->input('title');
         $article = $request->input('article');
         $abtract = $request->input('abtract');
@@ -40,12 +44,13 @@ class ProjectController extends Controller
         $url = " ";
         $view_counter = " ";
         $cate_id = $request->input('cate_id');
-        $data=array('title'=>$title, 'article'=>$article, 'abtract'=>$abtract, 'year_release'=>$year_release, 'cate_id'=>$cate_id );
+        $data = array('title' => $title, 'article' => $article, 'abtract' => $abtract, 'year_release' => $year_release, 'cate_id' => $cate_id);
         DB::table('projects')->insert($data);
     }
 
 
-    public function addProject(Request $request) {
+    public function addProject(Request $request)
+    {
         $author = $request->input('author');
         $co_author = $request->input('co_author');
         $title_th = $request->input('title_th');
@@ -54,7 +59,7 @@ class ProjectController extends Controller
         $article = $request->input('article');
         $abtract = $request->input('abtract');
         $adviser = $request->input('adviser');
-        $co_advisers = $request ->input('adviser2');
+        $co_advisers = $request->input('adviser2');
         $cate_id = $request->input('cate_id');
         $id = $request->input('id');
         $branch = $request->input('branch');
@@ -67,27 +72,30 @@ class ProjectController extends Controller
         // // DB::table('projects')->insert($data);
 
         $project = new Projects();
-        $project -> author = $author;
-        $project -> co_author = $co_author;
-        $project -> title_th = $title_th;
-        $project -> title_en = $title_en;
-        $project -> edition = $edition;
-        $project -> article = $article;
-        $project -> abtract = $abtract;
-        $project -> adviser = $adviser;
-        $project -> co_adviser = $co_advisers;
-        $project -> cate_id = $cate_id;
-        $project -> id = $id;
-        $project -> branch = $branch;
-        $project -> gen = $gen;
-        $project -> published = $published;
-        $project -> view_counter = $view_counter;
-        $project ->save();
+        $project->author = $author;
+        $project->co_author = $co_author;
+        $project->title_th = $title_th;
+        $project->title_en = $title_en;
+        $project->edition = $edition;
+        $project->article = $article;
+        $project->abtract = $abtract;
+        $project->adviser = $adviser;
+        $project->co_adviser = $co_advisers;
+        $project->cate_id = $cate_id;
+        $project->id = $id;
+        $project->branch = $branch;
+        $project->gen = $gen;
+        $project->published = $published;
+        $project->view_counter = $view_counter;
+        $project->save();
+
+        $pathDir = 'public/documents/' . $title_th;
+        Storage::makeDirectory($pathDir, 0777, true, true);
+
 
         return redirect()->route('allproject');
- 
     }
-    
+
     public function deletepro($project_id)
     {
         DB::table('projects')->where('project_id', $project_id)->delete();
@@ -107,38 +115,46 @@ class ProjectController extends Controller
         $adviser = $request->input('adviser');
         $co_adviser = $request->input('co_adviser');
         $branch = $request->input('branch');
-        $cate_id  = $request->input('cate_id ');
+        $cate_id  = $request->input('edt_cate_id');
         $gen = $request->input('gen');
         $project = Projects::find($project_id);
-        $project -> author = $author;
-        $project -> co_author = $co_author;
-        $project -> title_th = $title_th;
-        $project -> title_en = $title_en;
-        $project -> edition = $edition;
-        $project -> article = $article;
-        $project -> abtract = $abtract;
-        $project -> adviser = $adviser;
-        $project -> co_adviser = $co_adviser;
-        $project -> branch = $branch;
-        $project -> gen = $gen;
-        $project -> cate_id = $cate_id;
+        $project->author = $author;
+        $project->co_author = $co_author;
+        $project->title_th = $title_th;
+        $project->title_en = $title_en;
+        $project->edition = $edition;
+        $project->article = $article;
+        $project->abtract = $abtract;
+        $project->adviser = $adviser;
+        $project->co_adviser = $co_adviser;
+        $project->branch = $branch;
+        $project->gen = $gen;
+        $project->cate_id = $cate_id;
         $project->save();
-        
+
         // echo $cate_id;
         return redirect('allproject');
-
-
     }
 
     public function edit_project(Request $request)
     {
 
         $author = $request->edt_authors;
-        $project = Projects::find($request -> project_id);
-        $project -> author = $author;
-        $project -> save();
+        $project = Projects::find($request->project_id);
+        $project->author = $author;
+        $project->save();
         return redirect('allproject');
     }
 
-    
+    public function contact()
+    {
+        $project_id = 'project_id';
+
+        return view('addfile', compact('project_id'));
+    }
+    public function allFiles()
+    {
+        $files = Document::all();
+        return view('project.allproject',compact('files'));
+    }
 }

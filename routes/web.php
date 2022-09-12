@@ -7,6 +7,7 @@ use App\Http\Controllers\DocController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CateController;
 use App\Http\Controllers\DashHomeController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -69,6 +70,7 @@ Route::get('/addProject', [\App\Http\Controllers\ProjectController::class, 'addP
 Route::get('/deletepro/{project_id}', [\App\Http\Controllers\ProjectController::class, 'deletepro'])->name('deletepro');
 Route::post('/updateproject', [\App\Http\Controllers\ProjectController::class, 'updateproject'])->name('updateproject');
 Route::get('/edit_project', [\App\Http\Controllers\ProjectController::class, 'edit_project'])->name('edit_project');
+Route::get('/contact', [\App\Http\Controllers\ProjectController::class, 'contact'])->name('contact');
 
 
 // Document
@@ -76,12 +78,19 @@ Route::get('/addfile/{project_id}', [\App\Http\Controllers\DocController::class,
 Route::post('/uploadfile', [\App\Http\Controllers\DocController::class, 'uploadfile'])->name('uploadfile');
 Route::post('/fileUploadPost', [\App\Http\Controllers\DocController::class, 'fileUploadPost'])->name('fileUploadPost');
 Route::post('/store', [\App\Http\Controllers\DocController::class, 'store'])->name('store');
+Route::post('/storeAgain', [\App\Http\Controllers\DocController::class, 'storeAgain'])->name('storeAgain');
 Route::get('/allfiles/{project_id}', [\App\Http\Controllers\DocController::class, 'allfiles'])->name('allfiles');
 Route::get('/allfile/{project_id}', [\App\Http\Controllers\DocController::class, 'allfile'])->name('allfile');
-
+Route::get('/deletedoc/{doc_id}', [\App\Http\Controllers\DocController::class, 'deletedoc'])->name('deletedoc');
+Route::get('/documents/{title_th}', [\App\Http\Controllers\DocController::class, 'fileindoc'])->name('fileindoc');
+Route::get('allFiles',[DocController::class,'allFiles'])->name('allFiles');
+Route::get('Doc/{project_id}',[\App\Http\Controllers\DocController::class, 'showDoc'])->name('Doc');
 
 // adviser
 Route::get('/alladviser', [\App\Http\Controllers\AdviserController::class, 'alladviser'])->name('alladviser');
 Route::get('/addAdviser', [\App\Http\Controllers\AdviserController::class, 'addAdviser'])->name('addAdviser');
 Route::get('/deleteadviser/{adviser_id}', [\App\Http\Controllers\AdviserController::class, 'deleteadviser'])->name('deleteadviser');
 Route::post('updateadviser',[\App\Http\Controllers\AdviserController::class, 'updateadviser'])->name('updateadviser');
+
+
+Route::get('/forgot', [\App\Http\Controllers\PasswordResetLinkController::class, 'create'])->name('forgot');

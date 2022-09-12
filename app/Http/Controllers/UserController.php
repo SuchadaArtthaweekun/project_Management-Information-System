@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -21,13 +22,13 @@ class UserController extends Controller
         $name_en = $request->input('name_en');
         $email = $request->input('email');
         $level = $request->input('level');
-        $password = $request->input('password');
+        $password = Hash::make($request->password);
         $user_tel = $request->input('user_tel');
         $status = $request->input('status');
         $note = $request->input('note');
-        $generation = $request->input('generation');
+        
         $data=array('name'=>$name, 'name_en'=>$name_en, 'email'=>$email, 'level'=>$level, 'password'=>$password, 
-        'user_tel'=>$user_tel, 'note'=>$note,'generation'=>$generation, 'status'=>$status );
+        'user_tel'=>$user_tel, 'note'=>$note, 'status'=>$status );
         DB::table('users')->insert($data);
 
         return redirect()->route('alluser');

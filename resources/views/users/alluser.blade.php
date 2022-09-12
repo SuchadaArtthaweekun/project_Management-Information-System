@@ -44,10 +44,26 @@
                                                 placeholder="อีเมล">
                                         </div>
 
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="title">รหัสผ่าน</label>
                                             <input type="text" name="password" class="form-control"
                                                 placeholder="รหัสผ่าน">
+                                        </div> --}}
+
+                                        <div class="mt-4">
+                                            <x-label for="password" :value="__('Password')" />
+                                
+                                            <x-input id="password" class="block mt-1 w-full"
+                                                            type="password"
+                                                            name="password"
+                                                            required autocomplete="new-password" />
+                                        </div>
+                                        <div class="mt-4">
+                                            <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                            
+                                            <x-input id="password_confirmation" class="block mt-1 w-full"
+                                                            type="password"
+                                                            name="password_confirmation" required />
                                         </div>
 
                                         <div class="form-group">
@@ -204,6 +220,7 @@
                                                       post title"
                                                                 value="{{ $user->password }}">
                                                         </div>
+                                                       
 
                                                         <div class="form-group">
                                                             <label for="user_tel">เบอร์โทร</label>
@@ -283,6 +300,9 @@
                                 {{-- end modal --}}
                                 <a href=" /deleteUser/{{ $user->id }}">
                                     <button type="button" class="btn btn-danger" ><i class="fa-solid fa-trash"></i></button>
+                                </a>
+                                <a href="{{ route('forgot')}}">
+                                    <button type="button" class="btn btn-danger">ลืมรหัสผ่าน</button>
                                 </a>
                             </th>
                         </tr>

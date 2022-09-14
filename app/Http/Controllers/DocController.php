@@ -232,6 +232,7 @@ class DocController extends Controller
 
         // $project = Projects::find($project_id);
         $documents = Document::all();
+        $projectslist = DB::select('select * from projects');
         // echo $project;
 
         $project = DB::table('projects')
@@ -240,7 +241,7 @@ class DocController extends Controller
             ->get();
 
 
-        return view('projects.showDoc', compact('project'));
+        return view('projects.showDoc', compact('project','documents','projectslist'));
     }
 
     public function deletedoc($doc_id)
@@ -248,4 +249,9 @@ class DocController extends Controller
         DB::table('documents')->where('doc_id', $doc_id)->delete();
         return redirect(route('allFiles'));
     }
+
+    public function dbdoc(){
+        $projectslist = DB::select('select * from projects');
+        return view('projects.showDoc',['projectslist'=>$projectslist]);
+        }
 }

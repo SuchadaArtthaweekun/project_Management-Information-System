@@ -20,7 +20,8 @@ class ProjectController extends Controller
     {
         $projects = DB::table('projects')->get();
         $categories = DB::table('categories')->get();
-        return view('projects.allproject', ['projects' => $projects, 'categories' => $categories]);
+        $advisers = DB::table('advisers')->get();
+        return view('projects.allproject', ['projects' => $projects, 'categories' => $categories, 'advisers' => $advisers]);
     }
     public function editproject()
     {

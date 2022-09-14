@@ -62,12 +62,23 @@
 
                                 <div class="form-group">
                                     <label for="adviser">ที่ปรึกษา</label>
-                                    <input type="text" name="adviser" class="form-control" placeholder="ที่ปรึกษา">
+                                    <select class="form-control" id="exampleFormControlSelect1" name="adviser"
+                                        placeholder="ที่ปรึกษา">
+                                        @foreach ($advisers as $adv)
+                                            <option value="{{ $adv->adviser_id }}">{{ $adv->adviser_fullname_th }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="adviser">ที่ปรึกษาร่วม</label>
-                                    <input type="text" name="adviser2" class="form-control" placeholder="ที่ปรึกษาร่วม">
+                                    <label for="co_adviser">ที่ปรึกษาร่วม</label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="co_adviser"
+                                        placeholder="ที่ปรึกษา">
+                                        <option value="no">ไม่มีที่ปรึกษาร่วม</option>
+                                        @foreach ($advisers as $adv)
+                                            <option value="{{ $adv->adviser_id }}">{{ $adv->adviser_fullname_th }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
 
@@ -87,12 +98,12 @@
                                     <label for="branch">แขนงวิชา</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="branch"
                                         placeholder="แขนงวิชา">
-                                        
-                                            <option selected>
-                                            <option value="CS">CS</option>
-                                            <option value="CN">CN</option>
-                                            <option value="MG">MG</option>
-                                       
+
+                                        <option selected>
+                                        <option value="CS">CS</option>
+                                        <option value="CN">CN</option>
+                                        <option value="MG">MG</option>
+
                                     </select>
                                 </div>
 
@@ -107,8 +118,8 @@
                                         value="{{ Auth::user()->id }}">
                                 </div>
 
-                              
-                                
+
+
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -120,6 +131,10 @@
                 </div>
             </div>
         </div>
+        <a href="/allFiles">
+            <button type="button" class="btn btn-warning">
+                allFiles</button>
+        </a>
     </div>
     <table class="table table-striped table-hover table-condensed">
         <thead>
@@ -261,11 +276,11 @@
                                                 <div class="form-group">
                                                     <label for="cate_id">หมวดหมู่โครงงาน : {{ $pro->cate_id }} </label>
                                                     <select class="form-control" id="exampleFormControlSelect1"
-                                                        name="edt_cate_id" id="etd_cate_id" placeholder="หมวดหมู่โครงงาน">
+                                                        name="edt_cate_id" id="etd_cate_id"
+                                                        placeholder="หมวดหมู่โครงงาน">
                                                         @foreach ($categories as $cate)
-                                                            <option value="{{ $cate->cate_id }}" @if ($pro->cate_id === $cate->cate_id)
-                                                                selected
-                                                            @endif>
+                                                            <option value="{{ $cate->cate_id }}"
+                                                                @if ($pro->cate_id === $cate->cate_id) selected @endif>
                                                                 {{-- @if ($pro->cate_id = $cate->cate_id) selected @endif> --}}
                                                                 {{ $cate->catename }}
                                                             </option>
@@ -286,82 +301,80 @@
                                 </div>
                             </div>
                         </div>
-                                <a href="/deletepro/{{ $pro->project_id }}">
-                                    <button type="button" class="btn btn-danger"
-                                        onclick="delcate({{ $pro->project_id }})">
-                                        <i class="fa-solid fa-trash"></i></button>
-                                </a>
-                                {{-- add file --}}
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_file_{{ $pro->project_id }}">
-                                    Add file
-                                </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="modal_file_{{ $pro->project_id }}" tabindex="-1"
-                                    aria-labelledby="modal_file_{{ $pro->project_id }}" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Add file</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            {{-- <form method="get" action="{{ route('addproject') }}"> --}}
-                                            <form method="post" action="{{ route('storeAgain') }}" enctype="multipart/form-data">
-                                                <div class="modal-body">
-                                                    <div class="col-md-12">
-                        
-                                                        @csrf
-                                                        <div>
-                                                            
-                                                            <input type="text" name="project_id" placeholder="Choose file" id="project_id" value="{{ $pro->project_id }}">
-                                                          
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <input type="file" name="file[]" placeholder="Choose file" id="file" multiple="multiple">
-                                                                @error('file')
-                                                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                                                @enderror
+                        <a href="/deletepro/{{ $pro->project_id }}">
+                            <button type="button" class="btn btn-danger" onclick="delcate({{ $pro->project_id }})">
+                                <i class="fa-solid fa-trash"></i></button>
+                        </a>
+                        {{-- add file --}}
+                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                            data-bs-target="#modal_file_{{ $pro->project_id }}">
+                            <i class="fa-light fa-plus"></i>
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal_file_{{ $pro->project_id }}" tabindex="-1"
+                            aria-labelledby="modal_file_{{ $pro->project_id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add file</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    {{-- <form method="get" action="{{ route('addproject') }}"> --}}
+                                    <form method="post" action="{{ route('storeAgain') }}"
+                                        enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            <div class="col-md-12">
+
+                                                @csrf
+                                                <div>
+
+                                                    <input type="text" name="project_id" placeholder="Choose file"
+                                                        id="project_id" value="{{ $pro->project_id }}">
+
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="file" name="file[]" placeholder="Choose file"
+                                                            id="file" multiple="multiple">
+                                                        @error('file')
+                                                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}
                                                             </div>
-                                                        </div>
-                                        
-                                                        <div class="form-group">
-                                                            <label for="exampleFormControlSelect1">ประเเภทไฟล์</label>
-                                                            <select class="form-control" id="exampleFormControlSelect1" name="type" placeholder="">
-                                                                <option value="โครงงาน">โครงงาน</option>
-                                                                <option value="แบบเสนอ">แบบเสนอ</option>
-                                                            </select>
-                                                        </div>
-                        
-                                                      
-                                                        
+                                                        @enderror
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary" href="{{ route('allproject') }}">Save
-                                                        changes</button>
+
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlSelect1">ประเเภทไฟล์</label>
+                                                    <select class="form-control" id="exampleFormControlSelect1"
+                                                        name="type" placeholder="">
+                                                        <option value="โครงงาน">โครงงาน</option>
+                                                        <option value="แบบเสนอ">แบบเสนอ</option>
+                                                    </select>
                                                 </div>
-                                            </form>
+
+
+
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary"
+                                                href="{{ route('allproject') }}">Save
+                                                changes</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                {{-- end add file --}}
-                                <a href="/addfile/{{ $pro->project_id }}">
-                                    <button type="button" class="btn btn-warning"><i class="fa-solid fa-plus"></i>
-                                        <i class="fa-solid fa-file"></i></button>
-                                </a>
-                                <a href="/allfile/{{ $pro->project_id }}">
-                                    <button type="button" class="btn btn-warning">
-                                        <i class="fa-solid fa-file"></i></button>
-                                </a>
-                                <a href="/Doc/{{$pro->project_id}}">
-                                    <button type="button" class="btn btn-warning">
-                                        <i class="fa-solid fa-file"></i></button>
-                                </a>
-                                <a href="/allFiles">
-                                    <button type="button" class="btn btn-warning">
-                                        allFiles</button>
-                                </a>
+                            </div>
+                        </div>
+                        {{-- end add file --}}
+                       
+                        <a href="/Doc/{{ $pro->project_id }}">
+                            <button type="button" class="btn btn-warning">
+                                <i class="fa-solid fa-file"></i></button>
+                        </a>
+                        
 
                     </th>
                 </tr>

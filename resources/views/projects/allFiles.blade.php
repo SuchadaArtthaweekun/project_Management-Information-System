@@ -22,7 +22,7 @@
                 <tr>
                     <td>{{ ++$key }}</td>
                     <td>{{ $file->docname }}</td>
-                    <td>{{ $file->doc_path }}</td>
+                    <td class="all-path">{{ $file->doc_path }}</td>
                     <td>{{ $file->doc_type }}</td>
 
                     <td>id :{{ $file->project_id }} title : {{ $file->title_th }} </td>

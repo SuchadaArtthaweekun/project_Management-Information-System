@@ -117,8 +117,20 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('dashsearch') }}" class="nav-link">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <p>Search</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('searchsec') }}" class="nav-link">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <p>Searchsec</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('alluser') }}" class="nav-link">
-                                    <i class="fa-solid fa-folder"></i>
+                                    <i class="fa-solid fa-user"></i>
                                     <p>User</p>
                                 </a>
                             </li>
@@ -142,7 +154,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa-solid fa-folder"></i>
+                                    <i class="fa-solid fa-file-invoice"></i>
                                     <p>Report</p>
                                 </a>
                             </li>

@@ -7,6 +7,8 @@ use App\Http\Controllers\DocController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CateController;
 use App\Http\Controllers\DashHomeController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SearchHomeController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -92,5 +94,17 @@ Route::get('/addAdviser', [\App\Http\Controllers\AdviserController::class, 'addA
 Route::get('/deleteadviser/{adviser_id}', [\App\Http\Controllers\AdviserController::class, 'deleteadviser'])->name('deleteadviser');
 Route::post('updateadviser',[\App\Http\Controllers\AdviserController::class, 'updateadviser'])->name('updateadviser');
 
+// Search
+Route::get('searched', [\App\Http\Controllers\SearchController::class, 'showsec']);
+Route::get('dashsearch', [\App\Http\Controllers\SearchController::class, 'dashsearch'])->name('dashsearch');
+Route::get('result_dashsearch', [\App\Http\Controllers\SearchController::class, 'result_dashsearch'])->name('result_dashsearch');
+Route::get('search', [\App\Http\Controllers\SearchController::class, 'search'])->name('search');
+Route::get('konha', [\App\Http\Controllers\SearchController::class, 'konha'])->name('konha');
+Route::get('konhasearch', [\App\Http\Controllers\SearchController::class, 'konhasearch'])->name('konhasearch');
+Route::get('searchProject', [\App\Http\Controllers\SearchController::class, 'searchProject'])->name('searchProject');
+
+// Search Home
+Route::get('searchsec', [\App\Http\Controllers\SearchController::class, 'showProjects'])->name('searchsec');
+Route::get('searchhome', [\App\Http\Controllers\SearchHomeController::class, 'search'])->name('searchhome');
 
 Route::get('/forgot', [\App\Http\Controllers\PasswordResetLinkController::class, 'create'])->name('forgot');

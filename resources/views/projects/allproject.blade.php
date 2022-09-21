@@ -72,7 +72,7 @@
 
                                 <div class="form-group">
                                     <label for="co_adviser">ที่ปรึกษาร่วม</label>
-                                    <select class="form-control" id="exampleFormControlSelect1" name="co_adviser"
+                                    <select class="form-control" id="exampleFormControlSelect1" name="adviser2"
                                         placeholder="ที่ปรึกษา">
                                         <option value="no">ไม่มีที่ปรึกษาร่วม</option>
                                         @foreach ($advisers as $adv)

@@ -17,7 +17,7 @@
                     <li>เอกสาร : {{ $item->docname }} <br> {{ $item->doc_path }}</li>
                     <a href="/files/{{ $item->docname }}">Open the name pdf! {{ $item->docname }}</a><br>
                     <a href="/documents/{{ $item->title_th }}">Open the name pdf! {{ $item->title_th }}</a><br>
-                    
+                   
                 </ul>
 
 

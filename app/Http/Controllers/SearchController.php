@@ -82,6 +82,8 @@ class SearchController extends Controller
         return view('searchpage.result-search', compact('projects', 'lists'));
     }
 
+
+
     public function searchProject(Request $request)
     {
         if ($request->input('cate_id') != "all" && $request->input('adviser') != 'all') {
@@ -89,46 +91,50 @@ class SearchController extends Controller
                 ->where('published', '=', 1)
                 ->where('cate_id', 'like', '%' . $request->input('cate_id') . '%')
                 ->where('adviser', 'like', '%' . $request->input('adviser') . '%')
+                ->where('title_th', 'like', '%' . $request->input('title_th') . '%')
+                ->where('edition', 'like', '%' . $request->input('edition') . '%')
+                ->where('author', 'like', '%' . $request->input('author') . '%')
                 ->get();
 
-        //  echo $request->input('cate_id');
-        // echo $request->input('cate_id') , $request->input('adviser');
+            //  echo $request->input('cate_id');
+            // echo $request->input('cate_id') , $request->input('adviser');
         } else if ($request->input('cate_id') == 'all' && $request->input('adviser') == 'all') {
             $data = DB::table('projects')
                 ->where('published', '=', 1)
+                ->where('title_th', 'like', '%' . $request->input('title_th') . '%')
+                ->where('edition', 'like', '%' . $request->input('edition') . '%')
+                ->where('author', 'like', '%' . $request->input('author') . '%')
                 ->get();
         } else if ($request->input('cate_id') != 'all' && $request->input('adviser') == 'all') {
             $data = DB::table('projects')
                 ->where('published', '=', 1)
                 ->where('cate_id', 'like', '%' . $request->input('cate_id') . '%')
+                ->where('title_th', 'like', '%' . $request->input('title_th') . '%')
+                ->where('edition', 'like', '%' . $request->input('edition') . '%')
+                ->where('author', 'like', '%' . $request->input('author') . '%')
                 ->get();
         } else if ($request->input('cate_id') == 'all' && $request->input('adviser') != 'all') {
             $data = DB::table('projects')
                 ->where('published', '=', 1)
                 ->where('adviser', 'like', '%' . $request->input('adviser') . '%')
-                ->get();
-        }
-
-
-        if ($request->input('title_th') == null) {
-            $data = DB::table('projects')
+                ->where('title_th', 'like', '%' . $request->input('title_th') . '%')
                 ->where('edition', 'like', '%' . $request->input('edition') . '%')
                 ->where('author', 'like', '%' . $request->input('author') . '%')
                 ->get();
-        }
-
-        if ($request->input('edition')  == null) {
-            $data = DB::table('projects')
-                ->where('title_th', 'like', '%' . $request->input('title_th') . '%')
-                ->where('author', 'like', '%' . $request->input('author') . '%')
-                ->get();
-        } else
-        if ($request->input('author')  == null) {
-            $data = DB::table('projects')
-                ->where('title_th', 'like', '%' . $request->input('title_th') . '%')
-                ->where('edition', 'like', '%' . $request->input('edition') . '%')
-                ->get();
-        }
+        } 
+        // else if ($request->input('title_th') != null) {
+        //     $data = DB::table('projects')
+        //         ->where('title_th', 'like', '%' . $request->input('title_th') . '%')
+        //         ->get();
+        // } else if ($request->input('edition')  != null) {
+        //     $data = DB::table('projects')
+        //         ->where('edition', 'like', '%' . $request->input('edition') . '%')
+        //         ->get();
+        // } else if ($request->input('author')  != null) {
+        //     $data = DB::table('projects')
+        //         ->where('author', 'like', '%' . $request->input('author') . '%')
+        //         ->get();
+        // }
 
 
 
@@ -327,5 +333,22 @@ class SearchController extends Controller
         $eq = Projects::where($data)->get();
 
         return view('searchpage.result-search', compact('eq'));
+    }
+
+    public function searchNew(Request $request){
+        // เงื่อนไข 4 ตำแหน่ง
+        if ($request->input('cate_id') != 'all'  && $request->input('adviser') != 'all' 
+        && $request->input('title_th') != null && $request->input('edition') != null) {
+            $data = DB::table('projects')
+                ->where('published', '=', 1)
+                ->where('title_th', 'like', '%' . $request->input('title_th') . '%')
+                ->where('edition', 'like', '%' . $request->input('edition') . '%')
+                ->Where('author', 'like', '%' . $request->input('author') . '%')
+                ->Where('co_author', 'like', '%' . $request->input('author') . '%')
+                ->get();;
+            //  echo $request->input('cate_id');
+        } 
+
+        return view('searchpage.result-search', compact('data'));
     }
 }

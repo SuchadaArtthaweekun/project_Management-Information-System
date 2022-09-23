@@ -32,9 +32,10 @@ class SearchController extends Controller
     {
 
         $project = DB::table('projects')
+            ->join('categories', 'categories.cate_id', '=', 'projects.cate_id')
             ->join('documents', 'documents.project_id', '=', 'projects.project_id')
             ->get();
-        return view('searchpage.search-home', compact('project'));
+        return view('searchpage.result-search', compact('project'));
     }
 
     public function showsec()
@@ -88,12 +89,14 @@ class SearchController extends Controller
     {
         if ($request->input('cate_id') != "all" && $request->input('adviser') != 'all') {
             $data = DB::table('projects')
+            
                 ->where('published', '=', 1)
                 ->where('cate_id', 'like', '%' . $request->input('cate_id') . '%')
                 ->where('adviser', 'like', '%' . $request->input('adviser') . '%')
                 ->where('title_th', 'like', '%' . $request->input('title_th') . '%')
                 ->where('edition', 'like', '%' . $request->input('edition') . '%')
                 ->where('author', 'like', '%' . $request->input('author') . '%')
+                
                 ->get();
 
             //  echo $request->input('cate_id');
@@ -121,7 +124,7 @@ class SearchController extends Controller
                 ->where('edition', 'like', '%' . $request->input('edition') . '%')
                 ->where('author', 'like', '%' . $request->input('author') . '%')
                 ->get();
-        } 
+        }
         // else if ($request->input('title_th') != null) {
         //     $data = DB::table('projects')
         //         ->where('title_th', 'like', '%' . $request->input('title_th') . '%')
@@ -265,90 +268,5 @@ class SearchController extends Controller
         return view('searchpage.result-search', compact('data'));
     }
 
-    public function konha(Request $request)
-    {
-        $data = [];
-        $title_th = $request->title_th;
-        $edition = $request->edition;
-        $cate_id = $request->cate_id;
-
-
-        if ($title_th && $edition && $cate_id != 'all') {
-            $data = Projects::where([
-                ['title_th', 'LIKE', "%{$title_th}%"],
-                ['edition', 'LIKE', "%{$edition}%"],
-                ['cate_id', '=', $cate_id],
-            ])->get();
-            return view('searchpage.result-search', compact('data'));
-        }
-
-        if ($title_th) {
-            $data = Projects::where([
-                ['title_th', 'LIKE', "%{$title_th}%"],
-            ])->get();
-            return view('searchpage.result-search', compact('data'));
-        }
-
-        if ($edition) {
-            $data = Projects::where([
-                ['edition', 'LIKE', "%{$edition}%"],
-            ])->get();
-            return view('searchpage.result-search', compact('data'));
-
-            if ($cate_id != 'all') {
-                $data = Projects::where([
-                    ['cate_id', '=', $cate_id],
-                ])->get();
-                return view('searchpage.result-search', compact('data'));
-            }
-            if ($cate_id = 'all' && $edition = null && $title_th = null) {
-                $data = DB::table('projects')
-                    ->select('*')
-                    ->get();
-                return view('searchpage.result-search', compact('data'));
-            }
-
-            return $data;
-        }
-    }
-    public function konhasearch(Request $request)
-    {
-        $data = [];
-        $title_th = $request->title_th;
-        $edition = $request->edition;
-        $cate_id = $request->cate_id;
-
-        if ($title_th) {
-            $data[] = ['title_th', 'LIKE', "%{$title_th}%"];
-        }
-
-        if ($edition) {
-            $data[] = ['edition', 'LIKE', "%{$edition}%"];
-        }
-
-        if ($cate_id) {
-            $data[] = ['cate_id', '=', $cate_id];
-        }
-
-        $eq = Projects::where($data)->get();
-
-        return view('searchpage.result-search', compact('eq'));
-    }
-
-    public function searchNew(Request $request){
-        // เงื่อนไข 4 ตำแหน่ง
-        if ($request->input('cate_id') != 'all'  && $request->input('adviser') != 'all' 
-        && $request->input('title_th') != null && $request->input('edition') != null) {
-            $data = DB::table('projects')
-                ->where('published', '=', 1)
-                ->where('title_th', 'like', '%' . $request->input('title_th') . '%')
-                ->where('edition', 'like', '%' . $request->input('edition') . '%')
-                ->Where('author', 'like', '%' . $request->input('author') . '%')
-                ->Where('co_author', 'like', '%' . $request->input('author') . '%')
-                ->get();;
-            //  echo $request->input('cate_id');
-        } 
-
-        return view('searchpage.result-search', compact('data'));
-    }
+    
 }

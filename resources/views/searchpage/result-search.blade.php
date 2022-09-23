@@ -22,8 +22,23 @@
                 {{ $uhuh->adviser }}
                 {{ $uhuh->co_adviser }}
             </div>
+
+            <div class="result" >
+                <div class="gard">
+                    <div>
+                        <h3>{{ $uhuh->title_th }}</h3>
+                        <h5>{{ $uhuh->cate_id }} </h5>
+                        {{-- <h5>{{ $uhuh->catename }} </h5> --}}
+                        <p>{{ $uhuh->abtract }}</p>
+                    </div>
+                </div>
+            </div>
             @endforeach
         </div>
+    </div>
+
+    <div>
+      
     </div>
 
 

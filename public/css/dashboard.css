@@ -2,6 +2,7 @@
 *{
     font-family: 'Noto Sans Thai', sans-serif;
 }
+
 .logo{
     height: 72px;
 }
@@ -40,4 +41,10 @@ ul.navbar-nav{
 }
 .showdoc{
     width: 80%;
+}
+.result{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 20px;
 }

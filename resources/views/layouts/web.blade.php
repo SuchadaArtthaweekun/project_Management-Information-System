@@ -20,16 +20,9 @@
         <nav class="navbar navbar-expand-lg navbar-light  fixed-top">
             <div class="container">
                 <div class="logo">
-                    <img src="{{ asset('/img/LogoHead-1.png') }}" >
+                    <a href="{{ route('home')}}"><img src="{{ asset('/img/LogoHead-1.png') }}" ></a>
                 </div>
-                <div class="search-nav">
-                    <div class="search-container">
-                        <form action="/search.php">
-                        <input type="text" placeholder="Search.." name="search">
-                        <button type="submit" class="btn btn-info"><a href="/search.blade.php">search</a></button>
-                        </form>
-                    </div>
-                </div>
+               
                 {{-- <a class="navbar-brand" href="#">ITBRU Projects</a> --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -61,6 +54,7 @@
   </header>
 
     <div class="container lg">
+        @yield('menu')
         @yield('content')
     </div>
 

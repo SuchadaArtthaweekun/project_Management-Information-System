@@ -1,30 +1,34 @@
-@extends('layouts.fordashboard')
+@extends('layouts.web')
+
+@section('menu')
+@endsection
 
 @section('content')
-    <p>home</p>
     <div class="container">
-        {{-- <div class="item">
-            {{ $lists }}
-           @foreach ($lists as $item)
-            <div class="col">
-                {{ $item->title_th }}
-            </div>
-            @endforeach
-        </div> --}}
-
         <div class="item">
-            {{ $data }}
-           {{-- @foreach ($data as $uhuh)
-            <div class="col">
-                {{ $uhuh->title_th }}
-                {{ $uhuh->edition }}
-                {{ $uhuh->cate_id }}
-                {{ $uhuh->catename }}
-            </div> --}}
-            {{-- @endforeach --}}
+
+            @foreach ($data as $uhuh)
+                <div class="col-4">
+
+                </div>
+                <div class="col-8">
+                    <div class="result">
+                        <div class="gard">
+                            <div>
+                                <a href="/Document/{{ $uhuh->project_id }}">
+                                    <h3>{{ $uhuh->title_th }}</h3>
+                                    <h5>{{ $uhuh->cate_id }} </h5>
+                                    {{-- <h5>{{ $uhuh->catename }} </h5> --}}
+                                    <p>{{ $uhuh->abtract }}</p>
+                                    <div class="content.date">
+                                        <p>อัปโหลดเมื่อ {{ $uhuh->updated_at }}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
-
-
-   
 @endsection

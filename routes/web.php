@@ -105,6 +105,7 @@ Route::get('searchProject', [\App\Http\Controllers\SearchController::class, 'sea
 
 // Search Home
 Route::get('searchsec', [\App\Http\Controllers\SearchController::class, 'showProjects'])->name('searchsec');
-Route::get('searchhome', [\App\Http\Controllers\SearchHomeController::class, 'search'])->name('searchhome');
+Route::get('searchhome', [\App\Http\Controllers\SearchHomeController::class, 'searchhome'])->name('searchhome');
+Route::get('Document/{project_id}',[\App\Http\Controllers\SearchHomeController::class, 'showDoc'])->name('Document');
 
 Route::get('/forgot', [\App\Http\Controllers\PasswordResetLinkController::class, 'create'])->name('forgot');

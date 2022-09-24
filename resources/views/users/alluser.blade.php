@@ -238,11 +238,11 @@
                                                                 value="{{ $user->note }}">
                                                         </div>
 
-                                                        <div class="form-group">
+                                                        {{-- <div class="form-group">
                                                             <label for="generation">รุ่น ปีการศึกษาที่เข้าเรียน</label>
                                                             <select class="form-control" id="exampleFormControlSelect1"
                                                                 name="generation" placeholder="รุ่น ปีการศึกษาที่เข้าเรียน">
-                                                                <option selected>เลือกปีการศึกษาที่เข้าเรียน</option>
+                                                                <option selected value="{{ $user->gen }}">{{ $user->gen }}</option>
                                                                 <option value="65">65</option>
                                                                 <option value="64">64</option>
                                                                 <option value="63">63</option>
@@ -260,17 +260,17 @@
                                                                 <option value="51">51</option>
                                                                 <option value="50">50</option>
                                                             </select>
-                                                        </div>
+                                                        </div> --}}
 
                                                         <div class="form-group">
                                                             <label for="level">ระดับผู้ใช้</label>
                                                             <select class="form-control" id="exampleFormControlSelect1"
                                                                 name="level" placeholder="รหัสนักศึกษา"
                                                                 value="{{ $user->level }}">
-                                                                <option selected>เลือกระดับผู้ใช้</option>
-                                                                <option value="ผู้ดูแลระบบ">1 : ผู้ดูแลระบบ</option>
-                                                                <option value="อาจารย์">2 : อาจารย์</option>
-                                                                <option value="นักศึกษา">3 : นักศึกษา</option>
+                                                                <option value="{{ $user->level}}">{{ $user->level }}</option>
+                                                                <option value="ผู้ดูแลระบบ">ผู้ดูแลระบบ</option>
+                                                                <option value="อาจารย์">อาจารย์</option>
+                                                                <option value="นักศึกษา">นักศึกษา</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
@@ -278,6 +278,7 @@
                                                             <select class="form-control" id="exampleFormControlSelect1"
                                                                 name="status" placeholder="สถานะผู้ใช้"
                                                                 value="{{ $user->status }}">
+                                                                <option value="{{ $user->status }}"><?php  if ($user->status == '0') {echo 'off' ;}elseif ($user->status == '1') {echo 'on' ; } ?></option>
                                                                 <option value="0">off</option>
                                                                 <option value="1">on</option>
                                                             </select>

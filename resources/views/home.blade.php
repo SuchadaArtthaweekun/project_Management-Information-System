@@ -31,7 +31,7 @@
         </div>
     </section>
     <div class="homehilight">
-        <div class="sidebarhome">
+        {{-- <div class="sidebarhome">
             <div class="col-4">
                 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
                     <a href="/"
@@ -104,7 +104,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
 
 

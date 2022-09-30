@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -39,7 +40,7 @@ class UserController extends Controller
         $users = User::find($id)->delete();
         
         // DB::table('users')->where('id')->delete();
-        return redirect('users.alluser');
+        return redirect('alluser');
        
     }
 
@@ -73,6 +74,25 @@ class UserController extends Controller
         return view('users.alluser',compact('users'));
 
     }
+
+    public function pendingUser()
+    {
+        if(DB::table('users')->where('status','=', 0)){
+            $data = DB::table('users')
+            ->where('status','=', 0)
+            ->get();
+
+            return view('users.pending', compact('data'));
+        }else{
+            return view('dashboard')->with("don't have");
+        }
+    }
+    public function dashuser()
+    {
+        $users = DB::table('users')->get();
+        return view('users.dashuser',compact('users'));
+    }
     
     
 }
+

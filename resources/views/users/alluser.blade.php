@@ -302,9 +302,7 @@
                                 <a href=" /deleteUser/{{ $user->id }}">
                                     <button type="button" class="btn btn-danger" ><i class="fa-solid fa-trash"></i></button>
                                 </a>
-                                <a href="{{ route('forgot')}}">
-                                    <button type="button" class="btn btn-danger">ลืมรหัสผ่าน</button>
-                                </a>
+                            
                             </th>
                         </tr>
                     @endforeach

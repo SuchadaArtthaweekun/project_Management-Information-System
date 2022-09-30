@@ -9,6 +9,7 @@ use App\Http\Controllers\CateController;
 use App\Http\Controllers\DashHomeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchHomeController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -107,5 +108,27 @@ Route::get('searchProject', [\App\Http\Controllers\SearchController::class, 'sea
 Route::get('searchsec', [\App\Http\Controllers\SearchController::class, 'showProjects'])->name('searchsec');
 Route::get('searchhome', [\App\Http\Controllers\SearchHomeController::class, 'searchhome'])->name('searchhome');
 Route::get('Document/{project_id}',[\App\Http\Controllers\SearchHomeController::class, 'showDoc'])->name('Document');
+Route::get('searchcate/{cate_id}',[\App\Http\Controllers\SearchHomeController::class, 'searchcate'])->name('searchcate');
+
+// sidebar
+Route::get('newProject', [\App\Http\Controllers\SearchHomeController::class, 'newProject'])->name('newProject');
+Route::get('oldProject', [\App\Http\Controllers\SearchHomeController::class, 'oldProject'])->name('oldProject');
+Route::get('cate1Project', [\App\Http\Controllers\SearchHomeController::class, 'cate1Project'])->name('cate1Project');
+Route::get('cate2Project', [\App\Http\Controllers\SearchHomeController::class, 'cate2Project'])->name('cate2Project');
+Route::get('cate4Project', [\App\Http\Controllers\SearchHomeController::class, 'cate4Project'])->name('cate4Project');
+
+// download
+Route::get('/file/download/{id}',[DocController::class,'Download']);
+
+// report
+Route::get('all-report', [\App\Http\Controllers\ReportController::class, 'index'])->name('allreport');
+
+// pending
+Route::get('pending-projects', [\App\Http\Controllers\ProjectController::class, 'pendingProject'])->name('pendingProject');
+Route::get('pending-users', [\App\Http\Controllers\UserController::class, 'pendingUser'])->name('pendingUser');
+
+// dash
+Route::get('dashuser', [\App\Http\Controllers\UserController::class, 'dashuser'])->name('dashuser');
+
 
 Route::get('/forgot', [\App\Http\Controllers\PasswordResetLinkController::class, 'create'])->name('forgot');

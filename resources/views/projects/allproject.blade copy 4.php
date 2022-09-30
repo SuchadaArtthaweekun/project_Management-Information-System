@@ -46,7 +46,7 @@
 
                                 <div class="form-group">
                                     <label for="edition">ปีที่เผยแพร่</label>
-                                    <input type="number" placeholder="YYYY" min="2530" max="2600" name="edition"
+                                    <input type="number" placeholder="YYYY" min="2017" max="2100" name="edition"
                                         action="datepicker" class="form-control">
                                 </div>
 
@@ -74,9 +74,9 @@
                                     <label for="co_adviser">ที่ปรึกษาร่วม</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="adviser2"
                                         placeholder="ที่ปรึกษา">
-                                        <option value="">ไม่มีที่ปรึกษาร่วม</option>
+                                        <option value="no">ไม่มีที่ปรึกษาร่วม</option>
                                         @foreach ($advisers as $adv)
-                                            <option value="{{ $adv->adviser_fullname_th }}">{{ $adv->adviser_fullname_th }}</option>
+                                            <option value="{{ $adv->adviser_id }}">{{ $adv->adviser_fullname_th }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -112,11 +112,13 @@
                                     <input type="text" name="gen" class="form-control" placeholder="รุ่นปี">
                                 </div>
 
-                                <div class="hideid">
+                                <div class="form-group">
                                     <label for="id">ผู้เพิ่มโครงงาน</label>
                                     <input type="text" name="id" class="form-control"
                                         value="{{ Auth::user()->id }}">
                                 </div>
+
+
 
                             </div>
                         </div>
@@ -143,10 +145,10 @@
                 <th><strong>ชื่อโครงงาน (ไทย)</strong></th>
                 <th><strong>ชื่อโครงงาน (อังกฤษ)</strong></th>
                 <th><strong>ปีที่เผยแพร่</strong></th>
-                {{-- <th><strong>บทความ</strong></th> --}}
-                {{-- <th><strong>บทคัดย่อ</strong></th> --}}
-                {{-- <th><strong>ที่ปรึกษา</strong></th> --}}
-                {{-- <th><strong>ที่ปรึกษาร่วม</strong></th> --}}
+                <th><strong>บทความ</strong></th>
+                <th><strong>บทคัดย่อ</strong></th>
+                <th><strong>ที่ปรึกษา</strong></th>
+                <th><strong>ที่ปรึกษาร่วม</strong></th>
                 <th><strong>แขนงวิชา</strong></th>
                 <th><strong>รุ่น</strong></th>
                 <th><strong>หมวดหมู่โครงงาน</strong></th>
@@ -162,15 +164,17 @@
                     <th>{{ $pro->title_th }}</th>
                     <th>{{ $pro->title_en }}</th>
                     <th>{{ $pro->edition }}</th>
-                    {{-- <th>{{ $pro->article }}</th> --}}
-                    {{-- <th class="abtract">{{ $pro->abtract }}</th> --}}
-                    {{-- <th>{{ $pro->adviser }}</th> --}}
-                    {{-- <th>{{ $pro->co_adviser }}</th> --}}
+                    <th>{{ $pro->article }}</th>
+                    <th>{{ $pro->abtract }}</th>
+                    <th>{{ $pro->adviser }}</th>
+                    <th>{{ $pro->co_adviser }}</th>
                     <th>{{ $pro->branch }}</th>
                     <th>{{ $pro->gen }}</th>
-                    <th>{{ $pro->catename }}</th>
+                    <th>{{ $pro->cate_id }}</th>
                     <th>
-
+                        {{-- <a href="/editcate/{{ $category->cate_id }}">
+                        <button type="button" class="btn btn-success">แก้ไข</button>
+                    </a> --}}
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#modal_{{ $pro->project_id }}">
@@ -255,6 +259,19 @@
                                                         class="form-control" name="gen">
 
                                                 </div>
+
+                                                {{-- <div class="form-group">
+                                                    <label for="cate_id">หมวดหมู่โครงงาน</label>
+                                                    <select class="form-control" id="exampleFormControlSelect1"
+                                                        name="cate_id" placeholder="หมวดหมู่โครงงาน">
+                                                        @foreach ($categories as $cate)
+                                                            <option value="{{ $cate->cate_id }}"
+                                                                @if ($pro->cate_id = $cate->cate_id) selected @endif>
+                                                                {{ $cate->catename }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div> --}}
 
                                                 <div class="form-group">
                                                     <label for="cate_id">หมวดหมู่โครงงาน : {{ $pro->cate_id }} </label>
@@ -352,19 +369,16 @@
                             </div>
                         </div>
                         {{-- end add file --}}
-
+                       
                         <a href="/Doc/{{ $pro->project_id }}">
                             <button type="button" class="btn btn-warning">
                                 <i class="fa-solid fa-file"></i></button>
                         </a>
-
+                        
 
                     </th>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
-
-   
 @endsection

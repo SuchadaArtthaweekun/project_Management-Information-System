@@ -51,13 +51,12 @@ class RegisteredUserController extends Controller
             'user_tel' => $request->user_tel,
             'status' => '0',
             'note' => $request->note,
-            'project_id' => null
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect('firstRegister');
+        return redirect('/')->with('บัญชีของคุณกำลังรออนุมัติ','ไม่สำเร็จ');
     }
 }

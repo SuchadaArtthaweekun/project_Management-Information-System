@@ -29,14 +29,20 @@
 
                     <td>id :{{ $file->project_id }} title : {{ $file->title_th }} </td>
 
-                    <td><a href="{{ $file->doc_path }}">path</a></td>
+                    <td><a href="\{{ $file->doc_path }}">path</a></td>
                     <td><a href="/documents/{{ $file->docname }}">View</a></td>
-                    <td><a href="\{{ $file->doc_path }}">Download</a></td>
+                    <td><a href="/file/download/{{$file->docname}}">Download</a></td>
+                    {{-- <td><a href="/file/download/{{$file->docname}}"><?php if (projects.project_id == documents.project_id) {
+                        echo $file;
+                    }?></a></td> --}}
                     <td><a href="URI">uri</a></td>
                     
 
                 </tr>
-            @endforeach
+             @endforeach
+
+          
+
         </table>
 
     </div>

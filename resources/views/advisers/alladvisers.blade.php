@@ -86,7 +86,6 @@
                         <th><strong>ชื่อ-สกุล (อังกฤษ)</strong></th>
                         <th><strong>เบอร์โทร</strong></th>
                         <th><strong>อีเมล</strong></th>
-                        <th><strong>โครงาน</strong></th>
                         <th><strong>Action</strong></th>
                     </tr>
                 </thead>
@@ -98,7 +97,6 @@
                             <th>{{ $ads->name_prefix_eng }} {{ $ads->adviser_fullname_en }}</th>
                             <th>{{ $ads->adviser_tel }}</th>
                             <th>{{ $ads->adviser_email }}</th>
-                            <th>{{ $ads->project_id }}</th>
                             <th>
                         
                                

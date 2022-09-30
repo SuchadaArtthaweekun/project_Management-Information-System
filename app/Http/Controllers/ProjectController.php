@@ -18,7 +18,10 @@ class ProjectController extends Controller
 
     public function allProject()
     {
-        $projects = DB::table('projects')->get();
+        $projects =DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+        ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+        ->get();
+        // $projects = DB::table('projects')->get();
         $categories = DB::table('categories')->get();
         $advisers = DB::table('advisers')->get();
         return view('projects.allproject', ['projects' => $projects, 'categories' => $categories, 'advisers' => $advisers]);
@@ -157,5 +160,21 @@ class ProjectController extends Controller
     {
         $files = Document::all();
         return view('project.allproject',compact('files'));
+    }
+
+    // โครงงานรอการอนุมัติ
+    public function pendingProject()
+    {
+        if(DB::table('projects')->where('published','=', '0')){
+            $data = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+            ->where('published','=', 0)
+            ->get();
+
+            return view('projects.pending', compact('data'));
+        }else{
+            return view('dashboard')->with("don't have");
+        }
     }
 }

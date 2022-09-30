@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use App\Models\Document;
 use App\Models\File;
 use App\Models\Projects;
@@ -148,14 +149,12 @@ class DocController extends Controller
                 $path = $file->store('documents/');
                 $file->move(public_path('documents'), $name);
                 $doc_type = $request->input('type');
-                $doc_status = 'on';
                 $download_counter = '0';
-                
+
 
                 $insert[$key]['docname'] = $name;
                 $insert[$key]['doc_path'] = $path;
                 $insert[$key]['doc_type'] = $doc_type;
-                $insert[$key]['doc_status'] = $doc_status;
                 $insert[$key]['download_counter'] = $download_counter;
                 $insert[$key]['project_id'] = $project_id;
                 echo $name;
@@ -203,7 +202,6 @@ class DocController extends Controller
         $path = $request->file('file')->store('public/document/' . $title_th);
         $file->move(public_path('/document/' . $title_th), $name);
         $type = $request->input('type');
-        $doc_status = 'on';
         $download_counter = '0';
         $project_id = $request->input('project_id');
 
@@ -212,7 +210,6 @@ class DocController extends Controller
         $save->docname = $name;
         $save->doc_path = $path;
         $save->doc_type = $type;
-        $save->doc_status = $doc_status;
         $save->download_counter =  $download_counter;
         $save->project_id = $project_id;
         $save->save();
@@ -232,16 +229,18 @@ class DocController extends Controller
 
         // $project = Projects::find($project_id);
         $documents = Document::all();
+        $categories = Categories::all();
         $projectslist = DB::select('select * from projects');
         // echo $project;
 
-        $project = DB::table('projects')
+        $project = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
             ->join('documents', 'documents.project_id', '=', 'projects.project_id')
             ->where('projects.project_id', '=', $project_id)
             ->get();
 
 
-        return view('projects.showDoc', compact('project','documents','projectslist'));
+        return view('projects.showDoc', compact('project', 'documents', 'projectslist','categories'));
     }
 
     public function deletedoc($doc_id)
@@ -250,8 +249,10 @@ class DocController extends Controller
         return redirect(route('allFiles'));
     }
 
-    public function dbdoc(){
-        $projectslist = DB::select('select * from projects');
-        return view('projects.showDoc',['projectslist'=>$projectslist]);
-        }
+
+
+    public function Download($file)
+    {
+        return response()->download('documents/' . $file);
+    }
 }

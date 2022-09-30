@@ -22,9 +22,11 @@
                             </h5>
                         </div>
                     </div>
-                    <div class="col">
-                        <img src="public/img/education.jpg"
+                    <div class="col ">
+                        <div class="bannerhome">
+                            <img src="{{ asset('/img/education.jpg') }}"
                             alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -111,6 +113,7 @@
         <div class="col-8">
             <div class="homesearch">
                 <form method="get" action="{{ route('searchhome') }}" enctype="multipart/form-data" class="search">
+                    <h3 for="" class="searchtxt">สืบค้นโครงงานนักศึกษา</h3>
                     @csrf
                     <div class="form-group row">
                         <label for="cate_id" class="col-sm-2 col-form-label">หมวดหมู่โครงงาน</label>

@@ -3,7 +3,7 @@
 @section('content')
     <section>
         <div class="container">
-            <form method="get" action="{{ route('searchhome') }}" enctype="multipart/form-data">
+            <form method="get" action="{{ route('searchhome') }}" >
                 @csrf
                
                 <div class="form-group row">

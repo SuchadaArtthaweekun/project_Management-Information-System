@@ -29,10 +29,9 @@ class AdviserController extends Controller
         $adviser_fullname_en = $request->input('adviser_fullname_en');
         $adviser_tel = $request->input('adviser_tel');
         $adviser_email = $request->input('adviser_email');
-        $project_id = $request->input('project_id');
         $data=array('name_prefix_th'=>$name_prefix_th, 'name_prefix_eng'=>$name_prefix_eng, 
         'adviser_fullname_th'=>$adviser_fullname_th, 'adviser_fullname_en'=>$adviser_fullname_en, 'adviser_tel'=>$adviser_tel, 
-        'adviser_email'=>$adviser_email, 'project_id'=>$project_id );
+        'adviser_email'=>$adviser_email );
         DB::table('advisers')->insert($data);
 
         return redirect()->route('alladviser');
@@ -55,7 +54,7 @@ class AdviserController extends Controller
         $adviser-> adviser_tel = $adviser_tel;
         $adviser-> adviser_email = $adviser_email;
         $adviser->save();
-        return redirect('alluser');
+        return redirect('alladviser');
 
     }
 }

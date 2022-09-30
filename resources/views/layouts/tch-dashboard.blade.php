@@ -119,29 +119,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('allcate') }}" class="nav-link">
-                                    <i class="fa-solid fa-address-book"></i>
-                                    <p>Category</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="{{ route('allproject') }}" class="nav-link">
                                     <i class="fa-solid fa-folder"></i>
                                     <p>Projects</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('alladviser') }}" class="nav-link">
-                                    <i class="fa-solid fa-user-tie"></i>
-                                    <p>Advisers</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('allreport')}}" class="nav-link">
-                                    <i class="fa-solid fa-file-invoice"></i>
-                                    <p>Report</p>
-                                </a>
-                            </li>
+                           
                         </ul>
                     </li>
                 </ul>

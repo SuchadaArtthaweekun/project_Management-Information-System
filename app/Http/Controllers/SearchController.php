@@ -35,8 +35,9 @@ class SearchController extends Controller
             ->join('categories', 'categories.cate_id', '=', 'projects.cate_id')
             ->join('documents', 'documents.project_id', '=', 'projects.project_id')
             ->get();
-        return view('searchpage.result-search', compact('project'));
+        return view('searchpage.result-search-home', compact('project'));
     }
+    
 
     public function showsec()
     {

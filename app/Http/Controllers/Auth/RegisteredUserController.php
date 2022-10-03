@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'name_en' => $request->name_en,
             'email' => $request->email,
-            'level' => '0',
+            'level' => User::std,
             'password' => Hash::make($request->password),
             'user_tel' => $request->user_tel,
             'status' => '0',
@@ -55,8 +55,10 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        
 
-        return redirect('/')->with('บัญชีของคุณกำลังรออนุมัติ','ไม่สำเร็จ');
+        // Auth::login($user);
+
+        return redirect('/')->with('success','File has been upload successfully!');
     }
 }

@@ -20,29 +20,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $usr)
-                        <tr>
-                            <th>{{ $usr->id }}</th>
-                            <th>{{ $usr->name }}</th>
-                            <th>{{ $usr->name_en }}</th>
-                            <th>{{ $usr->email }} </th>
-                            <th>{{ $usr->level }}</th>
-                            <th>{{ $usr->status }}</th>
-                            <th>{{ $usr->note }}</th>
-                            <th>
-                                 <a href="">
-                                    <button class="btn btn-success">
-                                        อนุมัติ
-                                    </button>
-                                </a>
-                                <a href="">
-                                    <button class="btn btn-danger">
-                                        ลบ
-                                    </button>
-                                </a>
-                            </th>
-                        </tr>
-                    @endforeach
+                    @if (is_array($data) || is_object($data))
+                        
+                        @foreach ($data as $usr)
+                            <tr>
+                                <th>{{ $usr->id }}</th>
+                                <th>{{ $usr->name }}</th>
+                                <th>{{ $usr->name_en }}</th>
+                                <th>{{ $usr->email }} </th>
+                                <th>{{ $usr->level }}</th>
+                                <th>{{ $usr->status }}</th>
+                                <th>{{ $usr->note }}</th>
+                                <th>
+                                    <a href="{{ route('approveUser') }}">
+                                        <button class="btn btn-success">
+                                            อนุมัติ
+                                        </button>
+                                    </a>
+                                    <a href="">
+                                        <button class="btn btn-danger">
+                                            ลบ
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                        @endforeach
+                        
+                    @endif
                 </tbody>
             </table>
         </div>

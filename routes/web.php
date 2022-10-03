@@ -124,11 +124,21 @@ Route::get('/file/download/{id}',[DocController::class,'Download']);
 Route::get('all-report', [\App\Http\Controllers\ReportController::class, 'index'])->name('allreport');
 
 // pending
-Route::get('pending-projects', [\App\Http\Controllers\ProjectController::class, 'pendingProject'])->name('pendingProject');
-Route::get('pending-users', [\App\Http\Controllers\UserController::class, 'pendingUser'])->name('pendingUser');
+// Route::get('pending-projects', [\App\Http\Controllers\ProjectController::class, 'pendingProject'])->name('pendingProject');
+// Route::get('publishProject', [\App\Http\Controllers\ProjectController::class, 'publishProject'])->name('publishProject');
+// Route::get('pending-users', [\App\Http\Controllers\UserController::class, 'pendingUser'])->name('pendingUser');
+// Route::get('approveUser', [\App\Http\Controllers\UserController::class, 'approveUser'])->name('approveUser');
 
 // dash
-Route::get('dashuser', [\App\Http\Controllers\UserController::class, 'dashuser'])->name('dashuser');
+Route::get('dashuser', [\App\Http\Controllers\UserController::class, 'dashuser'])->name('dashuser')->middleware('level');
 
 
 Route::get('/forgot', [\App\Http\Controllers\PasswordResetLinkController::class, 'create'])->name('forgot');
+
+
+Route::middleware('level')->group(function () {
+    Route::get('pending-projects', [\App\Http\Controllers\ProjectController::class, 'pendingProject'])->name('pendingProject');
+    Route::get('publishProject', [\App\Http\Controllers\ProjectController::class, 'publishProject'])->name('publishProject');
+    Route::get('pending-users', [\App\Http\Controllers\UserController::class, 'pendingUser'])->name('pendingUser');
+    Route::get('approveUser', [\App\Http\Controllers\UserController::class, 'approveUser'])->name('approveUser');
+});

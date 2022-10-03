@@ -51,4 +51,21 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
+    public function login(Request $request){
+        $input = $request->all();
+
+        $this->validate($request,[
+            'email' => 'required|email',
+            'password' => 'required|password'
+        ]);
+
+        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))){
+            if(auth()->user()->level = 'ผู้ดูแลระบบ'){
+                return redirect()->route('dashuser');
+            }else{
+                return redirect()->route('dashuser');
+            }
+        }
+    }
 }

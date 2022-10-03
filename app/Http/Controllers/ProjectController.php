@@ -174,7 +174,20 @@ class ProjectController extends Controller
 
             return view('projects.pending', compact('data'));
         }else{
-            return view('dashboard')->with("don't have");
+           
+            return view('dashboard')->with('info','ไม่มีข้อมูล');
         }
     }
+
+    public function publishProject()
+    {
+       
+            $data = DB::table('projects')
+            ->update(['published' => 1]);
+
+            return view('projects.pending', compact('data'));
+        
+    }
+
+
 }

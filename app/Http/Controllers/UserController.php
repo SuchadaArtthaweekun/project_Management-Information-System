@@ -77,15 +77,23 @@ class UserController extends Controller
 
     public function pendingUser()
     {
-        if(DB::table('users')->where('status','=', 0)){
+        if(DB::table('users')->where('status','=', '0')){
             $data = DB::table('users')
-            ->where('status','=', 0)
+            ->where('status','=', '0')
             ->get();
 
             return view('users.pending', compact('data'));
         }else{
             return view('dashboard')->with("don't have");
         }
+    }
+    public function approveUser(Request $request)
+    {
+            // $data = User::find($request->id);
+            $data = DB::table('users')
+            ->update(['status' => 1]);
+            return view('users.pending', compact('data'));
+        
     }
     public function dashuser()
     {

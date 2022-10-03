@@ -36,4 +36,6 @@ class HomeController extends Controller
        
         return view('home', compact('projects', 'documents', 'categories', 'advisers', 'adviser'));
     }
+
+   
 }

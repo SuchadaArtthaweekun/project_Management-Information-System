@@ -1,5 +1,5 @@
 
-@extends('layouts.fordashboard')
+@extends('layouts.std-dashboard')
 
 @section('content')
 

@@ -32,7 +32,24 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // return redirect()->intended(RouteServiceProvider::HOME);
+        // if (auth()->user()->level == 'ผู้ดูแลระบบ') {
+        //     return redirect()->route('dashboard');
+        // } elseif (auth()->user()->level == 'อาจารย์') {
+        //     return redirect()->route('tchdashboard');
+        // } elseif (auth()->user()->level == 'นักศึกษา ') {
+        //     return redirect()->route('stddashboard');
+        // }
+
+
+        if (auth()->user()->level == 'ผู้ดูแลระบบ') {
+            return redirect()->route('dashboard');
+        } else if(auth()->user()->level == 'อาจารย์'){
+            return redirect()->route('tchdashboard');
+        }else if(auth()->user()->level == 'นักศึกษา'){
+            return redirect()->route('stddashboard');
+        }
+            
     }
 
     /**
@@ -52,18 +69,21 @@ class AuthenticatedSessionController extends Controller
         return redirect('/');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $input = $request->all();
 
-        $this->validate($request,[
+        $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required|password'
         ]);
 
-        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))){
-            if(auth()->user()->level = 'ผู้ดูแลระบบ'){
+        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+            if (auth()->user()->level = 'ผู้ดูแลระบบ') {
                 return redirect()->route('dashuser');
-            }else{
+            } else if ((auth()->user()->level = 'อาจารย์')) {
+                return redirect()->route('dashuser');
+            } else if ((auth()->user()->level = 'นักศึกษา')) {
                 return redirect()->route('dashuser');
             }
         }

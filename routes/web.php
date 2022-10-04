@@ -24,36 +24,44 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+        return view('dashboard');
+    })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::get('dashuser', [\App\Http\Controllers\UserController::class, 'dashuser'])->middleware('level')->name('dashuser');
+Route::get('stddashboard', [\App\Http\Controllers\UserController::class, 'stddashboard'])->name('stddashboard')->middleware('std');
+Route::get('tchdashboard', [\App\Http\Controllers\UserController::class, 'tchdashboard'])->name('tchdashboard')->middleware('tch');
+Route::get('tchDashUser', [\App\Http\Controllers\UserController::class, 'tchDashUser'])->name('tchDashUser')->middleware('tch');
+require __DIR__ . '/auth.php';
 
 
 
-Route::get('/firstRegister',[App\Http\Controllers\HomeController::class, 'firstRegister'])->name('firstRegister');
+Route::get('/firstRegister', [App\Http\Controllers\HomeController::class, 'firstRegister'])->name('firstRegister');
 Route::get('/dashboard2', [App\Http\Controllers\HomeController::class, 'dashboard2'])->name('dashboard2');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // categories table
-Route::get('insertCate',[\App\Http\Controllers\CateController::class, 'insertFormCate']);
-Route::post('createCate',[\App\Http\Controllers\CateController::class, 'insertCate']);
-Route::get('deletecate/{cate_id}',[\App\Http\Controllers\CateController::class, 'deletecate'])->name('deletecate');
-Route::get('editcate',[\App\Http\Controllers\CateController::class, 'updatecate'])->name('updatecate');
-Route::get('editcate/{cate_id}',[\App\Http\Controllers\CateController::class, 'updateFormCate'])->name('updateFormCate');
+Route::get('insertCate', [\App\Http\Controllers\CateController::class, 'insertFormCate']);
+Route::post('createCate', [\App\Http\Controllers\CateController::class, 'insertCate']);
+Route::get('deletecate/{cate_id}', [\App\Http\Controllers\CateController::class, 'deletecate'])->name('deletecate');
+Route::get('editcate', [\App\Http\Controllers\CateController::class, 'updatecate'])->name('updatecate');
+Route::get('editcate/{cate_id}', [\App\Http\Controllers\CateController::class, 'updateFormCate'])->name('updateFormCate');
 
 
 // projects table
-Route::get('insertProject',[\App\Http\Controllers\ProjectController::class, 'insertFormProject']);
-Route::post('createProject',[\App\Http\Controllers\ProjectController::class, 'insertProject']);
+Route::get('insertProject', [\App\Http\Controllers\ProjectController::class, 'insertFormProject']);
+Route::post('createProject', [\App\Http\Controllers\ProjectController::class, 'insertProject']);
 
 //dashHome
-Route::get('/sum',[\App\Http\Controllers\DashHomeController::class, 'sum'])->name('sum');
+Route::get('/sum', [\App\Http\Controllers\DashHomeController::class, 'sum'])->name('sum');
 
 //dashboard
 Route::get('/allcate', [\App\Http\Controllers\cateController::class, 'allcate'])->name('allcate');
@@ -63,8 +71,8 @@ Route::get('/alluser', [\App\Http\Controllers\UserController::class, 'allUser'])
 Route::get('/addUser', [\App\Http\Controllers\UserController::class, 'addUser'])->name('addUser');
 Route::get('/addUserForm', [\App\Http\Controllers\UserController::class, 'addUserForm'])->name('addUserForm');
 Route::get('/deleteUser/{id}', [\App\Http\Controllers\UserController::class, 'deleteUser'])->name('deleteUser');
-Route::get('edituser',[\App\Http\Controllers\UserController::class, 'updateuser'])->name('updateuser');
-Route::get('edituser/{id}',[\App\Http\Controllers\UserController::class, 'updateFormUser'])->name('updateFormUser');
+Route::get('edituser', [\App\Http\Controllers\UserController::class, 'updateuser'])->name('updateuser');
+Route::get('edituser/{id}', [\App\Http\Controllers\UserController::class, 'updateFormUser'])->name('updateFormUser');
 
 //Project
 Route::get('/allproject', [\App\Http\Controllers\ProjectController::class, 'allProject'])->name('allproject');
@@ -86,14 +94,14 @@ Route::get('/allfiles/{project_id}', [\App\Http\Controllers\DocController::class
 Route::get('/allfile/{project_id}', [\App\Http\Controllers\DocController::class, 'allfile'])->name('allfile');
 Route::get('/deletedoc/{doc_id}', [\App\Http\Controllers\DocController::class, 'deletedoc'])->name('deletedoc');
 Route::get('/documents/{title_th}', [\App\Http\Controllers\DocController::class, 'fileindoc'])->name('fileindoc');
-Route::get('allFiles',[DocController::class,'allFiles'])->name('allFiles');
-Route::get('Doc/{project_id}',[\App\Http\Controllers\DocController::class, 'showDoc'])->name('Doc');
+Route::get('allFiles', [DocController::class, 'allFiles'])->name('allFiles');
+Route::get('Doc/{project_id}', [\App\Http\Controllers\DocController::class, 'showDoc'])->name('Doc');
 
 // adviser
 Route::get('/alladviser', [\App\Http\Controllers\AdviserController::class, 'alladviser'])->name('alladviser');
 Route::get('/addAdviser', [\App\Http\Controllers\AdviserController::class, 'addAdviser'])->name('addAdviser');
 Route::get('/deleteadviser/{adviser_id}', [\App\Http\Controllers\AdviserController::class, 'deleteadviser'])->name('deleteadviser');
-Route::post('updateadviser',[\App\Http\Controllers\AdviserController::class, 'updateadviser'])->name('updateadviser');
+Route::post('updateadviser', [\App\Http\Controllers\AdviserController::class, 'updateadviser'])->name('updateadviser');
 
 // Search
 Route::get('searched', [\App\Http\Controllers\SearchController::class, 'showsec']);
@@ -107,8 +115,8 @@ Route::get('searchProject', [\App\Http\Controllers\SearchController::class, 'sea
 // Search Home
 Route::get('searchsec', [\App\Http\Controllers\SearchController::class, 'showProjects'])->name('searchsec');
 Route::get('searchhome', [\App\Http\Controllers\SearchHomeController::class, 'searchhome'])->name('searchhome');
-Route::get('Document/{project_id}',[\App\Http\Controllers\SearchHomeController::class, 'showDoc'])->name('Document');
-Route::get('searchcate/{cate_id}',[\App\Http\Controllers\SearchHomeController::class, 'searchcate'])->name('searchcate');
+Route::get('Document/{project_id}', [\App\Http\Controllers\SearchHomeController::class, 'showDoc'])->name('Document');
+Route::get('searchcate/{cate_id}', [\App\Http\Controllers\SearchHomeController::class, 'searchcate'])->name('searchcate');
 
 // sidebar
 Route::get('newProject', [\App\Http\Controllers\SearchHomeController::class, 'newProject'])->name('newProject');
@@ -118,7 +126,7 @@ Route::get('cate2Project', [\App\Http\Controllers\SearchHomeController::class, '
 Route::get('cate4Project', [\App\Http\Controllers\SearchHomeController::class, 'cate4Project'])->name('cate4Project');
 
 // download
-Route::get('/file/download/{id}',[DocController::class,'Download']);
+Route::get('/file/download/{id}', [DocController::class, 'Download']);
 
 // report
 Route::get('all-report', [\App\Http\Controllers\ReportController::class, 'index'])->name('allreport');
@@ -130,7 +138,7 @@ Route::get('all-report', [\App\Http\Controllers\ReportController::class, 'index'
 // Route::get('approveUser', [\App\Http\Controllers\UserController::class, 'approveUser'])->name('approveUser');
 
 // dash
-Route::get('dashuser', [\App\Http\Controllers\UserController::class, 'dashuser'])->name('dashuser')->middleware('level');
+
 
 
 Route::get('/forgot', [\App\Http\Controllers\PasswordResetLinkController::class, 'create'])->name('forgot');

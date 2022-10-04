@@ -52,7 +52,7 @@
                                         ดู
                                     </button>
                                 </a>
-                                <a href="">
+                                <a href="/deletepro/{{ $pro->project_id }}">
                                     <button class="btn btn-danger">
                                         ลบ
                                     </button>

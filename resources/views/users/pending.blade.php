@@ -37,7 +37,7 @@
                                             อนุมัติ
                                         </button>
                                     </a>
-                                    <a href="">
+                                    <a href="/deleteUser/{{ $usr->id }}">
                                         <button class="btn btn-danger">
                                             ลบ
                                         </button>

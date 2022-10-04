@@ -35,11 +35,19 @@ class DocController extends Controller
         return view('projects.projects', ['project' => $project, 'file' => $documents]);
     }
 
-    public function allFiles()
+    public function allFiles($project_id)
     {
-        $files = Document::all();
-        $projects = Projects::all();
-        return view('projects.allFiles', compact('files', 'projects'));
+        $documents = Document::all();
+        $categories = Categories::all();
+        $projectslist = DB::select('select * from projects');
+        // echo $project;
+
+        $project = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('documents', 'documents.project_id', '=', 'projects.project_id')
+            ->where('projects.project_id', '=', $project_id)
+            ->get();
+        return view('projects.allFiles', compact('project','categories'));
     }
 
     public function dballFiles($project_id)
@@ -181,7 +189,7 @@ class DocController extends Controller
         // $save->project_id = $project_id;
         // $save->save();
 
-        return redirect('allproject')->with('status', 'File Has been uploaded successfully in laravel 8');
+        return redirect('allFiles')->with('status', 'File Has been uploaded successfully in laravel 8');
         // echo $project_id;
 
     }
@@ -246,13 +254,13 @@ class DocController extends Controller
     public function deletedoc($doc_id)
     {
         DB::table('documents')->where('doc_id', $doc_id)->delete();
-        return redirect(route('allFiles'));
+        return redirect(url()->previous());
     }
 
 
 
-    public function Download($file)
+    public function Download($doc_id)
     {
-        return response()->download('documents/' . $file);
+        return response()->download('documents/' . $doc_id);
     }
 }

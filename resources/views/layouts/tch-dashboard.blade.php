@@ -99,15 +99,16 @@
                     <li class="nav-item menu-open">
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('dashboard') }}" class="nav-link">
+                                <a href="{{ route('tchdashboard') }}" class="nav-link">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
+                                        tch
                                         dashboard
                                     </p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('dashsearch') }}" class="nav-link">
+                                <a href="{{ route('home') }}" class="nav-link">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                     <p>Search</p>
                                 </a>

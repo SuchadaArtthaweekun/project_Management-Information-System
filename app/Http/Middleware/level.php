@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class level
 {
@@ -18,10 +19,11 @@ class level
     {
         // return $next($request);
 
-        if(auth()->user()->level == 'นักศึกษา'){
-            // return $next($request);
-            return redirect('dashboard.std-dashboard');
+        if(Auth::check() && Auth::user()->level == 'นักศึกษา'){
+            return $next($request);
+           
         }
-       
+        abort(403);
+        return redirect('dashboard.std-dashboard');
     }
 }

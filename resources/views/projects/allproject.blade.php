@@ -1,6 +1,12 @@
 @extends('layouts.fordashboard')
 
 @section('content')
+@if ( Session::get('status'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>ดำเนินการอัปโหลดเสร็จสิ้นแล้ว</strong>
+                    </div>
+                @endif
     <div class="btnadd">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_{{ Auth::user()->name }}">
             Add project
@@ -354,6 +360,10 @@
                         {{-- end add file --}}
 
                         <a href="/Doc/{{ $pro->project_id }}">
+                            <button type="button" class="btn btn-warning">
+                                <i class="fa-solid fa-file"></i></button>
+                        </a>
+                        <a href="/allfiles/{{ $pro->project_id }}">
                             <button type="button" class="btn btn-warning">
                                 <i class="fa-solid fa-file"></i></button>
                         </a>

@@ -6,6 +6,7 @@ use App\Models\Categories;
 use App\Models\Document;
 use App\Models\File;
 use App\Models\Projects;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -47,7 +48,7 @@ class DocController extends Controller
             ->join('documents', 'documents.project_id', '=', 'projects.project_id')
             ->where('projects.project_id', '=', $project_id)
             ->get();
-        return view('projects.allFiles', compact('project','categories'));
+        return view('projects.allFiles', compact('project', 'categories'));
     }
 
     public function dballFiles($project_id)
@@ -248,7 +249,7 @@ class DocController extends Controller
             ->get();
 
 
-        return view('projects.showDoc', compact('project', 'documents', 'projectslist','categories'));
+        return view('projects.showDoc', compact('project', 'documents', 'projectslist', 'categories'));
     }
 
     public function deletedoc($doc_id)
@@ -261,6 +262,9 @@ class DocController extends Controller
 
     public function Download($doc_id)
     {
-        return response()->download('documents/' . $doc_id);
+        $doc = DB::table('documents')->where('doc_id', '=', $doc_id);
+        return response()->download('documents/' . $doc);
     }
+
+    
 }

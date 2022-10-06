@@ -120,7 +120,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('allproject') }}" class="nav-link">
+                                <a href="{{ route('stdProjects') }}" class="nav-link">
                                     <i class="fa-solid fa-folder"></i>
                                     <p>Projects</p>
                                 </a>

@@ -83,6 +83,9 @@ Route::post('/updateproject', [\App\Http\Controllers\ProjectController::class, '
 Route::get('/edit_project', [\App\Http\Controllers\ProjectController::class, 'edit_project'])->name('edit_project');
 Route::get('/contact', [\App\Http\Controllers\ProjectController::class, 'contact'])->name('contact');
 
+Route::get('/stdProjects', [\App\Http\Controllers\ProjectController::class, 'stdProjects'])->name('stdProjects');
+Route::get('/stdAddProject', [\App\Http\Controllers\ProjectController::class, 'stdAddProject'])->name('stdAddProject');
+
 
 // Document
 Route::get('/addfile/{project_id}', [\App\Http\Controllers\DocController::class, 'addfile'])->name('addfile');

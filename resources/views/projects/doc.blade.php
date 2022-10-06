@@ -4,6 +4,8 @@
     <form action="">
         <body>
             <h1>The files!</h1>
+            <h5>{{ $project[0]->project_id }} : {{$project[0]->title_th}}</h5>
+            <h5>view {{ $project[0]->view_counter }}</h5>
     <div class="col-8">
         <table class="table">
             <tr>

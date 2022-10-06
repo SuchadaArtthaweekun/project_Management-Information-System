@@ -74,16 +74,17 @@ class SearchHomeController extends Controller
         return view('searchpage.result-search-home', compact('data', 'list'));
     }
 
-    public function showDoc($project_id)
+    public function showDoc($project_id,Projects $projects)
     {
         // $documents = Document::find($project_id);
         // $documents = DB::table('documents')->where('documents.project_id', '=' , $project_id);
         $project = DB::table('projects')
             ->join('documents', 'documents.project_id', '=', 'projects.project_id')
             ->where('documents.project_id', '=', $project_id)
+            ->where('projects.project_id', '=', $project_id)
             ->get();
 
-
+            Projects::find($project_id)->increment('view_counter');
         return view('projects.doc', compact('project'));
     }
     public function showDocument($project_id)

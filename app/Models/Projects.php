@@ -4,10 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\visits;
 
 class Projects extends Model
 {
+    /**
+     * Get the instance of the user visits
+     *
+     * @return \Awssat\Visits\Visits
+     */
+    public function visitsCounter()
+    {
+        return visits($this);
+    }
+
+    /**
+     * Get the visits relation
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     */
+    public function visits()
+    {
+        return visits($this)->relation();
+    }
     use HasFactory;
+    
 
     protected $fillable = [
         'author',
@@ -27,4 +48,6 @@ class Projects extends Model
     protected $primaryKey = "project_id";
 
     protected $table='projects';
+
+    
 }

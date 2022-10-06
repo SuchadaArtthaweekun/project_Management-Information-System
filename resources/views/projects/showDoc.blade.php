@@ -8,6 +8,15 @@
 
 
     </section>
+    {{ $projects = Projects::first();
+    
+    visits($projects)->period('day')->count();
+    visits($projects)->period('week')->count();
+    visits($projects)->period('month')->count();
+    visits($projects)->countries();
+    visits($projects)->refs();
+    visits($projects)->operatingSystems();
+    visits($projects)->languages() }}
 
     <body>
         <div class="container">
@@ -73,6 +82,7 @@
                 <div class="col-8">
                     <div class="showDoc">
                         <h2 style="text-align: center">เอกสารโครงงานนักศึกษา</h2>
+                        <h5>{{$project->view_counter}}</h5>
                         @foreach ($project as $key => $file)
                             <div>
                                 <h3>{{ $file->title_th }}</h3>

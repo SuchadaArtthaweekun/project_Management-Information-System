@@ -255,7 +255,8 @@ class DocController extends Controller
     public function deletedoc($doc_id)
     {
         DB::table('documents')->where('doc_id', $doc_id)->delete();
-        return redirect(url()->previous());
+        // return redirect(url()->previous());
+        return response()->json(['message' => 'deleted']);
     }
 
 

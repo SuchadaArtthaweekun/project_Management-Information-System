@@ -46,7 +46,8 @@ class UserController extends Controller
         $users = User::find($id)->delete();
 
         // DB::table('users')->where('id')->delete();
-        return redirect('alluser');
+        // return redirect('alluser');
+        return response()->json(['message' => 'deleted']);
     }
 
     public function updateuser(Request $request)

@@ -105,7 +105,8 @@ class ProjectController extends Controller
     public function deletepro($project_id)
     {
         DB::table('projects')->where('project_id', $project_id)->delete();
-        return redirect('allproject');
+        return response()->json(['message' => 'deleted']);
+        // return redirect('allproject');
     }
 
     public function updateproject(Request $request)

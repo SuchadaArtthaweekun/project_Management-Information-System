@@ -6,13 +6,11 @@
         <div class="table-responsive">
             <div>
                 {{-- add users --}}
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#modal_adduser">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_adduser">
                     Add User
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" id="modal_adduser" tabindex="-1"
-                    aria-labelledby="modal_adduser" aria-hidden="true">
+                <div class="modal fade" id="modal_adduser" tabindex="-1" aria-labelledby="modal_adduser" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -27,9 +25,9 @@
                                         @csrf
                                         <div class="form-group">
                                             <label for="title">ชื่อ-สกุล</label>
-                                            <input type="hidden"  name="id">
+                                            <input type="hidden" name="id">
                                             <input type="text" name="name" class="form-control"
-                                                placeholder="ชื่อ-สกุล" >
+                                                placeholder="ชื่อ-สกุล">
                                         </div>
 
                                         <div class="form-group">
@@ -40,8 +38,7 @@
 
                                         <div class="form-group">
                                             <label for="title">อีเมล</label>
-                                            <input type="text" name="email" class="form-control"
-                                                placeholder="อีเมล">
+                                            <input type="text" name="email" class="form-control" placeholder="อีเมล">
                                         </div>
 
                                         {{-- <div class="form-group">
@@ -52,24 +49,21 @@
 
                                         <div class="mt-4">
                                             <x-label for="password" :value="__('Password')" />
-                                
-                                            <x-input id="password" class="block mt-1 w-full"
-                                                            type="password"
-                                                            name="password"
-                                                            required autocomplete="new-password" />
+
+                                            <x-input id="password" class="block mt-1 w-full" type="password"
+                                                name="password" required autocomplete="new-password" />
                                         </div>
                                         <div class="mt-4">
                                             <x-label for="password_confirmation" :value="__('Confirm Password')" />
-                            
-                                            <x-input id="password_confirmation" class="block mt-1 w-full"
-                                                            type="password"
-                                                            name="password_confirmation" required />
+
+                                            <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                                                name="password_confirmation" required />
                                         </div>
 
                                         <div class="form-group">
                                             <label for="user_tel">เบอร์โทร</label>
                                             <input type="text" name="user_tel" class="form-control"
-                                                placeholder="รหัสผ่าน" >
+                                                placeholder="รหัสผ่าน">
                                         </div>
 
                                         <div class="form-group">
@@ -135,7 +129,7 @@
                     </div>
                 </div>
 
-                
+
             </div>
             {{-- show user --}}
             <table class="table table-striped table-hover table-condensed">
@@ -164,8 +158,8 @@
                             <th>{{ $user->status }}</th>
                             <th>{{ $user->user_tel }}</th>
                             <th>
-                        
-                               
+
+
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modal_{{ $user->id }}">
@@ -220,7 +214,7 @@
                                                       post title"
                                                                 value="{{ $user->password }}">
                                                         </div>
-                                                       
+
 
                                                         <div class="form-group">
                                                             <label for="user_tel">เบอร์โทร</label>
@@ -267,7 +261,8 @@
                                                             <select class="form-control" id="exampleFormControlSelect1"
                                                                 name="level" placeholder="รหัสนักศึกษา"
                                                                 value="{{ $user->level }}">
-                                                                <option value="{{ $user->level}}">{{ $user->level }}</option>
+                                                                <option value="{{ $user->level }}">{{ $user->level }}
+                                                                </option>
                                                                 <option value="ผู้ดูแลระบบ">ผู้ดูแลระบบ</option>
                                                                 <option value="อาจารย์">อาจารย์</option>
                                                                 <option value="นักศึกษา">นักศึกษา</option>
@@ -278,7 +273,12 @@
                                                             <select class="form-control" id="exampleFormControlSelect1"
                                                                 name="status" placeholder="สถานะผู้ใช้"
                                                                 value="{{ $user->status }}">
-                                                                <option value="{{ $user->status }}"><?php  if ($user->status == '0') {echo 'off' ;}elseif ($user->status == '1') {echo 'on' ; } ?></option>
+                                                                <option value="{{ $user->status }}"><?php if ($user->status == '0') {
+                                                                    echo 'off';
+                                                                } elseif ($user->status == '1') {
+                                                                    echo 'on';
+                                                                } ?>
+                                                                </option>
                                                                 <option value="0">off</option>
                                                                 <option value="1">on</option>
                                                             </select>
@@ -300,9 +300,10 @@
                                 </div>
                                 {{-- end modal --}}
                                 <a href=" /deleteUser/{{ $user->id }}">
-                                    <button type="button" class="btn btn-danger" ><i class="fa-solid fa-trash"></i></button>
+
+                                    
                                 </a>
-                            
+                                <button type="button" class="btn btn-danger" onclick="del({{ $user->id }})"><i class="fa-solid fa-trash"></i></button>
                             </th>
                         </tr>
                     @endforeach
@@ -311,6 +312,26 @@
             </table>
         </div>
     </body>
-
-    
+    <script>
+        const del = (id) => {
+            Swal.fire({
+                title: 'Are you sure? ' + id,
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://127.0.0.1:8000/deleteUser/${id}`).then((respons)=>{console.log(respons)})
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    ).then(()=>{location.reload();})
+                }
+            })
+        }
+    </script>
 @endsection

@@ -32,7 +32,8 @@ class CateController extends Controller
     public function deletecate($cate_id)
     {
         DB::table('categories')->where('cate_id', $cate_id)->delete();
-        return redirect('allcate');
+        return response()->json(['message' => 'deleted']);
+        // return redirect('allcate');
     }
 
     public function updatecate(Request $request)

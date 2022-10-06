@@ -18,7 +18,8 @@ class AdviserController extends Controller
 
     public function deleteadviser($adviser_id) {
         DB::table('advisers')->where('adviser_id', $adviser_id)->delete();
-        return redirect('alladviser');
+        // return redirect('alladviser');
+        return response()->json(['message' => 'deleted']);
        
     }
 

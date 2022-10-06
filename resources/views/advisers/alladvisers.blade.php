@@ -6,13 +6,12 @@
         <div class="table-responsive">
             <div>
                 {{-- add users --}}
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#modal_addAdviser">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_addAdviser">
                     Add Adviser
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" id="modal_addAdviser" tabindex="-1"
-                    aria-labelledby="modal_addAdviser" aria-hidden="true">
+                <div class="modal fade" id="modal_addAdviser" tabindex="-1" aria-labelledby="modal_addAdviser"
+                    aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -27,9 +26,9 @@
                                         @csrf
                                         <div class="form-group">
                                             <label for="name_prefix_th">คำนำหน้า (ไทย)</label>
-                                            <input type="hidden"  name="adviser_id">
+                                            <input type="hidden" name="adviser_id">
                                             <input type="text" name="name_prefix_th" class="form-control"
-                                                placeholder="คำนำหน้า" >
+                                                placeholder="คำนำหน้า">
                                         </div>
 
                                         <div class="form-group">
@@ -65,8 +64,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary" href="{{ route('alladviser') }}">Save
                                         changes</button>
                                 </div>
@@ -75,7 +73,7 @@
                     </div>
                 </div>
 
-                
+
             </div>
             {{-- show user --}}
             <table class="table table-striped table-hover table-condensed">
@@ -98,8 +96,8 @@
                             <th>{{ $ads->adviser_tel }}</th>
                             <th>{{ $ads->adviser_email }}</th>
                             <th>
-                        
-                               
+
+
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modal_{{ $ads->adviser_id }}">
@@ -131,19 +129,21 @@
 
                                                         <div class="form-group">
                                                             <label for="name_prefix_eng">คำนำหน้า (อังกฤษ)</label>
-                                                            <input type="text" name="name_prefix_eng" class="form-control"
-                                                                value="{{ $ads->name_prefix_eng }}">
+                                                            <input type="text" name="name_prefix_eng"
+                                                                class="form-control" value="{{ $ads->name_prefix_eng }}">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="adviser_fullname_th">ชื่อ-สกุล (ไทย)</label>
-                                                            <input type="text" name="adviser_fullname_th" class="form-control"
+                                                            <input type="text" name="adviser_fullname_th"
+                                                                class="form-control"
                                                                 value="{{ $ads->adviser_fullname_th }}">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="adviser_fullname_en">ชื่อ-สกุล (อังกฤษ)</label>
-                                                            <input type="text" name="adviser_fullname_en" class="form-control"
+                                                            <input type="text" name="adviser_fullname_en"
+                                                                class="form-control"
                                                                 value="{{ $ads->adviser_fullname_en }}">
                                                         </div>
 
@@ -155,11 +155,11 @@
 
                                                         <div class="form-group">
                                                             <label for="adviser_email">อีเมล</label>
-                                                            <input type="text" name="adviser_email" class="form-control"
-                                                                value="{{ $ads->adviser_email }}">
+                                                            <input type="text" name="adviser_email"
+                                                                class="form-control" value="{{ $ads->adviser_email }}">
                                                         </div>
 
-                                                    
+
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -174,9 +174,9 @@
                                     </div>
                                 </div>
                                 {{-- end modal --}}
-                                <a href="/deleteadviser/{{ $ads->adviser_id }}">
-                                    <button type="button" class="btn btn-danger" href=" {{ route('alladviser')}} "><i class="fa-solid fa-trash"></i></button>
-                                </a>
+                                    <button type="button" class="btn btn-danger" onclick="del({{ $ads->adviser_id }})"><i
+                                            class="fa-solid fa-trash"></i></button>
+                               
                             </th>
                         </tr>
                     @endforeach
@@ -185,6 +185,30 @@
             </table>
         </div>
     </body>
-
-    
+    <script>
+        const del = (id) => {
+            Swal.fire({
+                title: 'Are you sure? ' + id,
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://127.0.0.1:8000/deleteadviser/${id}`).then((respons) => {
+                        console.log(respons)
+                    })
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    ).then(() => {
+                        location.reload();
+                    })
+                }
+            })
+        }
+    </script>
 @endsection

@@ -8,12 +8,12 @@
                     </div>
                 @endif
     <div class="btnadd">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_{{ Auth::user()->name }}">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_addProject">
             Add project
         </button>
         <!-- Modal -->
-        <div class="modal fade" id="modal_{{ Auth::user()->name }}" tabindex="-1"
-            aria-labelledby="modal_{{ Auth::user()->name }}" aria-hidden="true">
+        <div class="modal fade" id="modal_addProject" tabindex="-1"
+            aria-labelledby="modal_addProject" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -82,7 +82,7 @@
                                         placeholder="ที่ปรึกษา">
                                         <option value="">ไม่มีที่ปรึกษาร่วม</option>
                                         @foreach ($advisers as $adv)
-                                            <option value="{{ $adv->adviser_fullname_th }}">{{ $adv->adviser_fullname_th }}</option>
+                                            <option value="{{ $adv->adviser_id }}">{{ $adv->adviser_fullname_th }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -290,10 +290,10 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/deletepro/{{ $pro->project_id }}">
-                            <button type="button" class="btn btn-danger" onclick="delcate({{ $pro->project_id }})">
+                        <a href="/deletepro/{{ $pro->project_id }}"></a>
+                            <button type="button" class="btn btn-danger" onclick="del({{ $pro->project_id }})">
                                 <i class="fa-solid fa-trash"></i></button>
-                        </a>
+                        
                         {{-- add file --}}
                         <button type="button" class="btn btn-info" data-bs-toggle="modal"
                             data-bs-target="#modal_file_{{ $pro->project_id }}">
@@ -376,5 +376,26 @@
     </table>
 
 
-   
+    <script>
+        const del = (id) => {
+            Swal.fire({
+                title: 'Are you sure? ' + id,
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://127.0.0.1:8000/deletepro/${id}`).then((respons)=>{console.log(respons)})
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    ).then(()=>{location.reload();})
+                }
+            })
+        }
+    </script>
 @endsection

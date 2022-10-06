@@ -8,15 +8,7 @@
 
 
     </section>
-    {{ $projects = Projects::first();
     
-    visits($projects)->period('day')->count();
-    visits($projects)->period('week')->count();
-    visits($projects)->period('month')->count();
-    visits($projects)->countries();
-    visits($projects)->refs();
-    visits($projects)->operatingSystems();
-    visits($projects)->languages() }}
 
     <body>
         <div class="container">
@@ -82,7 +74,7 @@
                 <div class="col-8">
                     <div class="showDoc">
                         <h2 style="text-align: center">เอกสารโครงงานนักศึกษา</h2>
-                        <h5>{{$project->view_counter}}</h5>
+                        <h5>{{ $project->view_counter }}</h5>
                         @foreach ($project as $key => $file)
                             <div>
                                 <h3>{{ $file->title_th }}</h3>
@@ -113,10 +105,10 @@
 
                                     <td><a href="/documents/{{ $file->docname }}">View</a></td>
                                     <td><a href="file/download/{{ $file->docname }}">Download</a></td>
-                                    <td> <a href="/deletedoc/{{ $file->doc_id }}">
-                                            <button type="button" class="btn btn-danger">
+                                    <td> 
+                                            <button type="button" class="btn btn-danger"  onclick="del({{ $file->doc_id }})">
                                                 <i class="fa-solid fa-trash">ลบ</i></button>
-                                        </a>
+                                       
                                     </td>
 
                                 </tr>
@@ -132,6 +124,31 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
         </script>
-
+        <script>
+            const del = (id) => {
+                Swal.fire({
+                    title: 'Are you sure? ' + id,
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(`http://127.0.0.1:8000/deletedoc/${id}`).then((respons) => {
+                            console.log(respons)
+                        })
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        ).then(() => {
+                            location.reload();
+                        })
+                    }
+                })
+            }
+        </script>
     </body>
 @endsection

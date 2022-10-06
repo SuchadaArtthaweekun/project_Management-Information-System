@@ -72,10 +72,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="/deletecate/{{ $category->cate_id }}">
+                                
                                     <button type="button" class="btn btn-danger"
-                                        onclick="delcate({{ $category->cate_id }})"><i class="fa-solid fa-trash"></i></button>
-                                </a>
+                                    onclick="del({{ $category->cate_id }})"><i class="fa-solid fa-trash"></i></button>
+                                
 
 
                             </th>
@@ -88,9 +88,10 @@
     </body>
 
     <script>
-        function delcate(cate_id) {
+       
+        const del = (id) => {
             Swal.fire({
-                title: 'Are you sure?',
+                title: 'Are you sure? ' + id,
                 text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -99,32 +100,15 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    fetch(`http://127.0.0.1:8000/deletecate/${id}`).then((respons)=>{console.log(respons)})
                     Swal.fire(
                         'Deleted!',
                         'Your file has been deleted.',
                         'success'
-                    )
+                    ).then(()=>{location.reload();})
                 }
             })
         }
-        //   function delcate(id) {
-        //     $.ajax({
-        //       type: "DELETE",
-        //       url: "{{ url('cate') }}/" + cate_id,
-        //       headers: {
-        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //       }
-        //       success: (response) => {
-        //         if (response){
-        //           if (response "success") {
-        //             alert('success');
-        //             location.reload();
-        //         } else if (responsev == "fail") {
-        //           alert("fail");
-        //         }
-        //       }
-        //     })
-        //   }
-        // }
+   
     </script>
 @endsection

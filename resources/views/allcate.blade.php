@@ -5,8 +5,46 @@
     <body>
         <div class="table-responsive">
             <div class="btnadd">
-                <a href='insertCate'><button class="btn btn-primary">Add Category</button></a>
 
+                {{-- add category --}}
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_adduser">
+                    Add category
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="modal_adduser" tabindex="-1" aria-labelledby="modal_adduser" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">add category</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form method="post" action="{{ route('createCate') }}">
+                                <div class="modal-body">
+                                    <div class="col-md-8">
+
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="title">ชื่อหมวดหมู่โครงงาน</label>
+                                            <input type="hidden" name="catename">
+                                            <input type="text" name="catename" class="form-control"
+                                                placeholder="ชื่อหมวดหมู่โครงงาน">
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" href="{{ route('alluser') }}">Save
+                                        changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             <table class="table table-striped table-hover table-condensed">
                 <thead>
@@ -26,7 +64,7 @@
                                     <button type="button" class="btn btn-success">แก้ไข</button>
                                 </a> --}}
 
-                               
+
 
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -72,10 +110,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                    <button type="button" class="btn btn-danger"
-                                    onclick="del({{ $category->cate_id }})"><i class="fa-solid fa-trash"></i></button>
-                                
+
+                                <button type="button" class="btn btn-danger" onclick="del({{ $category->cate_id }})"><i
+                                        class="fa-solid fa-trash"></i></button>
+
 
 
                             </th>
@@ -88,7 +126,6 @@
     </body>
 
     <script>
-       
         const del = (id) => {
             Swal.fire({
                 title: 'Are you sure? ' + id,
@@ -100,15 +137,18 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://127.0.0.1:8000/deletecate/${id}`).then((respons)=>{console.log(respons)})
+                    fetch(`http://127.0.0.1:8000/deletecate/${id}`).then((respons) => {
+                        console.log(respons)
+                    })
                     Swal.fire(
                         'Deleted!',
                         'Your file has been deleted.',
                         'success'
-                    ).then(()=>{location.reload();})
+                    ).then(() => {
+                        location.reload();
+                    })
                 }
             })
         }
-   
     </script>
 @endsection

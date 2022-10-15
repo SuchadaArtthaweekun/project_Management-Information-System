@@ -22,7 +22,8 @@ class HomeController extends Controller
         $advisers = DB::table('advisers')->get();
         $projects = DB::table('projects')->get();
         $documents = DB::table('documents')->get();
-        return view('home', compact('projects', 'documents', 'categories', 'advisers'));
+        $catebar = DB::table('categories')->get();
+        return view('home', compact('projects', 'documents', 'categories', 'advisers','catebar'));
     }
 
     public function dashboard2()
@@ -35,6 +36,12 @@ class HomeController extends Controller
 
        
         return view('home', compact('projects', 'documents', 'categories', 'advisers', 'adviser'));
+    }
+    public function web()
+    {
+        $data = DB::table('categories')->get();
+        $catebar = DB::table('categories')->get();
+        return view('layouts.web', compact('data','catebar'));
     }
 
    

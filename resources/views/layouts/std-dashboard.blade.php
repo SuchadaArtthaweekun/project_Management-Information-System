@@ -102,7 +102,6 @@
                                 <a href="{{ route('stddashboard') }}" class="nav-link">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
-                                        std
                                         dashboard
                                     </p>
                                 </a>
@@ -112,13 +111,13 @@
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                     <p>Search</p>
                                 </a>
-                            </li>
+                            {{-- </li>
                             <li class="nav-item">
                                 <a href="{{ route('alluser') }}" class="nav-link">
                                     <i class="fa-solid fa-user"></i>
                                     <p>User</p>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a href="{{ route('stdProjects') }}" class="nav-link">
                                     <i class="fa-solid fa-folder"></i>

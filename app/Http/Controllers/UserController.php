@@ -30,11 +30,11 @@ class UserController extends Controller
         $password = Hash::make($request->password);
         $user_tel = $request->input('user_tel');
         $status = $request->input('status');
-        $note = $request->input('note');
+        $username = $request->input('username');
 
         $data = array(
             'name' => $name, 'name_en' => $name_en, 'email' => $email, 'level' => $level, 'password' => $password,
-            'user_tel' => $user_tel, 'note' => $note, 'status' => $status
+            'user_tel' => $user_tel, 'username' => $username, 'status' => $status
         );
         DB::table('users')->insert($data);
 
@@ -58,7 +58,7 @@ class UserController extends Controller
         $password = $request->password;
         $level = $request->level;
         $user_tel = $request->user_tel;
-        $note = $request->note;
+        $username = $request->note;
         $status = $request->status;
         $users = User::find($request->id);
         $users->name = $name;
@@ -67,7 +67,7 @@ class UserController extends Controller
         $users->password = $password;
         $users->level = $level;
         $users->user_tel = $user_tel;
-        $users->note = $note;
+        $users->username = $username;
         $users->status = $status;
         $users->save();
         if (Auth::user()->level == 'ผู้ดูแล') {

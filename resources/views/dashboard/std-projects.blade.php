@@ -8,12 +8,12 @@
                     </div>
                 @endif
     <div class="btnadd">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_{{ Auth::user()->name }}">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_stdAddProject">
             Add project
         </button>
         <!-- Modal -->
-        <div class="modal fade" id="modal_{{ Auth::user()->name }}" tabindex="-1"
-            aria-labelledby="modal_{{ Auth::user()->name }}" aria-hidden="true">
+        <div class="modal fade" id="modal_stdAddProject" tabindex="-1"
+            aria-labelledby="modal_stdAddProject" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -71,7 +71,7 @@
                                     <select class="form-control" id="exampleFormControlSelect1" name="adviser"
                                         placeholder="ที่ปรึกษา">
                                         @foreach ($advisers as $adv)
-                                            <option value="{{ $adv->adviser_fullname_th }}">{{ $adv->adviser_fullname_th }}</option>
+                                            <option value="{{ $adv->adviser_id }}">{{ $adv->adviser_fullname_th }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -82,7 +82,7 @@
                                         placeholder="ที่ปรึกษา">
                                         <option value="">ไม่มีที่ปรึกษาร่วม</option>
                                         @foreach ($advisers as $adv)
-                                            <option value="{{ $adv->adviser_fullname_th }}">{{ $adv->adviser_fullname_th }}</option>
+                                            <option value="{{ $adv->adviser_id }}">{{ $adv->adviser_fullname_th }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -135,10 +135,7 @@
                 </div>
             </div>
         </div>
-        <a href="/allFiles">
-            <button type="button" class="btn btn-warning">
-                allFiles</button>
-        </a>
+        
     </div>
     <table class="table table-striped table-hover table-condensed">
         <thead>
@@ -152,7 +149,7 @@
                 {{-- <th><strong>บทความ</strong></th> --}}
                 {{-- <th><strong>บทคัดย่อ</strong></th> --}}
                 {{-- <th><strong>ที่ปรึกษา</strong></th> --}}
-                {{-- <th><strong>ที่ปรึกษาร่วม</strong></th> --}}
+                <th><strong>เผยแพร่</strong></th>
                 <th><strong>แขนงวิชา</strong></th>
                 <th><strong>รุ่น</strong></th>
                 <th><strong>หมวดหมู่โครงงาน</strong></th>
@@ -171,7 +168,7 @@
                     {{-- <th>{{ $pro->article }}</th> --}}
                     {{-- <th class="abtract">{{ $pro->abtract }}</th> --}}
                     {{-- <th>{{ $pro->adviser }}</th> --}}
-                    {{-- <th>{{ $pro->co_adviser }}</th> --}}
+                    <th>{{ $pro->published }}</th>
                     <th>{{ $pro->branch }}</th>
                     <th>{{ $pro->gen }}</th>
                     <th>{{ $pro->catename }}</th>
@@ -193,7 +190,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form method="POST" action="{{ route('updateproject') }}">
+                                    <form method="POST" action="{{ route('stdUpdateproject') }}">
                                         <div class="modal-body">
                                             <div class="col-md-12">
 
@@ -237,13 +234,44 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="adviser">ที่ปรึกษา</label>
-                                                    <input type="text" value="{{ $pro->adviser }}"
-                                                        class="form-control" name="adviser">
+                                                    <select class="form-control" id="exampleFormControlSelect1"
+                                                        name="adviser" placeholder="ที่ปรึกษา">
+                                                        <option value="{{ $pro->adviser }}">
+                                                            @foreach ($advisers as $adv)
+                                                                <?php
+                                                                if ($pro->adviser == $adv->adviser_id) {
+                                                                    echo $adv->adviser_fullname_th;
+                                                                }
+                                                                ?>
+                                                            @endforeach
+                                                        </option>;
+
+
+                                                        @foreach ($advisers as $adv)
+                                                            <option value="{{ $adv->adviser_id }}">
+                                                                {{ $adv->adviser_fullname_th }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="co_adviser">ที่ปรึกษาร่วม</label>
-                                                    <input type="text" value="{{ $pro->co_adviser }}"
-                                                        class="form-control" name="co_adviser">
+                                                    <select class="form-control" id="exampleFormControlSelect1"
+                                                        name="adviser2" placeholder="ที่ปรึกษา">
+                                                        <option value="{{ $pro->co_adviser }}">
+                                                            @foreach ($advisers as $adv)
+                                                                <?php
+                                                                if ($pro->co_adviser == $adv->adviser_id) {
+                                                                    echo $adv->adviser_fullname_th;
+                                                                }
+                                                                ?>
+                                                            @endforeach
+                                                        </option>;
+                                                        <option value="">ไม่มีที่ปรึกษาร่วม</option>
+                                                        @foreach ($advisers as $adv)
+                                                            <option value="{{ $adv->adviser_id }}">
+                                                                {{ $adv->adviser_fullname_th }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="branch">แขนงวิชา</label>
@@ -310,7 +338,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     {{-- <form method="get" action="{{ route('addproject') }}"> --}}
-                                    <form method="post" action="{{ route('storeAgain') }}"
+                                    <form method="post" action="{{ route('stdUploadfile') }}"
                                         enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="col-md-12">
@@ -359,11 +387,7 @@
                         </div>
                         {{-- end add file --}}
 
-                        <a href="/Doc/{{ $pro->project_id }}">
-                            <button type="button" class="btn btn-warning">
-                                <i class="fa-solid fa-file"></i></button>
-                        </a>
-                        <a href="/allfiles/{{ $pro->project_id }}">
+                        <a href="/stdAllFiles/{{ $pro->project_id }}">
                             <button type="button" class="btn btn-warning">
                                 <i class="fa-solid fa-file"></i></button>
                         </a>

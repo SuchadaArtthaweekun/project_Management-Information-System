@@ -1,19 +1,18 @@
 @extends('layouts.fordashboard')
 
 @section('content')
-@if ( Session::get('status'))
-                    <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>ดำเนินการอัปโหลดเสร็จสิ้นแล้ว</strong>
-                    </div>
-                @endif
+    @if (Session::get('status'))
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>ดำเนินการอัปโหลดเสร็จสิ้นแล้ว</strong>
+        </div>
+    @endif
     <div class="btnadd">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_addProject">
             Add project
         </button>
         <!-- Modal -->
-        <div class="modal fade" id="modal_addProject" tabindex="-1"
-            aria-labelledby="modal_addProject" aria-hidden="true">
+        <div class="modal fade" id="modal_addProject" tabindex="-1" aria-labelledby="modal_addProject" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -135,47 +134,64 @@
                 </div>
             </div>
         </div>
-        <a href="/allFiles">
-            <button type="button" class="btn btn-warning">
-                allFiles</button>
-        </a>
+        
     </div>
     <table class="table table-striped table-hover table-condensed">
         <thead>
             <tr>
-                <th><strong>id</strong></th>
-                <th><strong>ชื่อผู้ทำคนที่ 1</strong></th>
-                <th><strong>ชื่อผู้ทำคนที่ 2</strong></th>
-                <th><strong>ชื่อโครงงาน (ไทย)</strong></th>
-                <th><strong>ชื่อโครงงาน (อังกฤษ)</strong></th>
-                <th><strong>ปีที่เผยแพร่</strong></th>
-                {{-- <th><strong>บทความ</strong></th> --}}
-                {{-- <th><strong>บทคัดย่อ</strong></th> --}}
-                {{-- <th><strong>ที่ปรึกษา</strong></th> --}}
-                {{-- <th><strong>ที่ปรึกษาร่วม</strong></th> --}}
-                <th><strong>แขนงวิชา</strong></th>
-                <th><strong>รุ่น</strong></th>
-                <th><strong>หมวดหมู่โครงงาน</strong></th>
-                <th><strong>action</strong></th>
+                <th>id</th>
+                <th>ผู้จัดทำ</th>
+                <th>ชื่อโครงงาน (ไทย)</th>
+                {{-- <th><strong>ชื่อโครงงาน (อังกฤษ)</strong></th> --}}
+                <th>ปีที่เผยแพร่</th>
+                <th>ที่ปรึกษา</th>
+                <th>แขนงวิชา</th>
+                <th>รุ่น</th>
+                <th>หมวดหมู่โครงงาน</th>
+                <th>ผยแพร่</th>
+                <th>action</th>
+                <th>ไฟล์</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($projects as $pro)
                 <tr>
-                    <th>{{ $pro->project_id }}</th>
-                    <th>{{ $pro->author }}</th>
-                    <th>{{ $pro->co_author }}</th>
-                    <th>{{ $pro->title_th }}</th>
-                    <th>{{ $pro->title_en }}</th>
-                    <th>{{ $pro->edition }}</th>
-                    {{-- <th>{{ $pro->article }}</th> --}}
-                    {{-- <th class="abtract">{{ $pro->abtract }}</th> --}}
-                    {{-- <th>{{ $pro->adviser }}</th> --}}
+                    <td>{{ $pro->project_id }}</ะ>
+                    <td>
+                        <p>{{ $pro->author }}</p>
+                        <p></p>{{ $pro->co_author }}
+                    </td>
+                    <td>{{ $pro->title_th }}</td>
+                    {{-- <th>{{ $pro->title_en }}</th> --}}
+                    <td>{{ $pro->edition }}</td>
+                    <td>
+                        @foreach ($advisers as $adv)
+                            <?php
+                            if ($pro->adviser == $adv->adviser_id) {
+                                echo $adv->adviser_fullname_th;
+                            }
+                            
+                            ?>
+                        @endforeach
+                        </td>
+
+
+
                     {{-- <th>{{ $pro->co_adviser }}</th> --}}
-                    <th>{{ $pro->branch }}</th>
-                    <th>{{ $pro->gen }}</th>
-                    <th>{{ $pro->catename }}</th>
-                    <th>
+                    <td>{{ $pro->branch }}</td>
+                    <td>{{ $pro->gen }}</td>
+                    <td>{{ $pro->catename }}</td>
+                    <td>
+                            <?php
+                            if ($pro->published == '0') {
+                                echo 'ยังไม่เผยแพร่';
+                            }elseif ($pro->published == '1'){
+                                echo 'เผยแพร่แล้ว';
+                            }
+                            
+                            ?>
+                    </td>
+                    <td class="btnAction">
 
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -237,13 +253,45 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="adviser">ที่ปรึกษา</label>
-                                                    <input type="text" value="{{ $pro->adviser }}"
-                                                        class="form-control" name="adviser">
+                                                    <select class="form-control" id="exampleFormControlSelect1"
+                                                        name="adviser" placeholder="ที่ปรึกษา">
+                                                        <option value="{{ $pro->adviser }}">
+                                                            @foreach ($advisers as $adv)
+                                                                <?php
+                                                                if ($pro->adviser == $adv->adviser_id) {
+                                                                    echo $adv->adviser_fullname_th;
+                                                                }
+                                                                ?>
+                                                            @endforeach
+                                                        </option>;
+
+
+                                                        @foreach ($advisers as $adv)
+                                                            <option value="{{ $adv->adviser_id }}">
+                                                                {{ $adv->adviser_fullname_th }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
+
                                                 <div class="form-group">
                                                     <label for="co_adviser">ที่ปรึกษาร่วม</label>
-                                                    <input type="text" value="{{ $pro->co_adviser }}"
-                                                        class="form-control" name="co_adviser">
+                                                    <select class="form-control" id="exampleFormControlSelect1"
+                                                        name="adviser2" placeholder="ที่ปรึกษา">
+                                                        <option value="{{ $pro->co_adviser }}">
+                                                            @foreach ($advisers as $adv)
+                                                                <?php
+                                                                if ($pro->co_adviser == $adv->adviser_id) {
+                                                                    echo $adv->adviser_fullname_th;
+                                                                }
+                                                                ?>
+                                                            @endforeach
+                                                        </option>;
+                                                        <option value="">ไม่มีที่ปรึกษาร่วม</option>
+                                                        @foreach ($advisers as $adv)
+                                                            <option value="{{ $adv->adviser_id }}">
+                                                                {{ $adv->adviser_fullname_th }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="branch">แขนงวิชา</label>
@@ -291,9 +339,10 @@
                             </div>
                         </div>
                         <a href="/deletepro/{{ $pro->project_id }}"></a>
-                            <button type="button" class="btn btn-danger" onclick="del({{ $pro->project_id }})">
-                                <i class="fa-solid fa-trash"></i></button>
-                        
+                        <button type="button" class="btn btn-danger" onclick="del({{ $pro->project_id }})">
+                            <i class="fa-solid fa-trash"></i></button>
+                    </td>
+                    <td class="btnAction">
                         {{-- add file --}}
                         <button type="button" class="btn btn-info" data-bs-toggle="modal"
                             data-bs-target="#modal_file_{{ $pro->project_id }}">
@@ -358,11 +407,6 @@
                             </div>
                         </div>
                         {{-- end add file --}}
-
-                        <a href="/Doc/{{ $pro->project_id }}">
-                            <button type="button" class="btn btn-warning">
-                                <i class="fa-solid fa-file"></i></button>
-                        </a>
                         <a href="/allfiles/{{ $pro->project_id }}">
                             <button type="button" class="btn btn-warning">
                                 <i class="fa-solid fa-file"></i></button>
@@ -388,12 +432,16 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://127.0.0.1:8000/deletepro/${id}`).then((respons)=>{console.log(respons)})
+                    fetch(`http://127.0.0.1:8000/deletepro/${id}`).then((respons) => {
+                        console.log(respons)
+                    })
                     Swal.fire(
                         'Deleted!',
                         'Your file has been deleted.',
                         'success'
-                    ).then(()=>{location.reload();})
+                    ).then(() => {
+                        location.reload();
+                    })
                 }
             })
         }

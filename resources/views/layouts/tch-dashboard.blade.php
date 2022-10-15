@@ -102,7 +102,6 @@
                                 <a href="{{ route('tchdashboard') }}" class="nav-link">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
-                                        tch
                                         dashboard
                                     </p>
                                 </a>
@@ -114,13 +113,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('alluser') }}" class="nav-link">
+                                <a href="{{ route('tchPending') }}" class="nav-link">
                                     <i class="fa-solid fa-user"></i>
-                                    <p>User</p>
+                                    <p>Pending Project</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('allproject') }}" class="nav-link">
+                                <a href="{{ route('tchProjects') }}" class="nav-link">
                                     <i class="fa-solid fa-folder"></i>
                                     <p>Projects</p>
                                 </a>

@@ -1,59 +1,85 @@
 @extends('layouts.web')
 
 @section('content')
-    <form action="">
-        <body>
-            <h1>The files!</h1>
-            <h5>{{ $project[0]->project_id }} : {{$project[0]->title_th}}</h5>
-            <h5>view {{ $project[0]->view_counter }}</h5>
-    <div class="col-8">
-        <table class="table">
-            <tr>
-                <th>No.</th>
-                <th>project id</th>
-                <th>name</th>
-                <th>document</th>
-                <th>type</th>
-                <th>project</th>
-                <th>direc</th>
-                <th>View</th>
-                <th>Download</th>
-                <th>action</th>
-            </tr>
-            {{-- @foreach ($files as $key => $file) --}}
-            @foreach ($project as $key => $file)
-                <tr>
-                    <td>{{ ++$key }}</td>
-                    <td>{{ $file->project_id }}</td>
-                    <td>{{ $file->title_th }}</td>
-                    <td>{{ $file->docname }}</td>
-                    <td>{{ $file->doc_type }}</td>
+    <div class="container">
+        <form action="" class="Docid">
 
-                    <td>id :{{ $file->project_id }} title : {{ $file->title_th }} </td>
+            <body>
+                <div class="titleProjects">
+                    <h5>{{ $project[0]->title_th }}</h5>
+                    <h5> {{ $project[0]->title_en }}</h5>
+                </div>
 
-                    <td><a href="\{{ $file->doc_path }}">path</a></td>
-                    <td><a href="/documents/{{ $file->docname }}">View</a></td>
-                    <td><a href="/file/download/{{$file->docname}}">Download</a></td>
-                    {{-- <td><a href="/file/download/{{$file->docname}}"><?php if (projects.project_id == documents.project_id) {
-                        echo $file;
-                    }?></a></td> --}}
-                    <td><a href="URI">uri</a></td>
-                    
+                <ul>
+                    <li>ผู้จัดทำ : {{ $project[0]->author }} {{ $project[0]->co_author }}</li>
+                    {{-- <li>ที่ปรึกษา : {{ $project[0]->adviser}}  {{ $project[0]->co_adviser}}</li> --}}
+                    <li>ที่ปรึกษา :
+                        @foreach ($project as $pro)
+                            @foreach ($adviser as $adv)
+                                <?php if ($pro->adviser == $adv->adviser_id) {
+                                    echo $adv->adviser_fullname_th;
+                                } ?>
+                                <?php if ($pro->co_adviser == $adv->adviser_id) {
+                                    echo $adv->adviser_fullname_th;
+                                } ?>
+                            @endforeach
+                        @endforeach
 
-                </tr>
-             @endforeach
 
-          
+                    </li>
+                    <li>
+                        {{-- หมวดหมู่โครงงาน : {{ $project[0]->catename }} --}}
+                    </li>
+                </ul>
+                <div class="abs">
+                    <p>
+                        {{ $project[0]->abtract }}
+                    </p>
+                </div>
+                <p>ยอดเข้าชม : {{ $project[0]->view_counter }} ยอดดาวน์โหลด : {{$documents[0]->download_counter}}</p>
 
-        </table>
+                <div class="col-12">
+                    <table class="table">
+                        <tr>
+                            <th>No.</th>
+                            <th>name</th>
+                            <th>type</th>
+                            <th>View</th>
+                            <th>Download</th>
+                        </tr>
+                        {{-- @foreach ($files as $key => $file) --}}
+                        @foreach ($project as $key => $file)
+                            <tr>
+                                <td>{{ ++$key }}</td>
+                                <td>{{ $file->docname }}</td>
+                                <td>{{ $file->doc_type }}</td>
+                                <td class="view"><a href="/documents/{{ $file->docname }}" target="_blank"><i
+                                            class="fa-solid fa-eye"></i></a></td>
+                                <td class="download"><a href="/get-file/{{ $file->doc_id }}/{{ $file->docname }}"
+                                        target="_blank">
+                                        <x-icons.download />
+                                    </a>
+                                </td>
+                                {{-- <td><a href="/file/download/{{$file->docname}}"><?php if (projects . project_id == documents . project_id) {
+                                    echo $file;
+                                } ?></a></td> --}}
 
+
+                            </tr>
+                        @endforeach
+
+
+
+                    </table>
+
+                </div>
+
+
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
+                </script>
+
+            </body>
+        </form>
     </div>
-            
-    
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
-            </script>
-    
-        </body>
-    </form>
 @endsection

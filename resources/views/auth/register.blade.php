@@ -48,73 +48,74 @@
 
             <!-- name_th -->
             <div>
-                <x-label for="name" :value="__('name')" />
+                <x-label for="name" :value="__('ชื่อ-สกุล (ภาษาไทย) ไม่ต้องมีคำหน้า')" style="font-size: 16px"/>
 
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                    required autofocus />
+                    required autofocus  style="font-size: 16px" />
             </div>
 
             <!-- Name_en -->
             <div>
-                <x-label for="name_en" :value="__('name_en')" />
+                <x-label for="name_en" :value="__('ชื่อ-สกุล (ภาษาอังกฤษ)')"  style="font-size: 16px; margin-top:20px"/>
 
                 <x-input id="name_en" class="block mt-1 w-full" type="text" name="name_en" :value="old('name_en')"
-                    required autofocus />
+                    required autofocus  style="font-size: 16px"/>
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <x-label for="email" :value="__('อีเมล')"  style="font-size: 16px"/>
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
-                    required />
+                    required  style="font-size: 16px"/>
             </div>
 
             <!-- user_tel -->
             <div class="mt-4">
-                <x-label for="user_tel" :value="__('phone number')" />
+                <x-label for="user_tel" :value="__('เบอร์โทร')"  style="font-size: 16px"/>
 
                 <x-input id="user_tel" class="block mt-1 w-full" type="text" name="user_tel" :value="old('user_tel')"
-                    required />
+                    required  style="font-size: 16px"/>
             </div>
 
             <!-- level -->
             <div class="mt-4">
-                <x-label for="level" :value="__('ระดับ')" aria-placeholder="เช่น รหัสนักศึกษา" />
+                <x-label for="level" :value="__('ระดับ')" aria-placeholder="เช่น รหัสนักศึกษา"  style="font-size: 16px"/>
 
-                <select class="form-control" id="exampleFormControlSelect1" name="level"
-                    placeholder="รุ่น ปีการศึกษาที่เข้าเรียน">
-                    <option selected value="นักศึกษา">นักศึกษา</option>
-                    <option value="อาจารย์">อาจารย์</option>
+
+                <select class="form-control" name="level"  style="font-size: 14px">
+                        <option value="นักศึกษา" style="font-size: 14px">นักศึกษา</option>
+                        <option value="อาจารย์"  style="font-size: 14px">อาจารย์</option>
                 </select>
             </div>
 
+
             <!-- note -->
             <div class="mt-4">
-                <x-label for="note" :value="__('descript')" aria-placeholder="เช่น รหัสนักศึกษา" />
+                <x-label for="note" :value="__('รหัสนักศึกษา หรือ รหัสอาจารย์')" aria-placeholder="เช่น รหัสนักศึกษา"  style="font-size: 16px"/>
 
                 <x-input id="note" class="block mt-1 w-full" type="text" name="note" :value="old('note')"
-                    required />
+                    required  style="font-size: 16px"/>
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <x-label for="password" :value="__('รหัสผ่าน')"  style="font-size: 16px"/>
 
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                    autocomplete="new-password" />
+                    autocomplete="new-password"  style="font-size: 16px"/>
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-label for="password_confirmation" :value="__('ยืนยันรหัสผ่าน')"  style="font-size: 16px"/>
 
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                    name="password_confirmation" required />
+                    name="password_confirmation" required  style="font-size: 16px"/>
             </div>
 
             <div class="flex items-center justify-end mt-4" onchange="fire">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('firstRegister') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 

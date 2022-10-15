@@ -7,6 +7,7 @@ use App\Models\Document;
 use App\Models\Projects;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Constraint\IsEmpty;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class SearchHomeController extends Controller
@@ -27,9 +28,11 @@ class SearchHomeController extends Controller
     }
     public function searchhome(Request $request)
     {
+        $catebar = DB::table('categories')->get();
         $list = DB::table('categories')->get();
         if ($request->input('cate_id') != "all" && $request->input('adviser') != 'all') {
             $data = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+                ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
                 ->where('published', '=', 1)
                 ->where('projects.cate_id', 'like', '%' . $request->input('cate_id') . '%')
                 ->where('adviser', 'like', '%' . $request->input('adviser') . '%')
@@ -50,8 +53,9 @@ class SearchHomeController extends Controller
                 ->simplePaginate(5);
         } else if ($request->input('cate_id') != 'all' && $request->input('adviser') == 'all') {
             $data = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
                 ->where('published', '=', 1)
-                ->where('cate_id', 'like', '%' . $request->input('cate_id') . '%')
+                ->where('projects.cate_id', 'like', '%' . $request->input('cate_id') . '%')
                 ->where('title_th', 'like', '%' . $request->input('title_th') . '%')
                 ->where('edition', 'like', '%' . $request->input('edition') . '%')
                 ->where('author', 'like', '%' . $request->input('author') . '%')
@@ -70,36 +74,27 @@ class SearchHomeController extends Controller
                 ->orderByDesc('updated_at')
                 ->simplePaginate(5);
         }
-
-        return view('searchpage.result-search-home', compact('data', 'list'));
+        return view('searchpage.result-search-home', compact('data', 'list', 'catebar'));
     }
 
-    public function showDoc($project_id,Projects $projects)
+    public function showDoc($project_id, Projects $projects)
     {
         // $documents = Document::find($project_id);
         // $documents = DB::table('documents')->where('documents.project_id', '=' , $project_id);
+        $adviser = DB::table('advisers')->get();
+        $data = DB::table('categories')->get();
+        $catebar = DB::table('categories')->get();
         $project = DB::table('projects')
             ->join('documents', 'documents.project_id', '=', 'projects.project_id')
             ->where('documents.project_id', '=', $project_id)
             ->where('projects.project_id', '=', $project_id)
             ->get();
-
-            Projects::find($project_id)->increment('view_counter');
-        return view('projects.doc', compact('project'));
+        $documents = DB::table('documents')->where('documents.project_id', '=', $project_id)->get();
+        $countDownload = DB::table('documents')->select('download_counter')->get();
+        Projects::find($project_id)->increment('view_counter');
+        return view('projects.doc', compact('project', 'data', 'adviser', 'catebar','countDownload','documents'));
     }
-    public function showDocument($project_id)
-    {
-        
-        $documents = Document::find($project_id);
-        $projectslist = DB::select('select * from projects');
-        $project = DB::table('projects')
-            ->join('documents', 'documents.project_id', '=', 'projects.project_id')
-            ->where('projects.project_id', '=', $project_id)
-            ->get();
-
-
-        return view('projects.doc', compact('project', 'documents', 'projectslist'));
-    }
+    
     public function allFiles()
     {
         $files = Document::all();
@@ -109,57 +104,92 @@ class SearchHomeController extends Controller
 
     public function showProject()
     {
+        $catebar = DB::table('categories')->get();
         $categories = DB::table('categories')->get();
         $project = DB::table('projects')
             ->join('categories', 'categories.cate_id', '=', 'projects.cate_id')
             ->join('documents', 'documents.project_id', '=', 'projects.project_id')
             ->get();
-        return view('searchpage.result-search-home', compact('project', 'categories'));
+        return view('searchpage.result-search-home', compact('project', 'categories', 'caatebar'));
     }
-// sidebar 
+    // sidebar 
     public function newProject()
     {
+        $adviser = DB::table('advisers')->get();
+        $catebar = DB::table('categories')->get();
         $data =  DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
-        ->orderByDesc('projects.updated_at')
-        ->simplePaginate(5);
-        return view('searchpage.result-search-home',compact('data'));
+            ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+            ->orderByDesc('projects.edition')
+            ->simplePaginate(5);
+        return view('searchpage.result-search-home', compact('data', 'catebar','adviser'));
     }
     public function oldProject()
     {
+        $catebar = DB::table('categories')->get();
         $data =  DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
-        ->orderBy('projects.updated_at')
-        ->simplePaginate(5);
-        return view('searchpage.result-search-home',compact('data'));
+            ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+            ->orderBy('projects.edition')
+            ->simplePaginate(5);
+        return view('searchpage.result-search-home', compact('data', 'catebar'));
     }
     public function cate1Project()
     {
         // หมวดหมู่เว็บไซต์
+        $catebar = DB::table('categories')->get();
         $data =  DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
-        ->where('projects.cate_id', '=', 1)
-        ->simplePaginate(5);
-        return view('searchpage.result-search-home',compact('data'));
+            ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+            ->where('projects.cate_id', '=', 1)
+            ->simplePaginate(5);
+        return view('searchpage.result-search-home', compact('data', 'batebar'));
     }
     public function cate2Project()
     {
+        $catebar = DB::table('categories')->get();
         // หมวดหมู่ IoT
         $data =  DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
-        ->where('projects.cate_id', '=', 2)
-        ->simplePaginate(5);
-        return view('searchpage.result-search-home',compact('data'));
+            ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+            ->where('projects.cate_id', '=', 2)
+            ->simplePaginate(5);
+        return view('searchpage.result-search-home', compact('data', 'catebar'));
     }
     public function cate4Project()
     {
+        $catebar = DB::table('categories')->get();
         // หมวดหมู่ เกม 2 มิติ
         $data =  DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
-        ->where('projects.cate_id', '=', 4)
-        ->simplePaginate(5);
-        return view('searchpage.result-search-home',compact('data'));
+            ->where('projects.cate_id', '=', 4)
+            ->simplePaginate(5);
+        return view('searchpage.result-search-home', compact('data', 'catebar'));
     }
 
 
-    public function searchcate($cate_id){
+    public function searchcate($cate_id)
+    {
         // $categories = Categories::find($cate_id)->get();
+        $adviser = DB::table('advisers')->get();
+        $catebar = DB::table('categories')->get();
         $categories = DB::table('categories')->where('categories.cate_id', '=', $cate_id)->get();
-        return view('categories.searchcate',compact('categories'));
+        if ($data = DB::table('projects')
+            ->join('categories', 'categories.cate_id', '=', 'projects.cate_id')
+            ->join('documents', 'documents.project_id', '=', 'projects.project_id')
+            ->join('advisers', 'advisers.adviser_id', '=', 'projects.project_id')
+            ->where('projects.cate_id', '=', $cate_id)
+        ) {
+            if ($data == Null) {
+                return redirect()->route('searchcate')->with('info', 'data is empty');
+            } else {
+                $data = DB::table('projects')
+                    ->join('categories', 'categories.cate_id', '=', 'projects.cate_id')
+                    ->join('documents', 'documents.project_id', '=', 'projects.project_id')
+                    ->join('advisers', 'advisers.adviser_id', '=', 'projects.project_id')
+                    ->where('projects.cate_id', '=', $cate_id)
+                    ->simplePaginate(5);
+            }
+        }
+
+
+
+
+        return view('categories.searchcate', compact('categories', 'catebar', 'data','adviser'));
     }
 }

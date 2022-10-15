@@ -41,15 +41,39 @@ class AuthenticatedSessionController extends Controller
         //     return redirect()->route('stddashboard');
         // }
 
+        // echo auth()->user()->status;
 
-        if (auth()->user()->level == 'ผู้ดูแลระบบ') {
-            return redirect()->route('dashboard');
-        } else if(auth()->user()->level == 'อาจารย์'){
-            return redirect()->route('tchdashboard');
-        }else if(auth()->user()->level == 'นักศึกษา'){
-            return redirect()->route('stddashboard');
+
+
+        if (auth()->user()->status == '0') {
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            return redirect('/login')->with('info', 'รอการอนุมัติสิทธิ์');
+        } else if (auth()->user()->status == '1') {
+            if (auth()->user()->level == 'ผู้ดูแลระบบ') {
+                return redirect()->route('dashboard');
+            } else if (auth()->user()->level == 'อาจารย์') {
+                return redirect()->route('tchdashboard');
+            } else if (auth()->user()->level == 'นักศึกษา') {
+                return redirect()->route('stddashboard');
+            }
         }
-            
+
+
+
+        // if (auth()->user()->status == '0') {
+        //     return redirect()->route('login')->with('info', 'รอการอนุมัติสิทธิ์');
+        // } else if (auth()->user()->status == '1') {
+        //     if (auth()->user()->level == 'ผู้ดูแลระบบ') {
+        //         return redirect()->route('dashboard');
+        //     } else if (auth()->user()->level == 'อาจารย์') {
+        //         return redirect()->route('tchdashboard');
+        //     } else if (auth()->user()->level == 'นักศึกษา') {
+        //         return redirect()->route('stddashboard');
+        //     }
+        // }
     }
 
     /**

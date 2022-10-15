@@ -50,13 +50,13 @@
                                         <div class="mt-4">
                                             <x-label for="password" :value="__('Password')" />
 
-                                            <x-input id="password" class="block mt-1 w-full" type="password"
+                                            <x-input id="password" class="form-control" type="password"
                                                 name="password" required autocomplete="new-password" />
                                         </div>
                                         <div class="mt-4">
                                             <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
-                                            <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                                            <x-input id="password_confirmation" class="form-control" type="password"
                                                 name="password_confirmation" required />
                                         </div>
 
@@ -67,7 +67,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="note">รหัสนักศึกษาหรือรหัสอาจารย์</label>
+                                            <label for="username">รหัสนักศึกษาหรือรหัสอาจารย์</label>
                                             <input type="text" name="note" class="form-control"
                                                 placeholder="รหัสนักศึกษาหรือรหัสอาจารย์">
                                         </div>
@@ -154,8 +154,12 @@
                             <th>{{ $user->name_en }}</th>
                             <th>{{ $user->email }}</th>
                             <th>{{ $user->level }}</th>
-                            <th>{{ $user->note }}</th>
-                            <th>{{ $user->status }}</th>
+                            <th>{{ $user->username }}</th>
+                            <th><?php if ($user->status == '0') {
+                                echo 'off';
+                            } elseif ($user->status == '1') {
+                                echo 'on';
+                            } ?></th>
                             <th>{{ $user->user_tel }}</th>
                             <th>
 
@@ -207,13 +211,13 @@
                                                                 value="{{ $user->email }}">
                                                         </div>
 
-                                                        <div class="form-group">
+                                                        {{-- <div class="form-group">
                                                             <label for="title">รหัสผ่าน</label>
                                                             <input type="text" name="password" class="form-control"
                                                                 placeholder="Enter
-                                                      post title"
+                                                      post title" 
                                                                 value="{{ $user->password }}">
-                                                        </div>
+                                                        </div> --}}
 
 
                                                         <div class="form-group">
@@ -225,11 +229,11 @@
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label for="note">รหัสนักศึกษาหรือรหัสอาจารย์</label>
+                                                            <label for="username">รหัสนักศึกษาหรือรหัสอาจารย์</label>
                                                             <input type="text" name="note" class="form-control"
                                                                 placeholder="Enter
                                                       post title"
-                                                                value="{{ $user->note }}">
+                                                                value="{{ $user->username }}">
                                                         </div>
 
                                                         {{-- <div class="form-group">

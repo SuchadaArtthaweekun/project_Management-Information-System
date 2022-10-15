@@ -30,26 +30,26 @@ class SearchController extends Controller
 
     public function showProjects()
     {
-
+        $catebar = DB::table('categories')->get();
         $project = DB::table('projects')
             ->join('categories', 'categories.cate_id', '=', 'projects.cate_id')
             ->join('documents', 'documents.project_id', '=', 'projects.project_id')
             ->get();
-        return view('searchpage.result-search-home', compact('project'));
+        return view('searchpage.result-search-home', compact('project','catebar'));
     }
     
 
     public function showsec()
     {
-
+        $catebar = DB::table('categories')->get();
         $projects = DB::table('projects')->get();
         $documents = DB::table('documents')->get();
-        return view('searchpage.search-dash', compact('projects', 'documents'));
+        return view('searchpage.search-dash', compact('projects', 'documents','catebar'));
     }
 
     public function dashsearch()
     {
-
+        $catebar = DB::table('categories')->get();
         $projects = DB::table('projects')
             ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
             ->get();
@@ -59,13 +59,13 @@ class SearchController extends Controller
         $adviser = DB::table('projects')
             ->select('adviser')
             ->get();
-        return view('searchpage.search-dash', compact('projects', 'documents', 'categories', 'advisers', 'adviser'));
+        return view('searchpage.search-dash', compact('projects', 'documents', 'categories', 'advisers', 'adviser','catebar'));
     }
     public function result_dashsearch(Request $request)
     {
 
         $projects = Projects::all()->where('published', 1);
-
+        $catebar = DB::table('categories')->get();
         if ($request != null) {
 
             $lists = Projects::all()
@@ -88,6 +88,7 @@ class SearchController extends Controller
 
     public function searchProject(Request $request)
     {
+        $catebar = DB::table('categories')->get();
         if ($request->input('cate_id') != "all" && $request->input('adviser') != 'all') {
             $data = DB::table('projects')
             
@@ -192,11 +193,12 @@ class SearchController extends Controller
         //     //  echo $request->input('cate_id');
         // }
 
-        return view('searchpage.result-search', compact('data'));
+        return view('searchpage.result-search-home', compact('data','catebar'));
     }
 
     public function search(Request $request)
     {
+        $catebar = DB::table('categories')->get();
         $data = DB::table('projects')
             ->where('published', '=', 1)
             ->where('title_th', 'like', '%' . $request->input('title_th') . '%')
@@ -266,7 +268,7 @@ class SearchController extends Controller
 
 
 
-        return view('searchpage.result-search', compact('data'));
+        return view('searchpage.result-search-home', compact('data','catebar'));
     }
 
     

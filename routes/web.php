@@ -10,6 +10,7 @@ use App\Http\Controllers\DashHomeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchHomeController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\DashController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -32,10 +33,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->middleware(['auth'])->name('dashboard');
 
+Route::get('/dashboard', [\App\Http\Controllers\DashController::class, 'sum'])->middleware(['auth'])->name('dashboard');
 Route::get('dashuser', [\App\Http\Controllers\UserController::class, 'dashuser'])->middleware('level')->name('dashuser');
 Route::get('stddashboard', [\App\Http\Controllers\UserController::class, 'stddashboard'])->name('stddashboard')->middleware('std');
 Route::get('tchdashboard', [\App\Http\Controllers\UserController::class, 'tchdashboard'])->name('tchdashboard')->middleware('tch');
@@ -50,7 +52,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 // categories table
 Route::get('insertCate', [\App\Http\Controllers\CateController::class, 'insertFormCate']);
-Route::post('createCate', [\App\Http\Controllers\CateController::class, 'insertCate']);
+Route::post('createCate', [\App\Http\Controllers\CateController::class, 'insertCate'])->name('createCate');
 Route::get('deletecate/{cate_id}', [\App\Http\Controllers\CateController::class, 'deletecate'])->name('deletecate');
 Route::get('editcate', [\App\Http\Controllers\CateController::class, 'updatecate'])->name('updatecate');
 Route::get('editcate/{cate_id}', [\App\Http\Controllers\CateController::class, 'updateFormCate'])->name('updateFormCate');
@@ -83,8 +85,18 @@ Route::post('/updateproject', [\App\Http\Controllers\ProjectController::class, '
 Route::get('/edit_project', [\App\Http\Controllers\ProjectController::class, 'edit_project'])->name('edit_project');
 Route::get('/contact', [\App\Http\Controllers\ProjectController::class, 'contact'])->name('contact');
 
+
+// dashboard member
+Route::post('/stdUpdateproject', [\App\Http\Controllers\ProjectController::class, 'stdUpdateproject'])->name('stdUpdateproject');
 Route::get('/stdProjects', [\App\Http\Controllers\ProjectController::class, 'stdProjects'])->name('stdProjects');
 Route::get('/stdAddProject', [\App\Http\Controllers\ProjectController::class, 'stdAddProject'])->name('stdAddProject');
+Route::get('/stdAllFiles/{project_id}', [\App\Http\Controllers\DocController::class, 'stdAllFiles'])->name('stdAllFiles');
+
+Route::post('/tchUpdateproject', [\App\Http\Controllers\ProjectController::class, 'tchUpdateproject'])->name('tchUpdateproject');
+Route::get('/tchProjects', [\App\Http\Controllers\ProjectController::class, 'tchProjects'])->name('tchProjects');
+Route::get('/tchAddProject', [\App\Http\Controllers\ProjectController::class, 'tchAddProject'])->name('tchAddProject');
+Route::get('/tchAllFiles/{project_id}', [\App\Http\Controllers\DocController::class, 'tchAllFiles'])->name('tchAllFiles');
+Route::get('/tchPending', [\App\Http\Controllers\ProjectController::class, 'tchPending'])->name('tchPending');
 
 
 // Document
@@ -93,12 +105,17 @@ Route::post('/uploadfile', [\App\Http\Controllers\DocController::class, 'uploadf
 Route::post('/fileUploadPost', [\App\Http\Controllers\DocController::class, 'fileUploadPost'])->name('fileUploadPost');
 Route::post('/store', [\App\Http\Controllers\DocController::class, 'store'])->name('store');
 Route::post('/storeAgain', [\App\Http\Controllers\DocController::class, 'storeAgain'])->name('storeAgain');
+Route::post('/upFileDoc', [\App\Http\Controllers\DocController::class, 'upFileDoc'])->name('upFileDoc');
+
 Route::get('/allfiles/{project_id}', [\App\Http\Controllers\DocController::class, 'allfiles'])->name('allfiles');
+
+
 Route::get('/allfile/{project_id}', [\App\Http\Controllers\DocController::class, 'allfile'])->name('allfile');
 Route::get('/deletedoc/{doc_id}', [\App\Http\Controllers\DocController::class, 'deletedoc'])->name('deletedoc');
 Route::get('/documents/{title_th}', [\App\Http\Controllers\DocController::class, 'fileindoc'])->name('fileindoc');
 Route::get('allFiles', [DocController::class, 'allFiles'])->name('allFiles');
 Route::get('Doc/{project_id}', [\App\Http\Controllers\DocController::class, 'showDoc'])->name('Doc');
+Route::post('stdUploadfile', [\App\Http\Controllers\DocController::class, 'stdUploadfile'])->name('stdUploadfile');
 
 // adviser
 Route::get('/alladviser', [\App\Http\Controllers\AdviserController::class, 'alladviser'])->name('alladviser');
@@ -129,27 +146,32 @@ Route::get('cate2Project', [\App\Http\Controllers\SearchHomeController::class, '
 Route::get('cate4Project', [\App\Http\Controllers\SearchHomeController::class, 'cate4Project'])->name('cate4Project');
 
 // download
-Route::get('/file/download/{id}', [DocController::class, 'Download']);
+// Route::get('/download/{doc_id}/{docname}', [DocController::class, 'Download'])->name('download');
+Route::get('/get-file/{doc_id}/{docname}', [DocController::class, 'Download']);
+Route::get('/get-pdf/{doc_path}', [DocController::class, 'getpdf']);
 
 // report
 Route::get('all-report', [\App\Http\Controllers\ReportController::class, 'index'])->name('allreport');
 
 // pending
-// Route::get('pending-projects', [\App\Http\Controllers\ProjectController::class, 'pendingProject'])->name('pendingProject');
-// Route::get('publishProject', [\App\Http\Controllers\ProjectController::class, 'publishProject'])->name('publishProject');
-// Route::get('pending-users', [\App\Http\Controllers\UserController::class, 'pendingUser'])->name('pendingUser');
-// Route::get('approveUser', [\App\Http\Controllers\UserController::class, 'approveUser'])->name('approveUser');
+Route::get('pending-projects', [\App\Http\Controllers\ProjectController::class, 'pendingProject'])->name('pendingProject');
+Route::get('publishProject', [\App\Http\Controllers\ProjectController::class, 'publishProject'])->name('publishProject');
+Route::get('pending-users', [\App\Http\Controllers\UserController::class, 'pendingUser'])->name('pendingUser');
+Route::get('approveUser', [\App\Http\Controllers\UserController::class, 'approveUser'])->name('approveUser');
 
 // dash
 
-
+//Report
+Route::get('user-report', [\App\Http\Controllers\ReportController::class, 'userReport'])->name('userReport');
+Route::get('Project-categories-port', [\App\Http\Controllers\ReportController::class, 'projectCateReport'])->name('projectCateReport');
+Route::get('Project-port', [\App\Http\Controllers\ReportController::class, 'projectReport'])->name('projectReport');
 
 Route::get('/forgot', [\App\Http\Controllers\PasswordResetLinkController::class, 'create'])->name('forgot');
 
 
-Route::middleware('level')->group(function () {
-    Route::get('pending-projects', [\App\Http\Controllers\ProjectController::class, 'pendingProject'])->name('pendingProject');
-    Route::get('publishProject', [\App\Http\Controllers\ProjectController::class, 'publishProject'])->name('publishProject');
-    Route::get('pending-users', [\App\Http\Controllers\UserController::class, 'pendingUser'])->name('pendingUser');
-    Route::get('approveUser', [\App\Http\Controllers\UserController::class, 'approveUser'])->name('approveUser');
-});
+// Route::middleware('level')->group(function () {
+//     Route::get('pending-projects', [\App\Http\Controllers\ProjectController::class, 'pendingProject'])->name('pendingProject');
+//     Route::get('publishProject', [\App\Http\Controllers\ProjectController::class, 'publishProject'])->name('publishProject');
+//     Route::get('pending-users', [\App\Http\Controllers\UserController::class, 'pendingUser'])->name('pendingUser');
+//     Route::get('approveUser', [\App\Http\Controllers\UserController::class, 'approveUser'])->name('approveUser');
+// });

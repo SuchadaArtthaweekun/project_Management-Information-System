@@ -108,7 +108,72 @@ class ProjectController extends Controller
         return response()->json(['message' => 'deleted']);
         // return redirect('allproject');
     }
+    public function tchUpdateproject(Request $request)
+    {
+        $project_id = $request->input('project_id');
+        $author = $request->input('author');
+        $co_author = $request->input('co_author');
+        $title_th = $request->input('title_th');
+        $title_en = $request->input('title_en');
+        $edition = $request->input('edition');
+        $article = $request->input('article');
+        $abtract = $request->input('abtract');
+        $adviser = $request->input('adviser');
+        $co_adviser = $request->input('co_adviser');
+        $branch = $request->input('branch');
+        $cate_id  = $request->input('edt_cate_id');
+        $gen = $request->input('gen');
+        $project = Projects::find($project_id);
+        $project->author = $author;
+        $project->co_author = $co_author;
+        $project->title_th = $title_th;
+        $project->title_en = $title_en;
+        $project->edition = $edition;
+        $project->article = $article;
+        $project->abtract = $abtract;
+        $project->adviser = $adviser;
+        $project->co_adviser = $co_adviser;
+        $project->branch = $branch;
+        $project->gen = $gen;
+        $project->cate_id = $cate_id;
+        $project->save();
 
+        // echo $cate_id;
+        return redirect('tchProjects');
+    }
+    public function stdUpdateproject(Request $request)
+    {
+        $project_id = $request->input('project_id');
+        $author = $request->input('author');
+        $co_author = $request->input('co_author');
+        $title_th = $request->input('title_th');
+        $title_en = $request->input('title_en');
+        $edition = $request->input('edition');
+        $article = $request->input('article');
+        $abtract = $request->input('abtract');
+        $adviser = $request->input('adviser');
+        $co_adviser = $request->input('co_adviser');
+        $branch = $request->input('branch');
+        $cate_id  = $request->input('edt_cate_id');
+        $gen = $request->input('gen');
+        $project = Projects::find($project_id);
+        $project->author = $author;
+        $project->co_author = $co_author;
+        $project->title_th = $title_th;
+        $project->title_en = $title_en;
+        $project->edition = $edition;
+        $project->article = $article;
+        $project->abtract = $abtract;
+        $project->adviser = $adviser;
+        $project->co_adviser = $co_adviser;
+        $project->branch = $branch;
+        $project->gen = $gen;
+        $project->cate_id = $cate_id;
+        $project->save();
+
+        // echo $cate_id;
+        return redirect('stdProjects');
+    }
     public function updateproject(Request $request)
     {
         $project_id = $request->input('project_id');
@@ -172,7 +237,7 @@ class ProjectController extends Controller
             $data = DB::table('categories')
                 ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
                 ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
-                ->where('published', '=', 0)
+                ->where('published', '=', '0')
                 ->get();
 
             return view('projects.pending', compact('data'));
@@ -208,6 +273,24 @@ class ProjectController extends Controller
 
         return view('dashboard.std-projects', compact( 'projects', 'categories', 'advisers'));
     }
+    public function tchProjects()
+    {
+        $user = User::find('id');
+        $projects = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+            ->where('projects.id', '=', Auth()->user()->id)
+            ->get();
+        // $projects = DB::table('projects')->get();
+        $categories = DB::table('categories')->get();
+        $advisers = DB::table('advisers')->get();
+        // $data = DB::table('projects')
+        //     ->where('id', '=', Auth()->user()->id)
+        //     ->get();
+
+
+        return view('dashboard.tch-projects', compact( 'projects', 'categories', 'advisers'));
+    }
     public function stdAddProject(Request $request)
     {
         $author = $request->input('author');
@@ -225,10 +308,7 @@ class ProjectController extends Controller
         $gen = $request->input('gen');
         $published = ('0');
         $view_counter = ('0');
-        // // $data=array('author'=>$author, 'co_auther'=>$co_auther	, 'title_th'=>$title_th, 'title_en'=>$title_en, 'edition'=>$edition, 
-        // // 'article'=>$article, 'abtract'=>$abtract,'adviser'=>$adviser, 'co_adviser'=>$co_advisers, 'branch'=>$branch, 'gen'=>$gen,
-        // // 'published'=>$published,'view_counter'=>$view_counter, 'cate_id'=>$cate_id, 'id'=>$id );
-        // // DB::table('projects')->insert($data);
+       
 
         $project = new Projects();
         $project->author = $author;
@@ -254,6 +334,71 @@ class ProjectController extends Controller
 
         return redirect()->route('stdProjects');
     }
+    public function tchAddProject(Request $request)
+    {
+        $author = $request->input('author');
+        $co_author = $request->input('co_author');
+        $title_th = $request->input('title_th');
+        $title_en = $request->input('title_en');
+        $edition = $request->input('edition');
+        $article = $request->input('article');
+        $abtract = $request->input('abtract');
+        $adviser = $request->input('adviser');
+        $co_advisers = $request->input('adviser2');
+        $cate_id = $request->input('cate_id');
+        $id = $request->input('id');
+        $branch = $request->input('branch');
+        $gen = $request->input('gen');
+        $published = ('1');
+        $view_counter = ('0');
+       
+
+        $project = new Projects();
+        $project->author = $author;
+        $project->co_author = $co_author;
+        $project->title_th = $title_th;
+        $project->title_en = $title_en;
+        $project->edition = $edition;
+        $project->article = $article;
+        $project->abtract = $abtract;
+        $project->adviser = $adviser;
+        $project->co_adviser = $co_advisers;
+        $project->cate_id = $cate_id;
+        $project->id = $id;
+        $project->branch = $branch;
+        $project->gen = $gen;
+        $project->published = $published;
+        $project->view_counter = $view_counter;
+        $project->save();
+
+        $pathDir = 'public/documents/' . $title_th;
+        Storage::makeDirectory($pathDir, 0777, true, true);
+
+
+        return redirect()->route('tchAddProject');
+    }
+     public function tctPublish(Request $request)
+    {
+        $data = DB::table('projects')
+            ->update(['published' => 1]);
+
+        
+        return redirect()->route('tchPending');
+    }
+    public function tchPending()
+    {
+        
+            $data = DB::table('categories')
+                ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+                ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+                ->where('published', '=', '0')
+                ->get();
+
+                return view('dashboard.tch-pending', compact('data'))->with('info', 'ไม่มีข้อมูล');
+       
+    }
+
+
 
     public function countView(Projects $projects){
        

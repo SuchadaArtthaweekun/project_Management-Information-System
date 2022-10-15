@@ -37,11 +37,9 @@
                                             อนุมัติ
                                         </button>
                                     </a>
-                                    <a href="/deleteUser/{{ $usr->id }}">
-                                        <button class="btn btn-danger">
+                                        <button class="btn btn-danger" onclick="del({{ $usr->id }})">
                                             ลบ
                                         </button>
-                                    </a>
                                 </th>
                             </tr>
                         @endforeach
@@ -51,4 +49,25 @@
             </table>
         </div>
     </div>
+    <script>
+        const del = (id) => {
+            Swal.fire({
+                title: 'Are you sure? ' + id,
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://127.0.0.1:8000/deleteUser/${id}`).then((respons)=>{console.log(respons)})
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    ).then(()=>{location.reload();})
+                }
+            })
+        }
 @endsection

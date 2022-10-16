@@ -24,7 +24,7 @@ class User extends Authenticatable
         'password',
         'level',
         'user_tel',
-        'note',
+        'username',
         'status',
         'project_id',
     ];

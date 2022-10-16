@@ -20,31 +20,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (is_array($data) || is_object($data))
-                        
-                        @foreach ($data as $usr)
-                            <tr>
+                   
+                        @if (is_array($data) || is_object($data))
+                            @foreach ($data as $usr)
+                             <tr>
                                 <th>{{ $usr->id }}</th>
                                 <th>{{ $usr->name }}</th>
                                 <th>{{ $usr->name_en }}</th>
                                 <th>{{ $usr->email }} </th>
                                 <th>{{ $usr->level }}</th>
                                 <th>{{ $usr->status }}</th>
-                                <th>{{ $usr->note }}</th>
+                                <th>{{ $usr->username }}</th>
                                 <th>
-                                    <a href="{{ route('approveUser') }}">
+                                    <a href="/approveUser/{{$usr->id}}">
                                         <button class="btn btn-success">
                                             อนุมัติ
                                         </button>
                                     </a>
-                                        <button class="btn btn-danger" onclick="del({{ $usr->id }})">
-                                            ลบ
-                                        </button>
+                                    <button class="btn btn-danger" onclick="del({{ $usr->id }})">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </th>
-                            </tr>
-                        @endforeach
-                        
-                    @endif
+                            @endforeach
+                        </tr>
+                        @endif
+                    
                 </tbody>
             </table>
         </div>
@@ -61,13 +61,18 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://127.0.0.1:8000/deleteUser/${id}`).then((respons)=>{console.log(respons)})
+                    fetch(`http://127.0.0.1:8000/deleteUser/${id}`).then((respons) => {
+                        console.log(respons)
+                    })
                     Swal.fire(
                         'Deleted!',
                         'Your file has been deleted.',
                         'success'
-                    ).then(()=>{location.reload();})
+                    ).then(() => {
+                        location.reload();
+                    })
                 }
             })
         }
+    </script>
 @endsection

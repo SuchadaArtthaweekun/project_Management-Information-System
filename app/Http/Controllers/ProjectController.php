@@ -139,7 +139,8 @@ class ProjectController extends Controller
         $project->save();
 
         // echo $cate_id;
-        return redirect('tchProjects');
+        // return redirect('tchProjects');
+        return redirect()->back(); 
     }
     public function stdUpdateproject(Request $request)
     {
@@ -172,7 +173,8 @@ class ProjectController extends Controller
         $project->save();
 
         // echo $cate_id;
-        return redirect('stdProjects');
+        // return redirect('stdProjects');
+        return redirect()->back(); 
     }
     public function updateproject(Request $request)
     {
@@ -247,13 +249,13 @@ class ProjectController extends Controller
         }
     }
 
-    public function publishProject()
+    public function publishProject(Request $request,$project_id)
     {
 
-        $data = DB::table('projects')
+        $data = DB::table('projects')->where('project_id','=', $project_id)
             ->update(['published' => 1]);
 
-        return view('projects.pending', compact('data'));
+            return redirect()->back(); 
     }
     public function stdProjects()
     {
@@ -377,9 +379,10 @@ class ProjectController extends Controller
 
         return redirect()->route('tchAddProject');
     }
-     public function tctPublish(Request $request)
+     public function tctPublish(Request $request,$project_id)
     {
         $data = DB::table('projects')
+            ->where('project_id','=', $project_id)
             ->update(['published' => 1]);
 
         

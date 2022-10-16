@@ -37,20 +37,22 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'name_en' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:12',],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'user_tel' => ['required', 'string', 'max:10'],
-            'note' => ['required', 'string', 'max:255'],
+            
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'name_en' => $request->name_en,
             'email' => $request->email,
+            'username' => $request->username,
             'level' => $request->level,
             'password' => Hash::make($request->password),
             'user_tel' => $request->user_tel,
             'status' => '0',
-            'note' => $request->note,
+            
         ]);
 
         event(new Registered($user));
@@ -59,6 +61,9 @@ class RegisteredUserController extends Controller
 
         // Auth::login($user);
 
-        return redirect('/')->with('success','File has been upload successfully!');
+        return response()->json(['message' => 'success']);
+        // return redirect('/register');
+
+        // return redirect('/')->with('success','File has been upload successfully!');
     }
 }

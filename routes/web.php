@@ -155,9 +155,9 @@ Route::get('all-report', [\App\Http\Controllers\ReportController::class, 'index'
 
 // pending
 Route::get('pending-projects', [\App\Http\Controllers\ProjectController::class, 'pendingProject'])->name('pendingProject');
-Route::get('publishProject', [\App\Http\Controllers\ProjectController::class, 'publishProject'])->name('publishProject');
+Route::get('publishProject/{project_id}', [\App\Http\Controllers\ProjectController::class, 'publishProject'])->name('publishProject');
 Route::get('pending-users', [\App\Http\Controllers\UserController::class, 'pendingUser'])->name('pendingUser');
-Route::get('approveUser', [\App\Http\Controllers\UserController::class, 'approveUser'])->name('approveUser');
+Route::get('approveUser/{id}', [\App\Http\Controllers\UserController::class, 'approveUser'])->name('approveUser');
 
 // dash
 

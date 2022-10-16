@@ -55,7 +55,6 @@ class UserController extends Controller
         $name = $request->name;
         $name_en = $request->name_en;
         $email = $request->email;
-        $password = $request->password;
         $level = $request->level;
         $user_tel = $request->user_tel;
         $username = $request->note;
@@ -64,19 +63,20 @@ class UserController extends Controller
         $users->name = $name;
         $users->name_en = $name_en;
         $users->email = $email;
-        $users->password = $password;
         $users->level = $level;
         $users->user_tel = $user_tel;
         $users->username = $username;
         $users->status = $status;
         $users->save();
-        if (Auth::user()->level == 'ผู้ดูแล') {
-            return redirect('alluser');
-        }else if(Auth::user()->level == 'นักศึกษา'){
-            return redirect('stddashboard');
-        }else if(Auth::user()->level == 'อาจารย์'){
-            return redirect('tchDashUser');
-        }
+        // if (Auth::user()->level == 'ผู้ดูแล') {
+        //     return redirect('alluser');
+        // }else if(Auth::user()->level == 'นักศึกษา'){
+        //     return redirect('stddashboard');
+        // }else if(Auth::user()->level == 'อาจารย์'){
+        //     return redirect('tchDashUser');
+        // }
+
+        return redirect()->back(); 
         
     }
 
@@ -98,12 +98,13 @@ class UserController extends Controller
             return view('dashboard')->with("don't have");
         }
     }
-    public function approveUser(Request $request)
+    public function approveUser(Request $request, $id)
     {
         // $data = User::find($request->id);
-        $data = DB::table('users')
+        $data = DB::table('users')->where('id','=', $id)
             ->update(['status' => 1]);
-        return view('users.pending', compact('data'));
+        // return view('users.pending', compact('data'));
+        return redirect()->back(); 
     }
     public function dashuser()
     {

@@ -31,20 +31,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        // return redirect()->intended(RouteServiceProvider::HOME);
-        // if (auth()->user()->level == 'ผู้ดูแลระบบ') {
-        //     return redirect()->route('dashboard');
-        // } elseif (auth()->user()->level == 'อาจารย์') {
-        //     return redirect()->route('tchdashboard');
-        // } elseif (auth()->user()->level == 'นักศึกษา ') {
-        //     return redirect()->route('stddashboard');
-        // }
-
-        // echo auth()->user()->status;
-
-
-
+        
         if (auth()->user()->status == '0') {
             $request->session()->invalidate();
 
@@ -61,19 +48,6 @@ class AuthenticatedSessionController extends Controller
             }
         }
 
-
-
-        // if (auth()->user()->status == '0') {
-        //     return redirect()->route('login')->with('info', 'รอการอนุมัติสิทธิ์');
-        // } else if (auth()->user()->status == '1') {
-        //     if (auth()->user()->level == 'ผู้ดูแลระบบ') {
-        //         return redirect()->route('dashboard');
-        //     } else if (auth()->user()->level == 'อาจารย์') {
-        //         return redirect()->route('tchdashboard');
-        //     } else if (auth()->user()->level == 'นักศึกษา') {
-        //         return redirect()->route('stddashboard');
-        //     }
-        // }
     }
 
     /**
@@ -98,11 +72,11 @@ class AuthenticatedSessionController extends Controller
         $input = $request->all();
 
         $this->validate($request, [
-            'email' => 'required|email',
+            'username' => 'required|username',
             'password' => 'required|password'
         ]);
 
-        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+        if (auth()->attempt(array('username' => $input['username'], 'password' => $input['password']))) {
             if (auth()->user()->level = 'ผู้ดูแลระบบ') {
                 return redirect()->route('dashuser');
             } else if ((auth()->user()->level = 'อาจารย์')) {

@@ -24,29 +24,29 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>edition</th>
-                        <th>author</th>
-                        <th>adviser</th>
-                        <th>cate id</th>
-                        <th>Action</th>
+                        <th>รหัส</th>
+                        <th>ชื่อโครงงาน</th>
+                        <th>ปีที่พิมพ์</th>
+                        <th>ผู้จัดทำ</th>
+                        <th>ที่ปรึกษา</th>
+                        <th>หมวดหมู่โครงงาน</th>
+                        <th>เพิ่มเติม</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
-                        @if (is_array($data) || is_object($data))
-                            
+
+                    @if (is_array($data) || is_object($data))
+                        @foreach ($data as $pro)
                             <tr>
-                                @foreach ($data as $pro)
-                                <td>{{ $pro->project_id }}</td>
-                                <td>{{ $pro->title_th }}</td>
-                                <td>{{ $pro->edition }}</td>
-                                <td>{{ $pro->author }} {{ $pro->co_author }}</td>
-                                <td>{{ $pro->adviser_fullname_th }}</td>
-                                <td>{{ $pro->catename }}</td>
-                                <td>
-                                    <a href="{{ route('publishProject') }}">
+
+                                <th>{{ $pro->project_id }}</th>
+                                <th>{{ $pro->title_th }}</th>
+                                <th>{{ $pro->edition }}</th>
+                                <th>{{ $pro->author }} {{ $pro->co_author }}</th>
+                                <th>{{ $pro->adviser_fullname_th }}</th>
+                                <th>{{ $pro->catename }}</th>
+                                <th>
+                                    <a href="/publishProject/{{ $pro->project_id }}">
                                         <button class="btn btn-success">
                                             เผยแพร่
                                         </button>
@@ -59,10 +59,11 @@
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
 
-                                </td>
-                            @endforeach
-                        @endif
-                    </tr>
+                                </th>
+                            </tr>
+                        @endforeach
+                    @endif
+
                 </tbody>
 
             </table>

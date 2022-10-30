@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>dashboard</title>
+    <title>แดชบอร์ด</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link rel="stylesheet" href="">
     <link rel="stylesheet" type="text/css" href="<?php echo asset('css/bootstrap.min.css'); ?>">
@@ -27,11 +27,11 @@
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
-            
+
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="/" class="nav-link">Home</a>
             </li>
-           
+
         </ul>
 
         <!-- SEARCH FORM -->
@@ -52,10 +52,13 @@
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <!-- Messages Dropdown Menu -->
-
+            <a href="#" class="d-block">
+                <div class="u_name">{{ Auth::user()->name }}</div>
+            </a>
             <div class="logout">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
+                   
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault();
                                 this.closest('form').submit();">
@@ -84,9 +87,10 @@
                     {{-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> --}}
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">
+                    {{-- <a href="#" class="d-block">
                         <div class="u_name">{{ Auth::user()->name }}</div>
-                    </a>
+                    </a> --}}
+                    
                 </div>
 
             </div>
@@ -138,7 +142,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('allreport')}}" class="nav-link">
+                                <a href="{{ route('allreport') }}" class="nav-link">
                                     <i class="fa-solid fa-file-invoice"></i>
                                     <p>Report</p>
                                 </a>

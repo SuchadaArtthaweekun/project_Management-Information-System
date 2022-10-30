@@ -3,20 +3,20 @@
 @section('content')
     <div class="container">
         <div>
-            <h5>โครงงานนักศึกษารอการอนุมัติ</h5>
+            <h5>ผู้ใช้รอการอนุมัติ</h5>
         </div>
         <div>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>id</th>
+                        <th>รหัส</th>
                         <th>ชื่อ</th>
                         <th>ชื่อ (อังกฤษ)</th>
                         <th>อีเมล</th>
                         <th>ระดับผู้ใช้</th>
                         <th>สถานะ</th>
                         <th>รหัสนักศึกษา หรือ รหัสอาจารย์</th>
-                        <th>Action</th>
+                        <th>เพิ่มเติม</th>
                     </tr>
                 </thead>
                 <tbody>

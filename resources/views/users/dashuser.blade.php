@@ -45,36 +45,13 @@
             </div>
 
             <div class="form-group">
-                <label for="note">รหัสนักศึกษาหรือรหัสอาจารย์</label>
-                <input type="text" name="note" class="form-control"
+                <label for="username">รหัสนักศึกษาหรือรหัสอาจารย์</label>
+                <input type="text" name="username" class="form-control"
                     placeholder="Enter
           post title"
-                    value="{{ $user->note }}">
+                    value="{{ $user->username }}">
             </div>
 
-            {{-- <div class="form-group">
-                <label for="generation">รุ่น ปีการศึกษาที่เข้าเรียน</label>
-                <select class="form-control" id="exampleFormControlSelect1"
-                    name="generation" placeholder="รุ่น ปีการศึกษาที่เข้าเรียน">
-                    <option selected value="{{ $user->gen }}">{{ $user->gen }}</option>
-                    <option value="65">65</option>
-                    <option value="64">64</option>
-                    <option value="63">63</option>
-                    <option value="62">62</option>
-                    <option value="61">61</option>
-                    <option value="60">60</option>
-                    <option value="59">59</option>
-                    <option value="58">58</option>
-                    <option value="57">57</option>
-                    <option value="56">56</option>
-                    <option value="55">55</option>
-                    <option value="54">54</option>
-                    <option value="53">53</option>
-                    <option value="52">52</option>
-                    <option value="51">51</option>
-                    <option value="50">50</option>
-                </select>
-            </div> --}}
 
             <div class="form-group">
                 <label for="level">ระดับผู้ใช้</label>

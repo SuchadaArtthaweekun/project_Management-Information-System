@@ -45,9 +45,6 @@ Route::get('tchDashUser', [\App\Http\Controllers\UserController::class, 'tchDash
 require __DIR__ . '/auth.php';
 
 
-
-Route::get('/firstRegister', [App\Http\Controllers\HomeController::class, 'firstRegister'])->name('firstRegister');
-Route::get('/dashboard2', [App\Http\Controllers\HomeController::class, 'dashboard2'])->name('dashboard2');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // categories table

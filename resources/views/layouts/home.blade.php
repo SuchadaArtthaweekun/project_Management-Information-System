@@ -59,7 +59,7 @@
         </div>
     </header>
 
-    <div class="container lg">
+    <div class="container-fluid">
         @yield('content')
         @yield('menu')
 

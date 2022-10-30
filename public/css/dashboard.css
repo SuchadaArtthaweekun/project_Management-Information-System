@@ -3,7 +3,20 @@
     font-family: 'Noto Sans Thai', sans-serif;
 
 }
-
+.titledashboard {
+    margin: 15px 0;
+    text-align: center;
+}
+aside.main-sidebar.sidebar-dark-primary.elevation-4 {
+    /* background-color: #a8dadc; */
+    background-image: linear-gradient(to top,#d8b5ff, #1eae98);
+}
+a.nav-link p {
+    color: black;
+}
+a.nav-link i {
+    color: black;
+}
 
 .logo{
     height: 72px;

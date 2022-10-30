@@ -51,7 +51,9 @@
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <!-- Messages Dropdown Menu -->
-
+            <a href="#" class="d-block">
+                <div class="u_name">{{ Auth::user()->name }}</div>
+            </a>
             <div class="logout">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

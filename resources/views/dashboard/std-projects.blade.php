@@ -57,9 +57,22 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="article">บทความ</label>
-                                    <textarea name="article" id="article" cols="30" rows="4" class="form-control"></textarea>
+                                    <label for="email_author">อีเมลผู้ทำคนที่ 1</label>
+                                    <input type="text" class="form-control" name="email_author">
                                 </div>
+                                <div class="form-group">
+                                    <label for="email_co_author">อีเมลผู้ทำคนที่ 2</label>
+                                    <input type="text" class="form-control" name="email_co_author">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tel_author">เบอร์โทรผู้ทำคนที่ 1</label>
+                                    <input type="text" class="form-control" name="tel_author">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tel_co_author">เบอร์โทรผู้ทำคนที่ 2</label>
+                                    <input type="text"  class="form-control" name="tel_co_author">
+                                </div>
+
 
                                 <div class="form-group">
                                     <label for="abtract">บทคัดย่อ</label>
@@ -208,6 +221,28 @@
                                                         class="form-control" name="co_author">
                                                 </div>
                                                 <div class="form-group">
+                                                    <label for="email_author">อีเมลผู้ทำคนที่ 1</label>
+                                                    <input type="text" value="{{ $pro->email_author }}"
+                                                        class="form-control" name="email_author">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="email_co_author">อีเมลผู้ทำคนที่ 2</label>
+                                                    <input type="text" value="{{ $pro->email_co_author }}"
+                                                        class="form-control" name="email_co_author">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tel_author">เบอร์โทรผู้ทำคนที่ 1</label>
+                                                    <input type="text" value="{{ $pro->tel_author }}"
+                                                        class="form-control" name="tel_author">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tel_co_author">เบอร์โทรผู้ทำคนที่ 2</label>
+                                                    <input type="text" value="{{ $pro->tel_co_author }}"
+                                                        class="form-control" name="tel_co_author">
+                                                </div>
+
+                                                <div class="form-group">
                                                     <label for="title_th">ชื่อโครงงาน (ไทย)</label>
                                                     <input type="text" value="{{ $pro->title_th }}"
                                                         class="form-control" name="title_th">
@@ -222,11 +257,7 @@
                                                     <input type="text" value="{{ $pro->edition }}"
                                                         class="form-control" name="edition">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="article">บทความ</label>
-                                                    <textarea name="article" id="article" cols="30" rows="4" class="form-control"
-                                                        value="{{ $pro->article }}" class="form-control">{{ $pro->article }}</textarea>
-                                                </div>
+                                                
                                                 <div class="form-group">
                                                     <label for="abtract">บทคัดย่อ</label>
                                                     <textarea name="abtract" id="abtract" cols="30" rows="4" class="form-control"

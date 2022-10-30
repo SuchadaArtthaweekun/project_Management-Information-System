@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300&display=swap');
+*{
+    font-family: 'Noto Sans Thai', sans-serif;
+
+}
 .carousel-item {
     height: 100vh;
     min-height: 350px;
@@ -13,6 +18,14 @@
 
 .logo img {
   height: 92px;
+}
+.bannertop{
+  background-image: linear-gradient(to right,#d8b5ff, #1eae98);
+  width: 100%;
+}
+img.banner{
+  width: 100%;
+  height: 621px;
 }
 nav.navbar.navbar-expand-lg.navbar-light.fixed-top {
   background: #6fa8dc;
@@ -103,6 +116,15 @@ container-fluid {
   padding: 0 !important;
 }
 /*  content */
+button.btn-search {
+  padding: 5px 28px;
+  border-radius: 12px;
+  border: none;
+  background-image: linear-gradient(#6b2ce5, #d450e6);
+}
+.col-sm-12.search {
+  text-align: -webkit-center;
+}
 .homesearch {
   padding: 20px;
 }
@@ -134,7 +156,6 @@ form.Docid {
   margin-top: 20px;
 }
 .footer-dark {
-  margin-top: 40px;
   padding: 20px 0;
   color:#f0f9ff;
   background-color:#282d32;
@@ -252,8 +273,8 @@ form.Docid {
   padding: 10px;
 }
 .bannerhome img {
-  width: 582px;
-  height: 277px
+  width: 406px;
+  height: 244px;
 }
 .col.inner {
   text-align: right;
@@ -263,8 +284,18 @@ h3.searchtxt {
   padding: 10px;
   margin: 5px;
 }
+.form-group.row {
+  font-size: 18px;
+}
+.actiontxt {
+  text-align: -webkit-center;
+  margin: 46px 11px 0px 54px;
+}
+.row.titlebanner {
+  padding: 30px;
+}
 form.search {
-  background-color: #A8DADC;
+  /* background-color: #A8DADC; */
   padding: 30px;
   border-radius: 15px;
 }
@@ -292,4 +323,73 @@ td.view a i {
 }
 .abs p {
   padding: 10px 20px;
+}
+
+/* book */
+.col-3.bkall a {
+  color: black;
+  text-decoration: none;
+}
+.bkcnt {
+  
+  text-decoration: none;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  height: 162px;
+  margin: 30px 10px;
+}
+.bk.title {
+  text-align: center;
+  text-decoration: none;
+}
+.bk.author {
+  text-align: center;
+}
+.bk.endtitle {
+  text-align: center;
+}
+
+.imgbook img {
+  margin-left: 38%;
+  width: 75px;
+}
+.lastbook h3 {
+  margin: 20px 0 10px 25px;
+}
+.titlebook {
+  text-align: center;
+  text-decoration: none;
+  font-size: 10%;
+  margin-top: 4%;
+  color: gold;
+}
+.bookauthor {
+  text-align: center;
+  margin: 24% 0;
+  font-size: 10%;
+  color: gold;
+}
+.endtitlebook p {
+  margin: 0 0 0 0;
+  text-align: center;
+  font-size: 10%;
+  color: gold;
+}
+.endtitlebook {
+  margin-bottom: 6%;
+}
+.col.book a {
+  text-decoration: none;
+}
+.row.book {
+  /* width: 20%; */
+  color: gold;
+  /* background-color: darkblue; */
+  padding: 32px 13px 5px 24px;
+}
+.col.book {
+  background-color: darkblue;
+  margin: 0px 5px 13px 0px;
+  padding: 23px 20px 5px 20px;
 }

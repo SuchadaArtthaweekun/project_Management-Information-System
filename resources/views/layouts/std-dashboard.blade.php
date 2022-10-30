@@ -51,7 +51,9 @@
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <!-- Messages Dropdown Menu -->
-
+            <a href="#" class="d-block">
+                <div class="u_name">{{ Auth::user()->name }}</div>
+            </a>
             <div class="logout">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -82,6 +84,7 @@
                 <div class="image">
                     {{-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> --}}
                 </div>
+
                 <div class="info">
                     <a href="#" class="d-block">
                         <div class="u_name">{{ Auth::user()->name }}</div>

@@ -2,6 +2,10 @@
 
 @section('content')
     <div class="container">
+        <div class="titledashboard">
+            <h3>รายงาน</h3>
+        </div>
+
         <div class="row">
             <div class="col-6">
                 <div class="report_dash">

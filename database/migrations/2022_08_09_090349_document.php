@@ -20,7 +20,7 @@ class Document extends Migration
             $table->string('doc_type');
             $table->string('doc_status');
             $table->integer('download_counter');
-            $table->unsignedInteger('project_id')->unsigned;
+            $table->unsignedInteger('project_id')->unsigned();
             $table->foreign('project_id')->references('project_id')->on('projects')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

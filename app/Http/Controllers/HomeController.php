@@ -14,6 +14,9 @@ class HomeController extends Controller
 
     public function index()
     { 
+        $book = DB::table('categories')
+        ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+        ->simplePaginate(4);
         $projects = DB::table('projects')
             ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
             ->get();
@@ -23,7 +26,7 @@ class HomeController extends Controller
         $projects = DB::table('projects')->get();
         $documents = DB::table('documents')->get();
         $catebar = DB::table('categories')->get();
-        return view('home', compact('projects', 'documents', 'categories', 'advisers','catebar'));
+        return view('home', compact('projects', 'documents', 'categories', 'advisers','catebar','book'));
     }
 
     public function dashboard2()

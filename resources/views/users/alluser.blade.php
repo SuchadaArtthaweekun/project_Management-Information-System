@@ -4,6 +4,9 @@
 
     <body>
         <div class="table-responsive">
+            <div class="titledashboard">
+                <h3>ผู้ใช้ทั้งหมด</h3>
+            </div>
             <div>
                 {{-- add users --}}
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_adduser">
@@ -135,7 +138,7 @@
             <table class="table table-striped table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th><strong>No</strong></th>
+                        <th><strong>รหัส</strong></th>
                         <th><strong>ชื่อ</strong></th>
                         <th><strong>ชื่อ (อังกฤษ)</strong></th>
                         <th><strong>อีเมล</strong></th>
@@ -143,7 +146,7 @@
                         <th><strong>รหัสนักศึกษาหรือรหัสอาจารย์</strong></th>
                         <th><strong>สถานะ</strong></th>
                         <th><strong>เบอร์โทร</strong></th>
-                        <th><strong>Action</strong></th>
+                        <th><strong>เพิ่มเติม</strong></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -283,19 +286,20 @@
     <script>
         const del = (id) => {
             Swal.fire({
-                title: 'Are you sure? ' + id,
-                text: "You won't be able to revert this!",
+                title: 'ต้องการลบผู้ใช้ ' + name,
+                text: "คุณจะไม่สามารถย้อนกลับได้!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก'
             }).then((result) => {
                 if (result.isConfirmed) {
                     fetch(`http://127.0.0.1:8000/deleteUser/${id}`).then((respons)=>{console.log(respons)})
                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
+                        'ลบสำเร็จ',
+                        'ผู้ใช้รายนี้ถูกลบแล้ว',
                         'success'
                     ).then(()=>{location.reload();})
                 }

@@ -52,4 +52,10 @@ class CateController extends Controller
         return view('allcate',compact('categories'));
 
     }
+
+    public function catebar()
+    {
+        $catebar = DB::table('categories')->get();
+        return view('layouts.fordashboard', ['users' => $catebar]);
+    }
 }

@@ -62,6 +62,7 @@ class SearchHomeController extends Controller
                 ->simplePaginate(5);
         } else if ($request->input('cate_id') == 'all' && $request->input('adviser') != 'all') {
             $data = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+                ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
                 ->where('published', '=', 1)
                 ->where('adviser', 'like', '%' . $request->input('adviser') . '%')
                 ->where('title_th', 'like', '%' . $request->input('title_th') . '%')

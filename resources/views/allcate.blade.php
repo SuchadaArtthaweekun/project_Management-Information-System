@@ -4,6 +4,9 @@
 
     <body>
         <div class="table-responsive">
+            <div class="titledashboard">
+                <h3>หมวดหมู่โครงงานนักศึกษาทั้งหมด</h3>
+            </div>
             <div class="btnadd">
 
                 {{-- add category --}}
@@ -128,21 +131,22 @@
     <script>
         const del = (id) => {
             Swal.fire({
-                title: 'Are you sure? ' + id,
-                text: "You won't be able to revert this!",
+                title: 'ต้องการลบหมวดหมู่โครงงาน ' + name,
+                text: "คุณจะไม่สามารถย้อนกลับได้!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก'
             }).then((result) => {
                 if (result.isConfirmed) {
                     fetch(`http://127.0.0.1:8000/deletecate/${id}`).then((respons) => {
                         console.log(respons)
                     })
                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
+                        'ลบสำเร็จ',
+                        'หมวดหมู่โครงงานนี้ถูกลบแล้ว',
                         'success'
                     ).then(() => {
                         location.reload();

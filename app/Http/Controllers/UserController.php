@@ -16,6 +16,12 @@ class UserController extends Controller
         return view('users.alluser', ['users' => $users]);
     }
 
+    public function dashboard()
+    {
+        $users = DB::table('users')->get();
+        return view('layouts.fordashboard', compact('users'));
+    }
+
 
     public function addUserForm()
     {
@@ -115,9 +121,13 @@ class UserController extends Controller
     {
         $id =  Auth::user()->id;
         $users = DB::table('users')->where('users.id', '=', '$id');
-
-        // echo $id;
-        return view('dashboard.std-dashboard', compact('users'));
+        $advisers = DB::table('advisers')->get();
+        $categories = DB::table('categories')->get();
+        $projects = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+            ->where('projects.id','=',Auth::user()->id)
+            ->get();
+        return view('dashboard.std-dashboard', compact('users','advisers','categories','projects'));
     }
     public function tchdashboard()
     {

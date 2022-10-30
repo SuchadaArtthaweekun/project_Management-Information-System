@@ -16,12 +16,14 @@
                     <li>ที่ปรึกษา :
                         @foreach ($project as $pro)
                             @foreach ($adviser as $adv)
-                                <?php if ($pro->adviser == $adv->adviser_id) {
+                                <?php if ($pro->adviser == $adv->adviser_id ) {
+                                    echo $adv->adviser_fullname_th;
+                                }
+                                
+                                if ($pro->co_adviser == $adv->adviser_id) {
                                     echo $adv->adviser_fullname_th;
                                 } ?>
-                                <?php if ($pro->co_adviser == $adv->adviser_id) {
-                                    echo $adv->adviser_fullname_th;
-                                } ?>
+                               
                             @endforeach
                         @endforeach
 
@@ -41,11 +43,11 @@
                 <div class="col-12">
                     <table class="table">
                         <tr>
-                            <th>No.</th>
-                            <th>name</th>
-                            <th>type</th>
-                            <th>View</th>
-                            <th>Download</th>
+                            <th>ลำดับ.</th>
+                            <th>ชื่อไฟล์</th>
+                            <th>ประเภท</th>
+                            <th>ดู</th>
+                            <th>ดาวน์โหลด</th>
                         </tr>
                         {{-- @foreach ($files as $key => $file) --}}
                         @foreach ($project as $key => $file)
@@ -55,10 +57,12 @@
                                 <td>{{ $file->doc_type }}</td>
                                 <td class="view"><a href="/documents/{{ $file->docname }}" target="_blank"><i
                                             class="fa-solid fa-eye"></i></a></td>
-                                <td class="download"><a href="/get-file/{{ $file->doc_id }}/{{ $file->docname }}"
+                                <td class="download">
+                                    <a href="/get-file/{{ $file->doc_id }}/{{ $file->docname }}"
                                         target="_blank">
                                         <x-icons.download />
                                     </a>
+                                    {{$documents[0]->download_counter}}
                                 </td>
                                 {{-- <td><a href="/file/download/{{$file->docname}}"><?php if (projects . project_id == documents . project_id) {
                                     echo $file;

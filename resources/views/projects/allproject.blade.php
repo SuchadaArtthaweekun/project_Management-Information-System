@@ -7,9 +7,12 @@
             <strong>ดำเนินการอัปโหลดเสร็จสิ้นแล้ว</strong>
         </div>
     @endif
+    <div class="titledashboard">
+        <h3>โครงงานนักศึกษาทั้งหมด</h3>
+    </div>
     <div class="btnadd">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_addProject">
-            Add project
+            เพิ่มโครงงาน
         </button>
         <!-- Modal -->
         <div class="modal fade" id="modal_addProject" tabindex="-1" aria-labelledby="modal_addProject" aria-hidden="true">
@@ -38,6 +41,24 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="email_author">อีเมลผู้ทำคนที่ 1</label>
+                                    <input type="text" class="form-control" name="email_author">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email_co_author">อีเมลผู้ทำคนที่ 2</label>
+                                    <input type="text"  class="form-control" name="email_co_author">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tel_author">เบอร์โทรผู้ทำคนที่ 1</label>
+                                    <input type="text" class="form-control" name="tel_author">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tel_co_author">เบอร์โทรผู้ทำคนที่ 2</label>
+                                    <input type="text"  class="form-control" name="tel_co_author">
+                                </div>
+
+
+                                <div class="form-group">
                                     <label for="title_th">ชื่อโครงงาน (ไทย)</label>
                                     <input type="text" name="title_th" class="form-control"
                                         placeholder="ชื่อโครงงาน (ไทย)">
@@ -55,10 +76,7 @@
                                         action="datepicker" class="form-control">
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="article">บทความ</label>
-                                    <textarea name="article" id="article" cols="30" rows="4" class="form-control"></textarea>
-                                </div>
+                               
 
                                 <div class="form-group">
                                     <label for="abtract">บทคัดย่อ</label>
@@ -149,7 +167,7 @@
                 <th>รุ่น</th>
                 <th>หมวดหมู่โครงงาน</th>
                 <th>ผยแพร่</th>
-                <th>action</th>
+                <th>จัดการ</th>
                 <th>ไฟล์</th>
             </tr>
         </thead>
@@ -226,6 +244,32 @@
                                                     <input type="text" value="{{ $pro->co_author }}"
                                                         class="form-control" name="co_author">
                                                 </div>
+
+
+                                                <div class="form-group">
+                                                    <label for="email_author">อีเมลผู้ทำคนที่ 1</label>
+                                                    <input type="text" value="{{ $pro->email_author }}"
+                                                        class="form-control" name="email_author">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email_co_author">อีเมลผู้ทำคนที่ 2</label>
+                                                    <input type="text" value="{{ $pro->email_co_author }}"
+                                                        class="form-control" name="email_co_author">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tel_author">เบอร์โทรผู้ทำคนที่ 1</label>
+                                                    <input type="text" value="{{ $pro->tel_author }}"
+                                                        class="form-control" name="tel_author">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tel_co_author">เบอร์โทรผู้ทำคนที่ 2</label>
+                                                    <input type="text" value="{{ $pro->tel_co_author }}"
+                                                        class="form-control" name="tel_co_author">
+                                                </div>
+
+
+
+
                                                 <div class="form-group">
                                                     <label for="title_th">ชื่อโครงงาน (ไทย)</label>
                                                     <input type="text" value="{{ $pro->title_th }}"
@@ -241,11 +285,7 @@
                                                     <input type="text" value="{{ $pro->edition }}"
                                                         class="form-control" name="edition">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="article">บทความ</label>
-                                                    <textarea name="article" id="article" cols="30" rows="4" class="form-control"
-                                                        value="{{ $pro->article }}" class="form-control">{{ $pro->article }}</textarea>
-                                                </div>
+                                                
                                                 <div class="form-group">
                                                     <label for="abtract">บทคัดย่อ</label>
                                                     <textarea name="abtract" id="abtract" cols="30" rows="4" class="form-control"
@@ -388,6 +428,7 @@
                                                         name="type" placeholder="">
                                                         <option value="โครงงาน">โครงงาน</option>
                                                         <option value="แบบเสนอ">แบบเสนอ</option>
+                                                        <option value="แบบเสนอ">บทความวิจัย</option>
                                                     </select>
                                                 </div>
 
@@ -423,21 +464,22 @@
     <script>
         const del = (id) => {
             Swal.fire({
-                title: 'Are you sure? ' + id,
-                text: "You won't be able to revert this!",
+                title: 'ต้องการลบโครงงาน ' + name,
+                text: "คุณจะไม่สามารถย้อนกลับได้!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก'
             }).then((result) => {
                 if (result.isConfirmed) {
                     fetch(`http://127.0.0.1:8000/deletepro/${id}`).then((respons) => {
                         console.log(respons)
                     })
                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
+                        'ลบสำเร็จ',
+                        'โครงงานนี้ถูกลบแล้ว',
                         'success'
                     ).then(() => {
                         location.reload();

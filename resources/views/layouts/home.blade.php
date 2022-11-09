@@ -66,7 +66,7 @@
 
     </div>
 
-    <footer>
+    {{-- <footer>
         <div class="container-fluid">
             <div class="footer-dark">
                 <footer>
@@ -91,11 +91,11 @@
                             </div>
                             <div class="col-sm-6 col-md-3 item">
                                 <div class="foot">
-                                    <h3>About</h3>
+                                    <h3>ติดต่อเรา</h3>
                                     <ul>
-                                        <li><a href="#">Company</a></li>
-                                        <li><a href="#">Team</a></li>
-                                        <li><a href="#">Careers</a></li>
+                                        <li><a href="https://web.facebook.com/IT.BRU?_rdc=1&_rdr">Facebook</a></li>
+                                        <li><a href="https://web.facebook.com/it.bru.ac.th">Facebook</a></li>
+                                        <li><a href="https://it.bru.ac.th/">website</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -114,8 +114,31 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
         </div>
-    </footer>
+    </footer> --}}
 
+    <footer>
+        <div class="fthome">
+            <div class="container-fluid">
+                <div class="row ftrow">
+                    <div class="col ftcol">
+                        <h4>ติดต่อเรา</h4>
+                        <p>Facebook : <a href="https://web.facebook.com/it.bru.ac.th">คลิก</a></p>
+                        <p>website : <a href="https://it.bru.ac.th/">คลิก</a></p>
+                        <p>E-mail : </p>
+                    </div>
+                    <div class="col ftcol">
+
+                    </div>
+                    <div class="col ftcol">
+                        <h3>สาขาเทคโนโลยีสารสนเทศ</h3>
+                        <p>เทคโนโลยี​สาร​สนเทศ​เป็น​สาขา​วิชา​ที่​มี​ความ​ทัน​สมัย​
+                            ผู้​เรียน​จะ​มี​ความ​สามารถ​ทั้ง​ด้าน​เทคโนโลยี​และ​การ​จัดการ​ด้าน​ธุรกิจ​ผสม​ผสาน​วิทยาการ​ที่​ก้าวหน้า​ด้าน​เทคโนโลยี​สาร​สนเทศ​ให้​เกิด​ประโยชน์​สูงสุด​ต่อ​การ​บริหาร​งาน​ของ​องค์กร
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -130,6 +130,7 @@ Route::get('konhasearch', [\App\Http\Controllers\SearchController::class, 'konha
 Route::get('searchProject', [\App\Http\Controllers\SearchController::class, 'searchProject'])->name('searchProject');
 
 // Search Home
+Route::get('search', [\App\Http\Controllers\SearchHomeController::class, 'searchindex'])->name('searchindex');
 Route::get('searchsec', [\App\Http\Controllers\SearchController::class, 'showProjects'])->name('searchsec');
 Route::get('searchhome', [\App\Http\Controllers\SearchHomeController::class, 'searchhome'])->name('searchhome');
 Route::get('Document/{project_id}', [\App\Http\Controllers\SearchHomeController::class, 'showDoc'])->name('Document');

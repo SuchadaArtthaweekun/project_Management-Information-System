@@ -8,8 +8,8 @@
     text-align: center;
 }
 aside.main-sidebar.sidebar-dark-primary.elevation-4 {
-    /* background-color: #a8dadc; */
-    background-image: linear-gradient(to top,#d8b5ff, #1eae98);
+    background-color:#6FA8DC;
+    /* background-image: linear-gradient(to top,#d8b5ff, #1eae98); */
 }
 a.nav-link p {
     color: black;

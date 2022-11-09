@@ -6,7 +6,37 @@
 @section('content')
     <div class="item">
         <div class="container">
-            @foreach ($data as $uhuh)
+
+           
+            @foreach ($data as $da)
+                <div class="result">
+                    <div class="gard">
+                        <a href="/Document/{{ $da->project_id }}">
+                        <h5>{{ $da->title_th }}</h5>
+                       
+                        <p>หมวดหมู่ : {{ $da->catename }}</p>
+                      
+                            <p>จัดทำโดย : {{ $da->author }} {{ $da->co_author }}</p>
+                            <p>
+                                ที่ปรึกษา :
+                                <?php if ($da->adviser == $da->adviser_id) {
+                                    echo $da->adviser_fullname_th;
+                                } ?>
+                                <?php if ($da->co_adviser == $da->adviser_id) {
+                                    echo $da->adviser_fullname_th;
+                                } ?>
+                            </p>
+
+                            <p class="abtract">บทคัดย่อ : {{ $da->abtract }}</p>
+                            <div class="content.date">
+                                <p>เผยแพร่เมื่อ {{ $da->edition }}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+
+            {{-- @foreach ($data as $uhuh)
                 <div class="result">
                     <div class="gard">
                         <a href="/Document/{{ $uhuh->project_id }}">
@@ -30,13 +60,13 @@
                         </a>
                     </div>
                 </div>
-            @endforeach
+            @endforeach --}}
 
 
-            <div class="pagination">
-                {{ $data->links() }}
-                
-            </div>
+            {{-- <div class="pagination">
+                {{ $data->links() }} 
+            </div> --}}
+
         </div>
     </div>
 @endsection

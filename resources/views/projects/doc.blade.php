@@ -13,10 +13,10 @@
                 <ul>
                     <li>ผู้จัดทำ : {{ $project[0]->author }} {{ $project[0]->co_author }}</li>
                     {{-- <li>ที่ปรึกษา : {{ $project[0]->adviser}}  {{ $project[0]->co_adviser}}</li> --}}
-                    <li>ที่ปรึกษา :
-                        @foreach ($project as $pro)
+                    <li>ที่ปรึกษา : {{ $project[0]->adviser_fullname_th }}
+                        {{-- @foreach ($project as $pro)
                             @foreach ($adviser as $adv)
-                                <?php if ($pro->adviser == $adv->adviser_id ) {
+                                <?php if ($pro->adviser == $adv->adviser_id) {
                                     echo $adv->adviser_fullname_th;
                                 }
                                 
@@ -25,12 +25,13 @@
                                 } ?>
                                
                             @endforeach
-                        @endforeach
+                        @endforeach --}}
 
 
                     </li>
                     <li>
-                        {{-- หมวดหมู่โครงงาน : {{ $project[0]->catename }} --}}
+                        หมวดหมู่โครงงาน : {{ $project[0]->catename }}
+
                     </li>
                 </ul>
                 <div class="abs">
@@ -38,7 +39,14 @@
                         {{ $project[0]->abtract }}
                     </p>
                 </div>
-                <p>ยอดเข้าชม : {{ $project[0]->view_counter }} ยอดดาวน์โหลด : {{$documents[0]->download_counter}}</p>
+                <p>ยอดเข้าชม : {{ $project[0]->view_counter }} ยอดดาวน์โหลด : {{ $documents[0]->download_counter }}
+                    <?php
+                    // if ($project[0]->project_id = $documents[0]->project_id) {
+                    //     echo $documents[0]->download_counter ;
+                    // }
+                    ?>
+
+                </p>
 
                 <div class="col-12">
                     <table class="table">
@@ -58,11 +66,14 @@
                                 <td class="view"><a href="/documents/{{ $file->docname }}" target="_blank"><i
                                             class="fa-solid fa-eye"></i></a></td>
                                 <td class="download">
-                                    <a href="/get-file/{{ $file->doc_id }}/{{ $file->docname }}"
-                                        target="_blank">
+                                    <a href="/get-file/{{ $file->doc_id }}/{{ $file->docname }}" target="_blank">
                                         <x-icons.download />
                                     </a>
-                                    {{$documents[0]->download_counter}}
+                                    <?php
+                                    if ($file->doc_id = $file->doc_id) {
+                                        echo $file->download_counter;
+                                    }
+                                    ?>
                                 </td>
                                 {{-- <td><a href="/file/download/{{$file->docname}}"><?php if (projects . project_id == documents . project_id) {
                                     echo $file;

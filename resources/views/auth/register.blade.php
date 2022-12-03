@@ -50,7 +50,6 @@
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
-            Swal.fire('Hello')
             <!-- name_th -->
             <div>
                 <x-label for="name" :value="__('ชื่อ-สกุล (ภาษาไทย) ไม่ต้องมีคำหน้า')" style="font-size: 16px" />

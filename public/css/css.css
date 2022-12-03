@@ -90,7 +90,19 @@ a.proside h3{
   margin: 30px 10px;
 }
 /* end sidebar home */
+
+
+/* pagination */
+.pagination {
+  justify-content: center;
+}
+/* end pagination */
+
+
 /* home */
+.countresult {
+  margin: 20px;
+}
 .result{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin: 20px;
@@ -127,6 +139,9 @@ container-fluid {
   padding: 0 !important;
 }
 /*  content */
+.row.searchhome {
+  justify-content: center;
+}
 button.btn-search {
   padding: 5px 28px;
   border-radius: 12px;

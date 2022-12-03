@@ -29,25 +29,72 @@ class SearchHomeController extends Controller
     public function searchindex(Request $request)
     {
         $catebar = DB::table('categories')->get();
-       
+
         $list = DB::table('categories')->get();
-        if ($request->input('cate_id') == 'all' && $request->input('adviser') == 'all' && $request->input('cate') == 'all') {
-            
-                 $data = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
-                ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
-                ->where('published', '=', 1)
-                ->simplePaginate(5);
-            
-          
-        }else if ($request->input('cate_id') != "all" && $request->input('adviser') != 'all' && $request->input('cate') != 'all') {
-            $data = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
-                ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
-                ->where('published', '=', 1)
-                ->where('projects.cate_id', 'like', '%' . $request->input('cate_id') . '%')
-                ->where('adviser', 'like', '%' . $request->input('adviser') . '%')
-                ->where('title_th', 'like', '%' . $request->input('word') . '%')
-                ->where('author', 'like', '%' . $request->input('word') . '%')
-                ->simplePaginate(5);
+        if ($request->input('cate_id') == 'all' && $request->input('adviser') == 'all') {
+            if ($request->input('cate') == 'title') {
+                $data = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+                    ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+                    ->where('published', '=', 1)
+                    ->where('title_th', 'like', '%' . $request->input('word') . '%')
+                    ->simplePaginate(3);
+            } else if ($request->input('cate') == 'author') {
+                $data = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+                    ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+                    ->where('published', '=', 1)
+                    ->where('author', 'like', '%' . $request->input('word') . '%')
+                    ->simplePaginate(5);
+            }
+        } else if ($request->input('cate_id') != "all" && $request->input('adviser') != 'all') {
+            if ($request->input('cate') == 'title') {
+                $data = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+                    ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+                    ->where('published', '=', 1)
+                    ->where('projects.cate_id', 'like', '%' . $request->input('cate_id') . '%')
+                    ->where('adviser', 'like', '%' . $request->input('adviser') . '%')
+                    ->where('title_th', 'like', '%' . $request->input('word') . '%')
+                    ->simplePaginate(5);
+            } else if ($request->input('cate') == 'author') {
+                $data = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+                    ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+                    ->where('published', '=', 1)
+                    ->where('projects.cate_id', 'like', '%' . $request->input('cate_id') . '%')
+                    ->where('adviser', 'like', '%' . $request->input('adviser') . '%')
+                    ->where('author', 'like', '%' . $request->input('word') . '%')
+                    ->simplePaginate(5);
+            }
+        } else if ($request->input('cate_id') == "all" && $request->input('adviser') != 'all') {
+            if ($request->input('cate') == 'title') {
+                $data = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+                    ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+                    ->where('published', '=', 1)
+                    ->where('adviser', 'like', '%' . $request->input('adviser') . '%')
+                    ->where('title_th', 'like', '%' . $request->input('word') . '%')
+                    ->simplePaginate(5);
+            } else if ($request->input('cate') == 'author') {
+                $data = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+                    ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+                    ->where('published', '=', 1)
+                    ->where('adviser', 'like', '%' . $request->input('adviser') . '%')
+                    ->where('author', 'like', '%' . $request->input('word') . '%')
+                    ->simplePaginate(5);
+            }
+        } else if ($request->input('cate_id') != "all" && $request->input('adviser') == 'all') {
+            if ($request->input('cate') == 'title') {
+                $data = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+                    ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+                    ->where('published', '=', 1)
+                    ->where('projects.cate_id', 'like', '%' . $request->input('cate_id') . '%')
+                    ->where('title_th', 'like', '%' . $request->input('word') . '%')
+                    ->simplePaginate(5);
+            } else if ($request->input('cate') == 'author') {
+                $data = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+                    ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+                    ->where('published', '=', 1)
+                    ->where('projects.cate_id', 'like', '%' . $request->input('cate_id') . '%')
+                    ->where('author', 'like', '%' . $request->input('word') . '%')
+                    ->simplePaginate(5);
+            }
         }
 
         return view('searchpage.result-search-home', compact('data', 'list', 'catebar'));
@@ -111,13 +158,18 @@ class SearchHomeController extends Controller
         $adviser = DB::table('advisers')->get();
         $data = DB::table('categories')->get();
         $catebar = DB::table('categories')->get();
-        $project = DB::table('projects')
+        $project = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
             ->join('documents', 'documents.project_id', '=', 'projects.project_id')
             ->where('documents.project_id', '=', $project_id)
             ->where('projects.project_id', '=', $project_id)
             ->get();
         $documents = DB::table('documents')->where('documents.project_id', '=', $project_id)->get();
-        $countDownload = DB::table('documents')->select('download_counter')->get();
+        $countDownload = DB::table('documents')
+            ->select('download_counter')
+            // ->where('documents.doc_id', '=', $doc_id)
+            ->get();
         Projects::find($project_id)->increment('view_counter');
         return view('projects.doc', compact('project', 'data', 'adviser', 'catebar', 'countDownload', 'documents'));
     }
@@ -125,8 +177,11 @@ class SearchHomeController extends Controller
     public function allFiles()
     {
         $files = Document::all();
-        $projects = Projects::all();
-        return view('projects.doc', compact('files', 'projects'));
+        $categories = Categories::all();
+        $projects = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser');
+        return view('projects.doc', compact('files', 'projects', 'categories'));
     }
 
     public function showProject()

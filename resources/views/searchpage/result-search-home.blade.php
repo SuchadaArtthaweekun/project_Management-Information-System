@@ -7,15 +7,18 @@
     <div class="item">
         <div class="container">
 
-           
+            <div class="countresult">
+                <p>ผลการค้นหา {{ $data->count() }}</p>
+            </div>
             @foreach ($data as $da)
                 <div class="result">
+
                     <div class="gard">
                         <a href="/Document/{{ $da->project_id }}">
-                        <h5>{{ $da->title_th }}</h5>
-                       
-                        <p>หมวดหมู่ : {{ $da->catename }}</p>
-                      
+                            <h5>{{ $da->title_th }}</h5>
+
+                            <p>หมวดหมู่ : {{ $da->catename }}</p>
+
                             <p>จัดทำโดย : {{ $da->author }} {{ $da->co_author }}</p>
                             <p>
                                 ที่ปรึกษา :
@@ -63,10 +66,11 @@
             @endforeach --}}
 
 
-            {{-- <div class="pagination">
-                {{ $data->links() }} 
-            </div> --}}
+            <div class="pagination">
+                {{ $data->links('pagination::simple-bootstrap-4') }}
+            </div>
 
         </div>
+    </div>
     </div>
 @endsection

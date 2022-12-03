@@ -67,7 +67,6 @@
                                     <div class="col-sm-3">
                                         <select class="form-control" id="exampleFormControlSelect1" name="cate"
                                             id="ate_id" placeholder="หมวดหมู่โครงงาน">
-                                            <option value="all">ทั้งหมด</option>
                                             <option value="title">ชื่อโครงงาน</option>
                                             <option value="author">ชื่อผู้จัดทำ</option>
                                         </select>

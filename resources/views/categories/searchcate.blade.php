@@ -11,6 +11,10 @@
         </div>
     @endif
         <div class="container">
+            <div class="countresult">
+                <p>ผลการค้นหา {{ $data->count() }}</p>
+            </div>
+
             @if ($data == Null)
                 <p>null</p>
             @endif
@@ -47,7 +51,7 @@
 
                         
                         <div class="pagination">
-                           {{ $data->links() }}
+                           {{ $data->links('pagination::simple-bootstrap-4') }}
                           </div>
         </div>
     </div>

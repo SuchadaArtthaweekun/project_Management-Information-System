@@ -60,8 +60,8 @@
     </header>
 
     <div class="container lg">
-        <div class="row">
-            <div class="col-4">
+        <div class="row searchhome">
+            {{-- <div class="col-4">
                 <div class="sidebarhome">
 
                     <div class="sidebar">
@@ -106,7 +106,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> --}}
             <div class="col-8">
                 @yield('content')
             </div>

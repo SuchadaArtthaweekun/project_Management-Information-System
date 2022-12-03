@@ -64,6 +64,6 @@ class RegisteredUserController extends Controller
         return response()->json(['message' => 'success']);
         // return redirect('/register');
 
-        // return redirect('/')->with('success','File has been upload successfully!');
+        return redirect('/')->with('success','File has been upload successfully!');
     }
 }

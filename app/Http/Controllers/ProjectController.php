@@ -111,7 +111,8 @@ class ProjectController extends Controller
     public function deletepro($project_id)
     {
         DB::table('projects')->where('project_id', $project_id)->delete();
-        return response()->json(['message' => 'deleted']);
+        // return response()->json(['message' => 'deleted']);
+        return redirect()->back();
         // return redirect('allproject');
     }
     public function tchUpdateproject(Request $request)
@@ -364,7 +365,7 @@ class ProjectController extends Controller
         Storage::makeDirectory($pathDir, 0777, true, true);
 
 
-        return redirect()->route('stdProjects');
+        return redirect()->back();
     }
     public function tchAddProject(Request $request)
     {

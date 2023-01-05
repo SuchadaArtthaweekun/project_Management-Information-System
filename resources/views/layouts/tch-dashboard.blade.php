@@ -19,6 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -28,7 +29,7 @@
         <ul class="navbar-nav">
             
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="/" class="nav-link">Home</a>
+                <a href="/" class="nav-link">หน้าแรก</a>
             </li>
            
         </ul>
@@ -111,19 +112,19 @@
                             <li class="nav-item">
                                 <a href="{{ route('home') }}" class="nav-link">
                                     <i class="fa-solid fa-magnifying-glass"></i>
-                                    <p>Search</p>
+                                    <p>สืบค้นโครงงานนักศึกษา</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('tchPending') }}" class="nav-link">
                                     <i class="fa-solid fa-user"></i>
-                                    <p>Pending Project</p>
+                                    <p>โครงงานนักศึกษารออนุมัติ</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('tchProjects') }}" class="nav-link">
                                     <i class="fa-solid fa-folder"></i>
-                                    <p>Projects</p>
+                                    <p>โครงงานนักศึกษาของฉัน</p>
                                 </a>
                             </li>
                            

@@ -11,7 +11,7 @@
 
                 {{-- add category --}}
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_adduser">
-                    Add category
+                    เพิ่มหมวดหมู่โครงงานนักศึกษา
                 </button>
                 <!-- Modal -->
                 <div class="modal fade" id="modal_adduser" tabindex="-1" aria-labelledby="modal_adduser" aria-hidden="true">
@@ -40,9 +40,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" href="{{ route('alluser') }}">Save
-                                        changes</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                    <button type="submit" class="btn btn-primary" href="{{ route('alluser') }}" onclick="conf()">บันทึก</button>
                                 </div>
                             </form>
                         </div>
@@ -52,9 +51,9 @@
             <table class="table table-striped table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th><strong>id</strong></th>
+                        <th><strong>รหัส</strong></th>
                         <th><strong>ชื่อ</strong></th>
-                        <th><strong>Action</strong></th>
+                        <th><strong>แก้ไข / ลบ</strong></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -105,9 +104,8 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary" href="allcate">Save
-                                                        changes</button>
+                                                        data-bs-dismiss="modal">ยกเลิก</button>
+                                                    <button type="submit" class="btn btn-primary" href="allcate" onclick="conf()">บันทึก</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -153,6 +151,10 @@
                     })
                 }
             })
+        }
+
+        const conf = (id) => {
+            Swal.fire('บันทึกสำเร็จ')
         }
     </script>
 @endsection

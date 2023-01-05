@@ -20,70 +20,91 @@
                 </div>
             @endif
         </div>
-        <div>
-            <table class="table">
+        
+            <table class="table table-striped table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>edition</th>
-                        <th>author</th>
-                        <th>adviser</th>
-                        <th>cate id</th>
-                        <th>Action</th>
+                        <th>#</th>
+                        <th>ชื่อโครงงาน</th>
+                        <th>ปีที่พิมพ์</th>
+                        <th>ผู้จัดทำ</th>
+                        <th>ที่ปรึกษา</th>
+                        <th>หมวดหมู่</th>
+                        <th>เผยแพร่/ลบ</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($data as $pro)
                      <tr>
-                    @if (is_array($data) || is_object($data))
-                        @foreach ($data as $pro)
-                        <td>{{ $pro->project_id }}</td>
-                        <td>{{ $pro->title_th }}</td>
-                        <td>{{ $pro->edition }}</td>
-                        <td>{{ $pro->author }} {{ $pro->co_author }}</td>
-                        <td>{{ $pro->adviser_fullname_th }}</td>
-                        <td>{{ $pro->catename }}</td>
-                        <td>
-                            <a href="{{ route('publishProject') }}">
-                                <button class="btn btn-success">
+                    {{-- @if (is_array($data) || is_object($data)) --}}
+                        
+                        <th>{{ $pro->project_id }}</th>
+                        <th>{{ $pro->title_th }}</th>
+                        <th>{{ $pro->edition }}</th>
+                        <th>{{ $pro->author }} <br> {{ $pro->co_author }}</th>
+                        <th>{{ $pro->adviser_fullname_th }}</th>
+                        <th>{{ $pro->catename }}</th>
+                        <th>
+                                <button class="btn btn-success" onclick="pending({{ $pro->project_id }})"> 
                                     เผยแพร่
                                 </button>
-                            </a>
                             <a href="/tchAllFiles/{{ $pro->project_id }}">
-                                <button type="button" class="btn btn-warning">
-                                    <i class="fa-solid fa-file"></i></button>
+                                <button type="button" class="btn btn-warning"> 
+                                    <i class="fa-solid fa-file"></i>
+                                </button>
                             </a>
                                 <button class="btn btn-danger" onclick="del({{ $pro->project_id }})">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             
-                        </td>
+                        </th>
                      
-                    @endforeach</tr>
-                @endif
+                    
+                </tr>
+                @endforeach
+                {{-- @endif --}}
            
                 </tbody>
                    
             </table>
-        </div>
+        
     </div>
     <script>
         const del = (id) => {
             Swal.fire({
-                title: 'Are you sure? ' + id,
-                text: "You won't be able to revert this!",
+                title: 'ต้องการลบหมวดหมู่โครงงาน? ' + id,
+                text: "คุณจะไม่สามารถย้อนกลับได้!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://127.0.0.1:8000/deleteUser/${id}`).then((respons)=>{console.log(respons)})
+                    fetch(`http://127.0.0.1:8000/deletepro/${id}`).then((respons)=>{console.log(respons)})
                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
+                        'ลบสำเร็จ!',
+                        'โครงงานนี้ถูกลบแล้ว'
+                    ).then(()=>{location.reload();})
+                }
+            })
+        }
+
+        const pending = (id) => {
+            Swal.fire({
+                title: 'ต้องการเผยแพร่โครงงานนี้? ' + id,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'เผยแพร่',
+                cancelButtonText: 'ยกเลิก'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://127.0.0.1:8000/tctPublish/${id}`).then((respons)=>{console.log(respons)})
+                    Swal.fire(
+                        'เผยแพร่สำเร็จ!',
                     ).then(()=>{location.reload();})
                 }
             })

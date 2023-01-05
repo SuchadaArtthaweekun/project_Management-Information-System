@@ -67,9 +67,9 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" href="{{ route('alladviser') }}">Save
-                                        changes</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                    <button type="submit" class="btn btn-primary" href="{{ route('alladviser') }}"
+                                        onclick="conf()">บันทึก</button>
                                 </div>
                             </form>
                         </div>
@@ -126,8 +126,8 @@
                                                             <label for="title">คำนำหน้า (ไทย)</label>
                                                             <input type="hidden" value="{{ $ads->adviser_id }}"
                                                                 name="adviser_id">
-                                                            <input type="text" name="name_prefix_th" class="form-control"
-                                                                value="{{ $ads->name_prefix_th }}">
+                                                            <input type="text" name="name_prefix_th"
+                                                                class="form-control" value="{{ $ads->name_prefix_th }}">
                                                         </div>
 
                                                         <div class="form-group">
@@ -167,19 +167,18 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
+                                                        data-bs-dismiss="modal">ยกเลิก</button>
                                                     <button type="submit" class="btn btn-primary"
-                                                        href="{{ route('alladviser') }}">Save
-                                                        changes</button>
+                                                        href="{{ route('alladviser') }}" onclick="conf()">บันทึก</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                                 {{-- end modal --}}
-                                    <button type="button" class="btn btn-danger" onclick="del({{ $ads->adviser_id }})"><i
-                                            class="fa-solid fa-trash"></i></button>
-                               
+                                <button type="button" class="btn btn-danger" onclick="del({{ $ads->adviser_id }})"><i
+                                        class="fa-solid fa-trash"></i></button>
+
                             </th>
                         </tr>
                     @endforeach
@@ -213,6 +212,10 @@
                     })
                 }
             })
+        }
+
+        const conf = (id) => {
+            Swal.fire('บันทึกสำเร็จ')
         }
     </script>
 @endsection

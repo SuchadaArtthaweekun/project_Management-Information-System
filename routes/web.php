@@ -94,6 +94,7 @@ Route::get('/tchProjects', [\App\Http\Controllers\ProjectController::class, 'tch
 Route::get('/tchAddProject', [\App\Http\Controllers\ProjectController::class, 'tchAddProject'])->name('tchAddProject');
 Route::get('/tchAllFiles/{project_id}', [\App\Http\Controllers\DocController::class, 'tchAllFiles'])->name('tchAllFiles');
 Route::get('/tchPending', [\App\Http\Controllers\ProjectController::class, 'tchPending'])->name('tchPending');
+Route::get('/tctPublish/{project_id}', [\App\Http\Controllers\ProjectController::class, 'tctPublish'])->name('tctPublish');
 
 
 // Document

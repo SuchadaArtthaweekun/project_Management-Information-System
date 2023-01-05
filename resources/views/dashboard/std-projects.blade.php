@@ -9,7 +9,7 @@
                 @endif
     <div class="btnadd">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_stdAddProject">
-            Add project
+            เพิ่มโครงงานนักศึกษา
         </button>
         <!-- Modal -->
         <div class="modal fade" id="modal_stdAddProject" tabindex="-1"
@@ -17,7 +17,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add project</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">เพิ่มโครงงานนักศึกษา</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     {{-- <form method="get" action="{{ route('addproject') }}"> --}}

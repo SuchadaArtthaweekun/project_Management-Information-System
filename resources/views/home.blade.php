@@ -5,9 +5,34 @@
 
 @section('content')
     <div class="container-fluid">
+
+
+        @if ($message = Session::get('warning'))
+            <div class="alert alert-warning alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{ $message }}</strong>
+            </div>
+        @endif
+
+        @if ($message = Session::get('info'))
+            <div class="alert alert-info alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{ $message }}</strong>
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                Please check the form below for errors
+            </div>
+        @endif
+
+
         {{-- <img class="banner" src="{{ asset('/img//banner/banner.jpg') }}" alt=""> --}}
         <div class="headimg">
-            <img class="" src="{{ asset('/img/banner/glenn-carstens-peters-npxXWgQ33ZQ-unsplash-short2.jpg') }}" alt="">
+            <img class="" src="{{ asset('/img/banner/glenn-carstens-peters-npxXWgQ33ZQ-unsplash-short2.jpg') }}"
+                alt="">
         </div>
         <div class="bannertop">
 
@@ -31,7 +56,8 @@
                                 <h4 class="searchtxt">สาขาวิชาเทคโนโลยีสารสนเทศ มหาวิทยาลัยราชภัฏบุรีรัมย์</h4>
                                 @csrf
                                 <div class="form-group row">
-                                    <label for="cate_id" class="col-sm-4 col-form-label"><strong>หมวดหมู่โครงงาน</strong></label>
+                                    <label for="cate_id"
+                                        class="col-sm-4 col-form-label"><strong>หมวดหมู่โครงงาน</strong></label>
                                     <div class="col-sm-8">
                                         <select class="form-control" id="exampleFormControlSelect1" name="cate_id"
                                             id="ate_id" placeholder="หมวดหมู่โครงงาน">
@@ -45,7 +71,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group row search">
-                                    <label for="adviser" class="col-sm-4 col-form-label"><strong>ที่ปรึกษา</strong> </label>
+                                    <label for="adviser" class="col-sm-4 col-form-label"><strong>ที่ปรึกษา</strong>
+                                    </label>
                                     <div class="col-sm-8">
                                         <select class="form-control" id="exampleFormControlSelect1" name="adviser"
                                             id="adviser" placeholder="ที่ปรึกษา">
@@ -69,6 +96,7 @@
                                             id="ate_id" placeholder="หมวดหมู่โครงงาน">
                                             <option value="title">ชื่อโครงงาน</option>
                                             <option value="author">ชื่อผู้จัดทำ</option>
+                                            <option value="edition">ปีที่พิมพ์</option>
                                         </select>
                                     </div>
                                 </div>
@@ -85,7 +113,7 @@
                                     </div>
                                 </div>
                             </form>
-
+                            <button onclick="ff()">Click!</button>
                         </div>
                     </div>
                 </div>
@@ -102,27 +130,10 @@
     </div>
 
     </section>
-
-
-
-    @if ($message = Session::get('warning'))
-        <div class="alert alert-warning alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ $message }}</strong>
-        </div>
-    @endif
-
-    @if ($message = Session::get('info'))
-        <div class="alert alert-info alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ $message }}</strong>
-        </div>
-    @endif
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            Please check the form below for errors
-        </div>
-    @endif
 @endsection
+
+<script>
+    ff = () => {
+        alert('You clicked the button!');
+    }
+</script>

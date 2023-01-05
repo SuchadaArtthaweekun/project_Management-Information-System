@@ -2,43 +2,46 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <link rel="stylesheet" type="text/css" href="<?php echo asset('css/dashboard.css'); ?>">
 </head>
 <x-guest-layout>
     <x-auth-card>
+        
+{{--        
         @if ($message = Session::get('success'))
             <div class="alert alert-success alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
+                <button type="button" class="close" data-dismiss="alert">×</button>
             </div>
         @endif
 
         @if ($message = Session::get('error'))
             <div class="alert alert-danger alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
+                <button type="button" class="close" data-dismiss="alert">×</button>
             </div>
         @endif
 
         @if ($message = Session::get('warning'))
             <div class="alert alert-warning alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
+                <button type="button" class="close" data-dismiss="alert">×</button>
             </div>
         @endif
 
         @if ($message = Session::get('info'))
             <div class="alert alert-info alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
+                <button type="button" class="close" data-dismiss="alert">×</button>
             </div>
         @endif
 
         @if ($errors->any())
             <div class="alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert">×</button>
                 Please check the form below for errors
+                <button type="button" class="close" data-dismiss="alert">×</button>
             </div>
-        @endif
+        @endif --}}
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
@@ -124,9 +127,10 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <button class="ml-4" onclick="del()">
+                <button class="ml-4" onclick="conf()">
                     Register
-                    <button>
+                <button>
+
             </div>
         </form>
     </x-auth-card>
@@ -137,24 +141,32 @@
         alert("I am an alert box!");
     }
 
-    Swal.fire('Any fool can use a computer')
 
-    const success() {
-        Swal.fire({
-            icon: 'success',
-            title: 'finished',
-            showConfirmButton: false,
-            timer: 1500
-        })
+    ff = () => {
+    alert('You clicked the button!');
     }
 
-    const finished() {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 1500
-        })
-    }
+    const conf = (id) => {
+            Swal.fire({
+                title: 'ต้องการสมัครสมาชิกใช่หรือไม่',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://127.0.0.1:8000/store`).then((respons) => {
+                        console.log(respons)
+                    })
+                    Swal.fire(
+                        'สมัครเสร็จสิ้น!'
+                    ).then(() => {
+                        location.reload();
+                    })
+                }
+            })
+        }
+
 </script>

@@ -3,6 +3,11 @@
     font-family: 'Noto Sans Thai', sans-serif;
 
 }
+/* register */
+button.close {
+  float: right !important;
+}
+/* end register */
 .carousel-item {
     height: 100vh;
     min-height: 350px;
@@ -138,8 +143,45 @@ button.btn.btn-info a {
 container-fluid {
   padding: 0 !important;
 }
+
+
+/* table */
+
+/* end table */
+
+
+button.btn.btn-primary.addpro {
+  margin: 10px 0;
+}
 /*  content */
+form.Docid {
+  border-radius: 20px;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  margin: 20px 0;
+  padding: 30px;
+}
+.notfound {
+  font-size: 24px;
+  text-align: center;
+  margin: 30px 20px;
+}
+.download {
+  display: flex;
+}
+
+.sumdownload {
+  margin: 0px 5px;
+  text-decoration: none;
+  color: #000;
+}
+.abs p {
+  text-indent: 6%;
+}
+a.a_download {
+  text-decoration: none;
+}
 .row.searchhome {
+  min-height: 370px;
   justify-content: center;
 }
 button.btn-search {
@@ -174,7 +216,11 @@ form.Docid {
 
 
 
+
 /* footer */
+img.imgsocial {
+  height: 30px;
+}
 .foot ul li a svg {
   display: none;
 }
@@ -431,3 +477,17 @@ td.view a i {
   margin: 0px 5px 13px 0px;
   padding: 23px 20px 5px 20px;
 }
+
+
+/* fontawesome */
+
+td.view a i {
+  color: black !important;
+}
+td.view {
+  text-align: center;
+}
+td.download {
+  text-align: center;
+}
+/* end fontawesome */

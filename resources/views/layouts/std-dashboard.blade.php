@@ -19,6 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -26,11 +27,11 @@
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
-            
+
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="/" class="nav-link">Home</a>
+                <a href="/" class="nav-link">หน้าแรก</a>
             </li>
-           
+
         </ul>
 
         <!-- SEARCH FORM -->
@@ -52,8 +53,16 @@
         <ul class="navbar-nav ml-auto">
             <!-- Messages Dropdown Menu -->
             <a href="#" class="d-block">
+                <div><a href="edituser"><i class="fa-regular fa-pen-to-square"></i></a></div>
                 <div class="u_name">{{ Auth::user()->name }}</div>
+                <div class="u_name">{{ Auth::user()->id }}</div>
             </a>
+
+
+
+            
+           
+
             <div class="logout">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -87,7 +96,7 @@
 
                 <div class="info">
                     <a href="#" class="d-block">
-                        <div class="u_name">{{ Auth::user()->name }}</div>
+
                     </a>
                 </div>
 
@@ -103,31 +112,23 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{ route('stddashboard') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <i class="fa-solid fa-folder"></i>
                                     <p>
-                                        dashboard
+                                        โครงงานนักศึกษาของฉัน
                                     </p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('home') }}" class="nav-link">
                                     <i class="fa-solid fa-magnifying-glass"></i>
-                                    <p>Search</p>
+                                    <p>สืบค้นโครงงานนักศึกษา
+
+                                    </p>
                                 </a>
-                            {{-- </li>
-                            <li class="nav-item">
-                                <a href="{{ route('alluser') }}" class="nav-link">
-                                    <i class="fa-solid fa-user"></i>
-                                    <p>User</p>
-                                </a>
-                            </li> --}}
-                            <li class="nav-item">
-                                <a href="{{ route('stdProjects') }}" class="nav-link">
-                                    <i class="fa-solid fa-folder"></i>
-                                    <p>Projects</p>
-                                </a>
-                            </li>
+                               
                             
+                            
+
                         </ul>
                     </li>
                 </ul>
@@ -155,6 +156,8 @@
     <script src="js/adminlte.min.js'"></script>
     <script src="js/bootstrap.bundle.min.js'"></script>
     <script src="js/fontawesome.min.js'"></script>
+
+
 </body>
 
 </html>

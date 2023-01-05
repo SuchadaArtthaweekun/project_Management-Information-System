@@ -5,12 +5,19 @@
     <body>
         <div class="container">
             <div class="row">
-                @if (Session::get('status'))
+                {{-- @if (Session::get('status'))
                     <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>อัปโหลดเสร็จสิ้นแล้ว</strong>
                     </div>
-                @endif
+                @endif --}}
+                <div class="nofile">
+                    <?php
+                    if ($project->count() == 0) {
+                        echo 'ไม่พบข้อมูล';
+                    }
+                    ?>
+                </div>
 
                 <div class="col-12">
                     <div class="showDoc">
@@ -27,7 +34,15 @@
                                 <?php if ($project[0]->co_adviser == $project[0]->adviser_id) {
                                     echo $project[0]->adviser_fullname_th;
                                 } ?>
-                            </li>
+                                <br>
+                                หมวดหมู่โครงงาน : {{ $project[0]->catename }}
+                            </h5>
+                            <div class="bttitle">
+                                <h6>ปีที่พิมพ์ : {{ $project[0]->edition }}</h6>
+                                <h6>ยอดเข้าชม : {{ $project[0]->view_counter }}</h6>
+                            </div>
+
+
                             <div class="doc_upload">
                                 <p>อัปโหลดไฟล์</p>
                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
@@ -40,7 +55,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Add file</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">เพิ่มไฟล์เอกสาร</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
@@ -77,16 +92,16 @@
                                                                 name="type" placeholder="">
                                                                 <option value="โครงงาน">โครงงาน</option>
                                                                 <option value="แบบเสนอ">แบบเสนอ</option>
+                                                                <option value="บทความวิจัย">บทความวิจัย</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
+                                                        data-bs-dismiss="modal">ปิด</button>
                                                     <button type="submit" class="btn btn-primary"
-                                                        href="{{ route('allproject') }}">Save
-                                                        changes</button>
+                                                        onclick="conf()">บันทึก</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -99,13 +114,13 @@
 
                         <table class="table">
                             <tr>
-                                <th>No.</th>
-                                <th>document</th>
-                                <th>type</th>
+                                <th>#</th>
+                                <th>ชื่อไฟล์</th>
+                                <th>ประเเภทไฟล์</th>
                                 {{-- <th>project</th> --}}
-                                <th>View</th>
-                                <th>Download</th>
-                                {{-- <th>action</th> --}}
+                                <th>ดู</th>
+                                <th>ดาวน์โหลด</th>
+                                <th>ลบ</th>
                             </tr>
                             {{-- @foreach ($files as $key => $file) --}}
                             @foreach ($project as $key => $file)
@@ -116,12 +131,12 @@
 
                                     {{-- <td>id :{{ $file->project_id }} title : {{ $file->title_th }} </td> --}}
 
-                                    <td><a href="/documents/{{ $file->docname }}">View</a></td>
-                                    <td><a href="/file/download/{{ $file->docname }}" target="_blank">Download</a></td>
+                                    <td><a href="/documents/{{ $file->docname }}"><i class="fa-solid fa-eye"></i></a></td>
+                                    <td><a href="/file/download/{{ $file->docname }}" target="_blank">
+                                        <i class="fas fa-file-download"></i>
+                                    </a>
+                                    </td>
                                     <td>
-
-
-
                                         <button type="button" class="btn btn-danger" onclick="del({{ $file->doc_id }})">
                                             <i class="fa-solid fa-trash"></i></button>
 
@@ -167,6 +182,10 @@
                         })
                     }
                 })
+            }
+
+            const conf = (id) => {
+                Swal.fire('บันทึกสำเร็จ')
             }
         </script>
     </body>

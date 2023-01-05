@@ -6,9 +6,16 @@
 @section('content')
     <div class="item">
         <div class="container">
-
+            <div class="notfound">
+                <?php 
+                    if($data->count()==0){
+                        echo "ไม่พบข้อมูล";
+                    }
+                ?>
+            </div>
             <div class="countresult">
                 <p>ผลการค้นหา {{ $data->count() }}</p>
+                
             </div>
             @foreach ($data as $da)
                 <div class="result">

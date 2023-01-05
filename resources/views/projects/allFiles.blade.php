@@ -5,12 +5,12 @@
     <body>
         <div class="container">
             <div class="row">
-                @if (Session::get('status'))
+                {{-- @if (Session::get('status'))
                     <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>อัปโหลดเสร็จสิ้นแล้ว</strong>
                     </div>
-                @endif
+                @endif --}}
 
                 <div class="col-12">
                     <div class="showDoc">
@@ -77,17 +77,16 @@
                                                                     name="type" placeholder="">
                                                                     <option value="โครงงาน">โครงงาน</option>
                                                                     <option value="แบบเสนอ">แบบเสนอ</option>
-                                                                    <option value="แบบเสนอ">บทความวิจัย</option>
+                                                                    <option value="บทความวิจัย">บทความวิจัย</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary"
-                                                            href="{{ route('allproject') }}">Save
-                                                            changes</button>
+                                                            data-bs-dismiss="modal">ยกเลิก</button>
+                                                        <button type="submit" class="btn btn-primary" onclick="conf()"
+                                                            href="{{ route('allproject') }}">บันทึก</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -117,12 +116,12 @@
 
                                     {{-- <td>id :{{ $file->project_id }} title : {{ $file->title_th }} </td> --}}
 
-                                    <td><a href="/documents/{{ $file->docname }}">View</a></td>
-                                    <td><a href="/file/download/{{ $file->docname }}" target="_blank">Download</a></td>
+                                    <td class="view"><a href="/documents/{{ $file->docname }}">
+                                        <i class="fa-solid fa-eye"></i></a></td>
+                                    <td class="download"><a href="/file/download/{{ $file->docname }}" target="_blank"> <div class="download">
+                                        <i class="fas fa-file-download"></i>
+                                    </div></a></td>
                                     <td>
-
-
-
                                         <button type="button" class="btn btn-danger" onclick="del({{ $file->doc_id }})">
                                             <i class="fa-solid fa-trash"></i></button>
 
@@ -170,6 +169,10 @@
                     }
                 })
             }
+
+            const conf = (id) => {
+            Swal.fire('บันทึกสำเร็จ')
+        }
         </script>
     </body>
 @endsection

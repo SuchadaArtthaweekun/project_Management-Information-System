@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>IT Projects</title>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset('css/css.css'); ?>">
@@ -122,9 +124,13 @@
                 <div class="row ftrow">
                     <div class="col ftcol">
                         <h4>ติดต่อเรา</h4>
-                        <p>Facebook : <a href="https://web.facebook.com/it.bru.ac.th">คลิก</a></p>
-                        <p>website : <a href="https://it.bru.ac.th/">คลิก</a></p>
-                        <p>E-mail : </p>
+                        <div class="social">
+                            <a href="https://web.facebook.com/it.bru.ac.th" ><img src="{{ asset('/img/facebook.png') }}" alt="" class="imgsocial" ></a>
+                            <a href="https://www.facebook.com/IT.BRU" ><img src="{{ asset('/img/facebook-2.png') }}" alt="" class="imgsocial" ></a>
+                            <a href="https://www.youtube.com/HelloBENZ" ><img src="{{ asset('/img/youtube.png') }}" alt="" class="imgsocial" ></a>
+                            <a href="https://it.bru.ac.th/" ><img src="{{ asset('/img/browser.png') }}" alt="" class="imgsocial" ></a>
+                        </div>
+
                     </div>
                     <div class="col ftcol">
 

@@ -1,21 +1,19 @@
-@extends('layouts.fordashboard')
+@extends('layouts.tch-dashboard')
 
 @section('content')
-    @if (Session::get('status'))
-        <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>ดำเนินการอัปโหลดเสร็จสิ้นแล้ว</strong>
-        </div>
-    @endif
-    <div class="titledashboard">
-        <h3>โครงงานนักศึกษาทั้งหมด</h3>
-    </div>
+@if ( Session::get('status'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>ดำเนินการอัปโหลดเสร็จสิ้นแล้ว</strong>
+                    </div>
+                @endif
     <div class="btnadd">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_addProject">
-            เพิ่มโครงงาน
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_stdAddProject">
+            Add project
         </button>
         <!-- Modal -->
-        <div class="modal fade" id="modal_addProject" tabindex="-1" aria-labelledby="modal_addProject" aria-hidden="true">
+        <div class="modal fade" id="modal_stdAddProject" tabindex="-1"
+            aria-labelledby="modal_stdAddProject" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -23,7 +21,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     {{-- <form method="get" action="{{ route('addproject') }}"> --}}
-                    <form method="get" action="{{ route('addProject') }}" enctype="multipart/form-data">
+                    <form method="get" action="{{ route('tchAddProject') }}" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="col-md-12">
 
@@ -39,24 +37,6 @@
                                     <input type="text" name="co_author" class="form-control"
                                         placeholder="ชื่อ-สกุล (อังกฤษ)">
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="email_author">อีเมลผู้ทำคนที่ 1</label>
-                                    <input type="text" class="form-control" name="email_author">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email_co_author">อีเมลผู้ทำคนที่ 2</label>
-                                    <input type="text"  class="form-control" name="email_co_author">
-                                </div>
-                                <div class="form-group">
-                                    <label for="tel_author">เบอร์โทรผู้ทำคนที่ 1</label>
-                                    <input type="text" class="form-control" name="tel_author">
-                                </div>
-                                <div class="form-group">
-                                    <label for="tel_co_author">เบอร์โทรผู้ทำคนที่ 2</label>
-                                    <input type="text"  class="form-control" name="tel_co_author">
-                                </div>
-
 
                                 <div class="form-group">
                                     <label for="title_th">ชื่อโครงงาน (ไทย)</label>
@@ -76,7 +56,10 @@
                                         action="datepicker" class="form-control">
                                 </div>
 
-                               
+                                <div class="form-group">
+                                    <label for="article">บทความ</label>
+                                    <textarea name="article" id="article" cols="30" rows="4" class="form-control"></textarea>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="abtract">บทคัดย่อ</label>
@@ -94,12 +77,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="co_adviser">ที่ปรึกษาร่วม</label>
+                                    <label for="adviser2">ที่ปรึกษาร่วม</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="adviser2"
                                         placeholder="ที่ปรึกษา">
                                         <option value="">ไม่มีที่ปรึกษาร่วม</option>
                                         @foreach ($advisers as $adv)
-                                            <option value="{{ $adv->adviser_id }}">{{ $adv->adviser_fullname_th }}</option>
+                                            <option value="{{ $adv->adviser_fullname_th }}">{{ $adv->adviser_fullname_th }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -157,59 +140,39 @@
     <table class="table table-striped table-hover table-condensed">
         <thead>
             <tr>
-                <th>id</th>
-                <th>ผู้จัดทำ</th>
-                <th>ชื่อโครงงาน (ไทย)</th>
-                {{-- <th><strong>ชื่อโครงงาน (อังกฤษ)</strong></th> --}}
-                <th>ปีที่เผยแพร่</th>
-                <th>ที่ปรึกษา</th>
-                <th>แขนงวิชา</th>
-                <th>รุ่น</th>
-                <th>หมวดหมู่โครงงาน</th>
-                <th>ผยแพร่</th>
-                <th>จัดการ</th>
-                <th>ไฟล์</th>
+                <th><strong>id</strong></th>
+                <th><strong>ชื่อผู้ทำคนที่ 1</strong></th>
+                <th><strong>ชื่อผู้ทำคนที่ 2</strong></th>
+                <th><strong>ชื่อโครงงาน (ไทย)</strong></th>
+                <th><strong>ชื่อโครงงาน (อังกฤษ)</strong></th>
+                <th><strong>ปีที่เผยแพร่</strong></th>
+                {{-- <th><strong>บทความ</strong></th> --}}
+                {{-- <th><strong>บทคัดย่อ</strong></th> --}}
+                {{-- <th><strong>ที่ปรึกษา</strong></th> --}}
+                <th><strong>เผยแพร่</strong></th>
+                <th><strong>แขนงวิชา</strong></th>
+                <th><strong>รุ่น</strong></th>
+                <th><strong>หมวดหมู่โครงงาน</strong></th>
+                <th><strong>action</strong></th>
             </tr>
         </thead>
         <tbody>
             @foreach ($projects as $pro)
                 <tr>
-                    <td>{{ $pro->project_id }}</ะ>
-                    <td>
-                        <p>{{ $pro->author }}</p>
-                        <p></p>{{ $pro->co_author }}
-                    </td>
-                    <td>{{ $pro->title_th }}</td>
-                    {{-- <th>{{ $pro->title_en }}</th> --}}
-                    <td>{{ $pro->edition }}</td>
-                    <td>
-                        @foreach ($advisers as $adv)
-                            <?php
-                            if ($pro->adviser == $adv->adviser_id) {
-                                echo $adv->adviser_fullname_th;
-                            }
-                            
-                            ?>
-                        @endforeach
-                        </td>
-
-
-
-                    {{-- <th>{{ $pro->co_adviser }}</th> --}}
-                    <td>{{ $pro->branch }}</td>
-                    <td>{{ $pro->gen }}</td>
-                    <td>{{ $pro->catename }}</td>
-                    <td>
-                            <?php
-                            if ($pro->published == '0') {
-                                echo 'ยังไม่เผยแพร่';
-                            }elseif ($pro->published == '1'){
-                                echo 'เผยแพร่แล้ว';
-                            }
-                            
-                            ?>
-                    </td>
-                    <td class="btnAction">
+                    <th>{{ $pro->project_id }}</th>
+                    <th>{{ $pro->author }}</th>
+                    <th>{{ $pro->co_author }}</th>
+                    <th>{{ $pro->title_th }}</th>
+                    <th>{{ $pro->title_en }}</th>
+                    <th>{{ $pro->edition }}</th>
+                    {{-- <th>{{ $pro->article }}</th> --}}
+                    {{-- <th class="abtract">{{ $pro->abtract }}</th> --}}
+                    {{-- <th>{{ $pro->adviser }}</th> --}}
+                    <th>{{ $pro->published }}</th>
+                    <th>{{ $pro->branch }}</th>
+                    <th>{{ $pro->gen }}</th>
+                    <th>{{ $pro->catename }}</th>
+                    <th>
 
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -227,7 +190,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form method="POST" action="{{ route('updateproject') }}">
+                                    <form method="POST" action="{{ route('tchUpdateproject') }}">
                                         <div class="modal-body">
                                             <div class="col-md-12">
 
@@ -244,32 +207,6 @@
                                                     <input type="text" value="{{ $pro->co_author }}"
                                                         class="form-control" name="co_author">
                                                 </div>
-
-
-                                                <div class="form-group">
-                                                    <label for="email_author">อีเมลผู้ทำคนที่ 1</label>
-                                                    <input type="text" value="{{ $pro->email_author }}"
-                                                        class="form-control" name="email_author">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email_co_author">อีเมลผู้ทำคนที่ 2</label>
-                                                    <input type="text" value="{{ $pro->email_co_author }}"
-                                                        class="form-control" name="email_co_author">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tel_author">เบอร์โทรผู้ทำคนที่ 1</label>
-                                                    <input type="text" value="{{ $pro->tel_author }}"
-                                                        class="form-control" name="tel_author">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tel_co_author">เบอร์โทรผู้ทำคนที่ 2</label>
-                                                    <input type="text" value="{{ $pro->tel_co_author }}"
-                                                        class="form-control" name="tel_co_author">
-                                                </div>
-
-
-
-
                                                 <div class="form-group">
                                                     <label for="title_th">ชื่อโครงงาน (ไทย)</label>
                                                     <input type="text" value="{{ $pro->title_th }}"
@@ -285,7 +222,11 @@
                                                     <input type="text" value="{{ $pro->edition }}"
                                                         class="form-control" name="edition">
                                                 </div>
-                                                
+                                                <div class="form-group">
+                                                    <label for="article">บทความ</label>
+                                                    <textarea name="article" id="article" cols="30" rows="4" class="form-control"
+                                                        value="{{ $pro->article }}" class="form-control">{{ $pro->article }}</textarea>
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="abtract">บทคัดย่อ</label>
                                                     <textarea name="abtract" id="abtract" cols="30" rows="4" class="form-control"
@@ -312,7 +253,6 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-
                                                 <div class="form-group">
                                                     <label for="co_adviser">ที่ปรึกษาร่วม</label>
                                                     <select class="form-control" id="exampleFormControlSelect1"
@@ -369,19 +309,19 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">ยกเลิก</button>
-                                            <button type="submit" class="btn btn-primary" onclick="conf()"
-                                                href="{{ route('allproject') }}">บันทึก</button>
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary"
+                                                href="{{ route('allproject') }}">Save
+                                                changes</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <a href="/deletepro/{{ $pro->project_id }}"></a>
-                        <button type="button" class="btn btn-danger" onclick="del({{ $pro->project_id }})">
-                            <i class="fa-solid fa-trash"></i></button>
-                    </td>
-                    <td class="btnAction">
+                        <a href="/deletepro/{{ $pro->project_id }}">
+                            <button type="button" class="btn btn-danger" onclick="delcate({{ $pro->project_id }})">
+                                <i class="fa-solid fa-trash"></i></button>
+                        </a>
                         {{-- add file --}}
                         <button type="button" class="btn btn-info" data-bs-toggle="modal"
                             data-bs-target="#modal_file_{{ $pro->project_id }}">
@@ -398,7 +338,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     {{-- <form method="get" action="{{ route('addproject') }}"> --}}
-                                    <form method="post" action="{{ route('storeAgain') }}"
+                                    <form method="post" action="{{ route('stdUploadfile') }}"
                                         enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="col-md-12">
@@ -427,7 +367,6 @@
                                                         name="type" placeholder="">
                                                         <option value="โครงงาน">โครงงาน</option>
                                                         <option value="แบบเสนอ">แบบเสนอ</option>
-                                                        <option value="แบบเสนอ">บทความวิจัย</option>
                                                     </select>
                                                 </div>
 
@@ -437,16 +376,18 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">ยกเลิก</button>
-                                            <button type="submit" class="btn btn-primary" onclick="conf()"
-                                                href="{{ route('allproject') }}">บันทึก</button>
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary"
+                                                href="{{ route('allproject') }}">Save
+                                                changes</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         {{-- end add file --}}
-                        <a href="/allfiles/{{ $pro->project_id }}">
+
+                        <a href="/tchAllFiles/{{ $pro->project_id }}">
                             <button type="button" class="btn btn-warning">
                                 <i class="fa-solid fa-file"></i></button>
                         </a>
@@ -459,35 +400,5 @@
     </table>
 
 
-    <script>
-        const del = (id) => {
-            Swal.fire({
-                title: 'ต้องการลบโครงงาน ' + name,
-                text: "คุณจะไม่สามารถย้อนกลับได้!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'ตกลง',
-                cancelButtonText: 'ยกเลิก'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    fetch(`http://127.0.0.1:8000/deletepro`).then((respons) => {
-                        console.log(respons)
-                    })
-                    Swal.fire(
-                        'ลบสำเร็จ',
-                        'โครงงานนี้ถูกลบแล้ว',
-                        'success'
-                    ).then(() => {
-                        location.reload();
-                    })
-                }
-            })
-        }
-
-        const conf = (id) => {
-            Swal.fire('บันทึกสำเร็จ')
-        }
-    </script>
+   
 @endsection

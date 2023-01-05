@@ -7,11 +7,13 @@ use App\Models\Document;
 use App\Models\File;
 use App\Models\Projects;
 use Facade\FlareClient\Http\Response;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
+use Symfony\Component\Console\Input\Input;
 
 class DocController extends Controller
 {
@@ -60,6 +62,11 @@ class DocController extends Controller
         $projectslist = DB::select('select * from projects');
         // echo $project;
         $catebar = DB::table('categories')->get();
+
+        // $projects = array(
+        //     'car' => array('required', 'unique:insur_docs,car_id')
+        // );
+        // $validation = Validator::make(Input::all(), $projects);
         $project = DB::table('categories')
             ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
             ->join('documents', 'documents.project_id', '=', 'projects.project_id')
@@ -263,7 +270,7 @@ class DocController extends Controller
         }
 
         Document::insert($insert);
-        return redirect('stdProjects');
+        return redirect()->back();
         // redirect()->back();
         // echo $project_id;
 

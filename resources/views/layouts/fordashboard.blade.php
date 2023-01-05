@@ -1,3 +1,4 @@
+@include('sweetalert::alert')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +30,7 @@
         <ul class="navbar-nav">
 
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="/" class="nav-link">Home</a>
+                <a href="/" class="nav-link">หน้าแรก</a>
             </li>
 
         </ul>
@@ -107,44 +108,44 @@
                                 <a href="{{ route('dashboard') }}" class="nav-link">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
-                                        dashboard
+                                        แผงควบคุม
                                     </p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('home') }}" class="nav-link">
                                     <i class="fa-solid fa-magnifying-glass"></i>
-                                    <p>Search</p>
+                                    <p>สืบค้นโครงงานนักศึกษา</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('alluser') }}" class="nav-link">
                                     <i class="fa-solid fa-user"></i>
-                                    <p>User</p>
+                                    <p>ผู้ใช้ระบบ</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('allcate') }}" class="nav-link">
                                     <i class="fa-solid fa-address-book"></i>
-                                    <p>Category</p>
+                                    <p>หมวดหมู่โครงงานนักศึกษา</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('allproject') }}" class="nav-link">
                                     <i class="fa-solid fa-folder"></i>
-                                    <p>Projects</p>
+                                    <p>โครงงานนักศึกษา</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('alladviser') }}" class="nav-link">
                                     <i class="fa-solid fa-user-tie"></i>
-                                    <p>Advisers</p>
+                                    <p>ที่ปรึกษาโครงงานนักศึกษา</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('allreport') }}" class="nav-link">
                                     <i class="fa-solid fa-file-invoice"></i>
-                                    <p>Report</p>
+                                    <p>รายงาน</p>
                                 </a>
                             </li>
                         </ul>

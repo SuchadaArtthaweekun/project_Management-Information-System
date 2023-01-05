@@ -32,11 +32,10 @@
                                 <th>{{ $usr->status }}</th>
                                 <th>{{ $usr->username }}</th>
                                 <th>
-                                    <a href="/approveUser/{{$usr->id}}">
-                                        <button class="btn btn-success">
-                                            อนุมัติ
-                                        </button>
-                                    </a>
+                                    
+                                    <button class="btn btn-success" onclick="conf({{ $usr->id }})">
+                                        อนุมัติ
+                                    </button>
                                     <button class="btn btn-danger" onclick="del({{ $usr->id }})">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
@@ -68,6 +67,30 @@
                         'Deleted!',
                         'Your file has been deleted.',
                         'success'
+                    ).then(() => {
+                        location.reload();
+                    })
+                }
+            })
+        }
+        // 
+
+        const conf = (id) => {
+            Swal.fire({
+                title: 'อนุญาตผู้ใช้หรือไม่',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://127.0.0.1:8000/approveUser/${id}`).then((respons) => {
+                        console.log(respons)
+                    })
+                    Swal.fire(
+                        'เพิ่มผู้ใช้แล้ว!'
                     ).then(() => {
                         location.reload();
                     })

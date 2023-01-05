@@ -57,13 +57,16 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        
+        // echo 'finished';
 
         // Auth::login($user);
 
-        return response()->json(['message' => 'success']);
+        // return response()->json(['message' => 'success']);
         // return redirect('/register');
+        // return redirect()->back()->with('success');
+        // return redirect('/')->with('success','File has been upload successfully!');
 
-        return redirect('/')->with('success','File has been upload successfully!');
+        return redirect()->back()
+                ->with('success', 'สร้างบัญชีแล้ว รอการอนุมัติ');
     }
 }

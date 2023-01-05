@@ -63,17 +63,25 @@
                                 <td>{{ ++$key }}</td>
                                 <td>{{ $file->docname }}</td>
                                 <td>{{ $file->doc_type }}</td>
-                                <td class="view"><a href="/documents/{{ $file->docname }}" target="_blank"><i
-                                            class="fa-solid fa-eye"></i></a></td>
+                                <td class="view"><a href="/documents/{{ $file->docname }}" target="_blank"> <i
+                                            class="fa-solid fa-eye"></i>
+                                
                                 <td class="download">
-                                    <a href="/get-file/{{ $file->doc_id }}/{{ $file->docname }}" target="_blank">
-                                        <x-icons.download />
+                                    <a href="/get-file/{{ $file->doc_id }}/{{ $file->docname }}" target="_blank"
+                                        class="a_download">
+                                        <div class="download">
+                                            <x-icons.download />
+                                            <div class="sumdownload">
+                                                <?php
+                                                if ($file->doc_id = $file->doc_id) {
+                                                    echo $file->download_counter;
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+
+
                                     </a>
-                                    <?php
-                                    if ($file->doc_id = $file->doc_id) {
-                                        echo $file->download_counter;
-                                    }
-                                    ?>
                                 </td>
                                 {{-- <td><a href="/file/download/{{$file->docname}}"><?php if (projects . project_id == documents . project_id) {
                                     echo $file;

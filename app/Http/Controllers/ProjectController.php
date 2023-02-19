@@ -363,7 +363,7 @@ class ProjectController extends Controller
 
         $pathDir = 'public/documents/' . $title_th;
         Storage::makeDirectory($pathDir, 0777, true, true);
-
+        
 
         return redirect()->back();
     }
@@ -416,6 +416,8 @@ class ProjectController extends Controller
 
         return redirect()->route('tchAddProject');
     }
+
+
      public function tctPublish(Request $request,$project_id)
     {
         $data = DB::table('projects')

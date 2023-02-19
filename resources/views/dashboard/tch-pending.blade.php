@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div>
-            <h5>โครงงานนักศึกษารอการอนุมัติ</h5>
+        <div class="titledashboard">
+            <h3>โครงงานนักศึกษารอการอนุมัติ</h3>
         </div>
         <div>
             @if (Session::get('info'))
@@ -46,16 +46,17 @@
                         <th>{{ $pro->catename }}</th>
                         <th>
                                 <button class="btn btn-success" onclick="pending({{ $pro->project_id }})"> 
-                                    เผยแพร่
+                                    <i class="fa-solid fa-check"></i>
                                 </button>
-                            <a href="/tchAllFiles/{{ $pro->project_id }}">
-                                <button type="button" class="btn btn-warning"> 
-                                    <i class="fa-solid fa-file"></i>
-                                </button>
-                            </a>
+                            
                                 <button class="btn btn-danger" onclick="del({{ $pro->project_id }})">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
+                                <a href="/tchAllFiles/{{ $pro->project_id }}">
+                                    <button type="button" class="btn btn-warning"> 
+                                        <i class="fa-solid fa-file"></i>
+                                    </button>
+                                </a>
                             
                         </th>
                      
@@ -72,7 +73,7 @@
     <script>
         const del = (id) => {
             Swal.fire({
-                title: 'ต้องการลบหมวดหมู่โครงงาน? ' + id,
+                title: 'ต้องการลบโครงงานนี้? ',
                 text: "คุณจะไม่สามารถย้อนกลับได้!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -93,7 +94,7 @@
 
         const pending = (id) => {
             Swal.fire({
-                title: 'ต้องการเผยแพร่โครงงานนี้? ' + id,
+                title: 'ต้องการเผยแพร่โครงงานนี้? ',
                 icon: 'info',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

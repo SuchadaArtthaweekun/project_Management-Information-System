@@ -2,24 +2,10 @@
 
 @section('content')
     <div class="container">
-        <div>
-            <h5>โครงงานนักศึกษารอการอนุมัติ</h5>
+        <div class="titledashboard">
+            <h3>โครงงานนักศึกษารอการอนุมัติ</h3>
         </div>
-        <div>
-            @if (Session::get('info'))
-                <div class="alert alert-success alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>ดำเนินการสมัครเสร็จสิ้นแล้ว รอการอนุมัติ</strong>
-                </div>
-            @endif
-
-            @if ($message = Session::get('error'))
-                <div class="alert alert-danger alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>{{ $message }}</strong>
-                </div>
-            @endif
-        </div>
+        
         <div>
             <table class="table">
                 <thead>
@@ -48,17 +34,18 @@
                                 <th>
                                     <a href="/publishProject/{{ $pro->project_id }}">
                                         <button class="btn btn-success">
-                                            เผยแพร่
+                                            <i class="fa-solid fa-check"></i>
                                         </button>
                                     </a>
-                                    <a href="/allfiles/{{ $pro->project_id }}">
-                                        <button type="button" class="btn btn-warning">
-                                            <i class="fa-solid fa-file"></i></button>
-                                    </a>
+                                    
                                     <button class="btn btn-danger" onclick="del({{ $pro->project_id }})">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
 
+                                    <a href="/allfiles/{{ $pro->project_id }}">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-file"></i></button>
+                                    </a>
                                 </th>
                             </tr>
                         @endforeach

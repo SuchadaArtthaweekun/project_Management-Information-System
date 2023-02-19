@@ -149,7 +149,10 @@ container-fluid {
 
 /* end table */
 
-
+.titledashboard {
+  margin: 15px 0;
+  text-align: center;
+}
 button.btn.btn-primary.addpro {
   margin: 10px 0;
 }

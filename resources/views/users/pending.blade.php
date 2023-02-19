@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div>
-            <h5>ผู้ใช้รอการอนุมัติ</h5>
+        <div class="titledashboard">
+            <h3>ผู้ใช้รอการอนุมัติ</h3>
         </div>
         <div>
             <table class="table">
@@ -34,7 +34,7 @@
                                 <th>
                                     
                                     <button class="btn btn-success" onclick="conf({{ $usr->id }})">
-                                        อนุมัติ
+                                        <i class="fa-solid fa-check"></i>
                                     </button>
                                     <button class="btn btn-danger" onclick="del({{ $usr->id }})">
                                         <i class="fa-solid fa-trash"></i>
@@ -51,8 +51,8 @@
     <script>
         const del = (id) => {
             Swal.fire({
-                title: 'Are you sure? ' + id,
-                text: "You won't be able to revert this!",
+                title: 'ต้องการลบผู้ใช้นี้',
+                text: "คุณจะไม่สามารถย้อนกลับได้!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -64,8 +64,8 @@
                         console.log(respons)
                     })
                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
+                        'ลบสำเร็จ',
+                        'ผู้ใช้นี้ถูกลบแล้ว',
                         'success'
                     ).then(() => {
                         location.reload();

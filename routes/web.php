@@ -64,6 +64,7 @@ Route::get('/sum', [\App\Http\Controllers\DashHomeController::class, 'sum'])->na
 
 //dashboard
 Route::get('/allcate', [\App\Http\Controllers\cateController::class, 'allcate'])->name('allcate');
+Route::get('/dasd', [\App\Http\Controllers\DashController::class, 'eachDash'])->name('eachDash');
 
 //user
 Route::get('/alluser', [\App\Http\Controllers\UserController::class, 'allUser'])->name('alluser');

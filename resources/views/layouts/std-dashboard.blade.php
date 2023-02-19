@@ -54,6 +54,7 @@
             <!-- Messages Dropdown Menu -->
             <a href="#" class="d-block">
                 <div><a href="edituser"><i class="fa-regular fa-pen-to-square"></i></a></div>
+                
                 <div class="u_name">{{ Auth::user()->name }}</div>
                 <div class="u_name">{{ Auth::user()->id }}</div>
             </a>

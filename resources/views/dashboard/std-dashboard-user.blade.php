@@ -96,10 +96,9 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
+                                                        data-bs-dismiss="modal">ปิด</button>
                                                     <button type="submit" class="btn btn-primary"
-                                                        href="{{ route('alluser') }}">Save
-                                                        changes</button>
+                                                        href="{{ route('alluser') }}">บันทึก</button>
                                                 </div>
                                             </form>
                                         </div>

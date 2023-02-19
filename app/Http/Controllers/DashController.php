@@ -28,4 +28,16 @@ class DashController extends Controller
         return view('dashboard', compact('users','cate','countprojects','coutAllUser','cate','coutUnMember','countUnprojects'));
 
     }
+
+    public function eachDash(){
+        $advisers = DB::table('advisers');
+        if (auth()->user()->level == 'ผู้ดูแลระบบ') {
+            return redirect()->route('dashboard');
+        } else if (auth()->user()->level == 'อาจารย์') {
+            return redirect()->route('tchdashboard');
+        } else if (auth()->user()->level == 'นักศึกษา') {
+            return redirect()->route('stddashboard');
+        }
+        
+    }
 }

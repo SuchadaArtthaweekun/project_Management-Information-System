@@ -40,7 +40,8 @@
                     @if (Route::has('login'))
                         <div class="navhome">
                             @auth
-                                <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
+                            <a href="{{ route('eachDash') }}" class="nav-link">Dashboard</a>
+                            
                             @else
                                 <a href="{{ route('login') }}" class="nav-link">Log in</a>
 

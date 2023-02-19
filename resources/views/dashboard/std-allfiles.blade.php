@@ -1,23 +1,16 @@
-@extends('layouts.std-dashboard')
+@extends('layouts.tch-dashboard')
 
 @section('content')
 
     <body>
         <div class="container">
             <div class="row">
-                {{-- @if (Session::get('status'))
+                @if (Session::get('status'))
                     <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>อัปโหลดเสร็จสิ้นแล้ว</strong>
                     </div>
-                @endif --}}
-                <div class="nofile">
-                    <?php
-                    if ($project->count() == 0) {
-                        echo 'ไม่พบข้อมูล';
-                    }
-                    ?>
-                </div>
+                @endif
 
                 <div class="col-12">
                     <div class="showDoc">
@@ -34,15 +27,11 @@
                                 <?php if ($project[0]->co_adviser == $project[0]->adviser_id) {
                                     echo $project[0]->adviser_fullname_th;
                                 } ?>
-                                <br>
-                                หมวดหมู่โครงงาน : {{ $project[0]->catename }}
                             </h5>
                             <div class="bttitle">
                                 <h6>ปีที่พิมพ์ : {{ $project[0]->edition }}</h6>
                                 <h6>ยอดเข้าชม : {{ $project[0]->view_counter }}</h6>
                             </div>
-
-
                             <div class="doc_upload">
                                 <p>อัปโหลดไฟล์</p>
                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
@@ -131,21 +120,15 @@
 
                                     {{-- <td>id :{{ $file->project_id }} title : {{ $file->title_th }} </td> --}}
 
-                                    <td><a href="/documents/{{ $file->docname }}"><i class="fa-solid fa-eye"></i></a></td>
-                                    <td><a href="/file/download/{{ $file->docname }}" target="_blank">
-                                        <i class="fas fa-file-download"></i>
-                                    </a>
-                                    </td>
+                                    <td><a href="/documents/{{ $file->docname }}"><i class="fa-regular fa-eye"
+                                                style="color: black"></i></a></td>
+                                    <td><a href="/file/download/{{ $file->docname }}" target="_blank"><i
+                                                class="fa-solid fa-download" style="color: black"></i></i></a></td>
                                     <td>
                                         <button type="button" class="btn btn-danger" onclick="del({{ $file->doc_id }})">
-                                            <i class="fa-solid fa-trash"></i></button>
-
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
                                     </td>
-                                    <td>
-
-                                    </td>
-
-                                </tr>
                             @endforeach
                         </table>
                     </div>
@@ -161,8 +144,8 @@
         <script>
             const del = (id) => {
                 Swal.fire({
-                    title: 'Are you sure? ' + id,
-                    text: "You won't be able to revert this!",
+                    title: 'ต้องการลบไฟล์นี้ ? ',
+                    text: "คุณจะไม่สามารถย้อนกลับได้!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -174,8 +157,8 @@
                             console.log(respons)
                         })
                         Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
+                            'ลบสำเร็จ!',
+                            'โครงงานนี้ถูกลบแล้ว',
                             'success'
                         ).then(() => {
                             location.reload();

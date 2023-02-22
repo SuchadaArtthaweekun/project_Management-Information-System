@@ -11,6 +11,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchHomeController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DashController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -175,3 +176,7 @@ Route::get('/forgot', [\App\Http\Controllers\PasswordResetLinkController::class,
 //     Route::get('pending-users', [\App\Http\Controllers\UserController::class, 'pendingUser'])->name('pendingUser');
 //     Route::get('approveUser', [\App\Http\Controllers\UserController::class, 'approveUser'])->name('approveUser');
 // });
+
+
+//pdf
+Route::get('pdf',[\App\Http\Controllers\PDFController::class, 'pdf'])->name('pdf');

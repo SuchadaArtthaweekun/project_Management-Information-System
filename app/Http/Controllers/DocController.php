@@ -36,7 +36,7 @@ class DocController extends Controller
         // $documents = DB::table('documents')->get();
 
         // return view('projects.projects', ['file' => $file]);
-        return view('projects.projects', ['project' => $project, 'file' => $documents,'catebar' => $catebar]);
+        return view('projects.projects', ['project' => $project, 'file' => $documents, 'catebar' => $catebar]);
     }
 
     public function allFiles($project_id)
@@ -46,13 +46,32 @@ class DocController extends Controller
         $projectslist = DB::select('select * from projects');
         // echo $project;
         $catebar = DB::table('categories')->get();
-        $project = DB::table('categories')
-            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
-            ->join('documents', 'documents.project_id', '=', 'projects.project_id')
-            ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
-            ->where('projects.project_id', '=', $project_id)
-            ->get();
-        return view('projects.allFiles', compact('project', 'categories','catebar'));
+        // $project = DB::table('categories')
+        //     ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+        //     ->join('documents', 'documents.project_id', '=', 'projects.project_id')
+        //     ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+        //     ->where('projects.project_id', '=', $project_id)
+        //     ->first();
+
+        // $project = DB::select(DB::raw("
+        //     SELECT projects.*, documents.*, advisers.*, categories.* FROM projects 
+        //     LEFT JOIN categories ON categories.cate_id = projects.cate_id 
+        //     LEFT JOIN documents ON documents.project_id = projects.project_id
+        //     LEFT JOIN advisers ON advisers.adviser_id = projects.adviser 
+        //     WHERE projects.project_id = $project_id"));
+
+        // if ($project) {
+        //     $project = $project[0];
+        // }else{
+        //     $project = [];
+        // }
+        $project = Projects::where("project_id", "=", $project_id)->with("documents")
+        ->with("advisers")
+        ->first();
+        
+        dd($project);
+        // return $project;
+        return view('projects.allFiles', compact('project', 'categories', 'catebar'));
     }
 
     public function stdAllFiles($project_id)
@@ -73,7 +92,7 @@ class DocController extends Controller
             ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
             ->where('projects.project_id', '=', $project_id)
             ->get();
-        return view('dashboard.std-allfiles', compact('project', 'categories','catebar'));
+        return view('dashboard.std-allfiles', compact('project', 'categories', 'catebar'));
     }
     public function tchAllFiles($project_id)
     {
@@ -88,10 +107,10 @@ class DocController extends Controller
             ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
             ->where('projects.project_id', '=', $project_id)
             ->get();
-        return view('dashboard.tch-allfiles', compact('project', 'categories','catebar'));
+        return view('dashboard.tch-allfiles', compact('project', 'categories', 'catebar'));
     }
-    
-    
+
+
 
     public function dballFiles($project_id)
     {
@@ -101,7 +120,7 @@ class DocController extends Controller
             ->join('categories', 'categories.cate_id', '=', 'projects.cate_id')
             ->where('projects.project_id', '=', $project_id)
             ->get();
-        return view('projects.allFiles', compact('filedb','catebar'));
+        return view('projects.allFiles', compact('filedb', 'catebar'));
     }
 
     public function addfile($project_id)
@@ -119,7 +138,7 @@ class DocController extends Controller
         $categories = DB::table('categories')->get();
         $documents = DB::table('documents')->get();
 
-        return view('addfile', ['projects' => $projects, 'categories' => $categories, 'documents' => $documents,'catebar' => $catebar]);
+        return view('addfile', ['projects' => $projects, 'categories' => $categories, 'documents' => $documents, 'catebar' => $catebar]);
     }
     public function fileindoc($project_id)
     {
@@ -132,9 +151,9 @@ class DocController extends Controller
 
         $title_th = DB::table('projects');
 
-        return view('projects.doc', ['file' => $file,'catebar' => $catebar]);
+        return view('projects.doc', ['file' => $file, 'catebar' => $catebar]);
     }
-   
+
     public function doc($project_id)
     {
         $catebar = DB::table('categories')->get();
@@ -146,7 +165,7 @@ class DocController extends Controller
         $file = Project::find($project_id)->get();
         $title_th = DB::table('projects');
 
-        return view('projects.doc', ['file' => $file,'catebar' => $catebar]);
+        return view('projects.doc', ['file' => $file, 'catebar' => $catebar]);
     }
 
 
@@ -190,7 +209,7 @@ class DocController extends Controller
         if ($request->hasfile('file')) {
             foreach ($request->file('file') as $key => $file) {
                 // $name = $file->getClientOriginalName();
-                $name = $project_id."-".$file->getClientOriginalName();
+                $name = $project_id . "-" . $file->getClientOriginalName();
                 $path = $file->store('documents');
                 $file->move(public_path('documents'), $name);
                 $doc_type = $request->input('type');
@@ -221,7 +240,7 @@ class DocController extends Controller
         if ($request->hasfile('file')) {
             foreach ($request->file('file') as $key => $file) {
                 // $name = $file->getClientOriginalName();
-                $name = $project_id."-".$file->getClientOriginalName();
+                $name = $project_id . "-" . $file->getClientOriginalName();
                 $path = $file->store('documents');
                 $file->move(public_path('documents'), $name);
                 $doc_type = $request->input('type');
@@ -253,7 +272,7 @@ class DocController extends Controller
         if ($request->hasfile('file')) {
             foreach ($request->file('file') as $key => $file) {
                 // $name = $file->getClientOriginalName();
-                $name = $project_id."-".$file->getClientOriginalName();
+                $name = $project_id . "-" . $file->getClientOriginalName();
                 $path = $file->store('documents');
                 $file->move(public_path('documents'), $name);
                 $doc_type = $request->input('type');
@@ -276,7 +295,7 @@ class DocController extends Controller
 
     }
 
-    
+
 
 
     // 
@@ -294,7 +313,7 @@ class DocController extends Controller
             ->get();
 
 
-        return view('projects.showDoc', compact('project', 'documents', 'projectslist', 'categories','catebar'));
+        return view('projects.showDoc', compact('project', 'documents', 'projectslist', 'categories', 'catebar'));
     }
 
     public function deletedoc($doc_id)
@@ -307,21 +326,19 @@ class DocController extends Controller
 
 
 
-    public function Download($doc_id,$docname)
+    public function Download($doc_id, $docname)
     {
-        
+
         Document::find($doc_id)->increment('download_counter');
         // echo $doc_id;
-        return response()->download('documents/' . $docname );
+        return response()->download('documents/' . $docname);
     }
 
-    public function getpdf($doc_id,$docname,$doc_path)
+    public function getpdf($doc_id, $docname, $doc_path)
     {
-       
+
         Document::find($doc_id)->increment('download_counter');
         // echo $doc_id;
         return response()->download($doc_path);
     }
-
-    
 }

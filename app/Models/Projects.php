@@ -52,5 +52,13 @@ class Projects extends Model
 
     protected $table='projects';
 
-    
+    public function documents(){
+        return $this->hasMany(Document::class, 'project_id', 'project_id');
+    }
+    public function categories(){
+        return $this->belongsTo(Categories::class, 'cate_id', 'cate_id');
+    }
+    public function advisers(){
+        return $this->belongsTo(advisers::class, 'adviser_id', 'adviser');
+    }
 }

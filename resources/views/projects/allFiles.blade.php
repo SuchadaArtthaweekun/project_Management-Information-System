@@ -12,31 +12,43 @@
                     </div>
                 @endif --}}
 
+                {{-- @if (!isset($project))
+                    @php
+                        $project = objects['title_th'];
+                    @endphp
+
+                    <h3> {{ $project->title_th }} </h3>
+                @endif
+                <div>
+                    @if ($project->title_th)
+                        {{ $project->title_th }}
+                    @endif
+                </div> --}}
+
+
+
                 <div class="col-12">
                     <div class="showDoc">
                         <h2 style="text-align: center">เอกสารโครงงานนักศึกษา</h2>
 
                         <div>
-                            <h3>{{ $project[0]->title_th }}</h3>
-                            <h4>{{ $project[0]->title_en }}</h4>
-                            <h5>ผู้จัดทำ : {{ $project[0]->author }} {{ $project[0]->co_author }}</h5>
-                            <h5>ที่ปรึกษา :
-                                <?php if ($project[0]->adviser == $project[0]->adviser_id) {
-                                    echo $project[0]->adviser_fullname_th;
-                                } ?>
-                                <?php if ($project[0]->co_adviser == $project[0]->adviser_id) {
-                                    echo $project[0]->adviser_fullname_th;
-                                } ?>
+                            <h3>{{ $project->title_th }}</h3>
+                            <h4>{{ $project->title_en }}</h4>
+                            <h5>ผู้จัดทำ : {{ $project->author }} {{ $project->co_author }}</h5>
+                            <h5>ที่ปรึกษา : 
+                                @json($project->advisers)
+                                {{-- {{$project->advisers->adviser_fullname_th }} --}}
+                                
                                 </li>
                                 <div class="doc_upload">
                                     <p>อัปโหลดไฟล์</p>
                                     <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                        data-bs-target="#modal_file_{{ $project[0]->project_id }}">
+                                        data-bs-target="#modal_file_{{ $project->project_id }}">
                                         <i class="fa-light fa-plus"></i>
                                     </button>
                                     <!-- Modal -->
-                                    <div class="modal fade" id="modal_file_{{ $project[0]->project_id }}" tabindex="-1"
-                                        aria-labelledby="modal_file_{{ $project[0]->project_id }}" aria-hidden="true">
+                                    <div class="modal fade" id="modal_file_{{ $project->project_id }}" tabindex="-1"
+                                        aria-labelledby="modal_file_{{ $project->project_id }}" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -55,7 +67,7 @@
 
                                                                 <input type="text" name="project_id"
                                                                     placeholder="Choose file" id="project_id"
-                                                                    value="{{ $project[0]->project_id }}">
+                                                                    value="{{ $project->project_id }}">
 
                                                             </div>
                                                             <div class="col-md-12">
@@ -108,7 +120,8 @@
                                 {{-- <th>action</th> --}}
                             </tr>
                             {{-- @foreach ($files as $key => $file) --}}
-                            @foreach ($project as $key => $file)
+
+                            @foreach ($project->documents as $key => $file)
                                 <tr>
                                     <td>{{ ++$key }}</td>
                                     <td>{{ $file->docname }}</td>
@@ -117,10 +130,12 @@
                                     {{-- <td>id :{{ $file->project_id }} title : {{ $file->title_th }} </td> --}}
 
                                     <td class="view"><a href="/documents/{{ $file->docname }}">
-                                        <i class="fa-solid fa-eye"></i></a></td>
-                                    <td class="download"><a href="/file/download/{{ $file->docname }}" target="_blank"> <div class="download">
-                                        <i class="fas fa-file-download"></i>
-                                    </div></a></td>
+                                            <i class="fa-solid fa-eye"></i></a></td>
+                                    <td class="download"><a href="/file/download/{{ $file->docname }}" target="_blank">
+                                            <div class="download">
+                                                <i class="fas fa-file-download"></i>
+                                            </div>
+                                        </a></td>
                                     <td>
                                         <button type="button" class="btn btn-danger" onclick="del({{ $file->doc_id }})">
                                             <i class="fa-solid fa-trash"></i></button>
@@ -135,6 +150,9 @@
                         </table>
                     </div>
                 </div>
+
+
+
             </div>
 
         </div>
@@ -171,8 +189,8 @@
             }
 
             const conf = (id) => {
-            Swal.fire('บันทึกสำเร็จ')
-        }
+                Swal.fire('บันทึกสำเร็จ')
+            }
         </script>
     </body>
 @endsection

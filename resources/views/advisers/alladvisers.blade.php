@@ -10,7 +10,7 @@
             <div>
                 {{-- add users --}}
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_addAdviser">
-                    Add Adviser
+                    เพิ่มที่ปรึกษาโครงงาน
                 </button>
                 <!-- Modal -->
                 <div class="modal fade" id="modal_addAdviser" tabindex="-1" aria-labelledby="modal_addAdviser"
@@ -18,7 +18,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add Adviser</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">เพิ่มที่ปรึกษาโครงงาน</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -113,7 +113,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">edit adviser</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">แก้ไขที่ปรึกษาโครงงาน</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
@@ -205,7 +205,7 @@
                     })
                     Swal.fire(
                         'ลบสำเร็จ',
-                        'ปรึกษาโครงงานนี้ถูกลบแล้ว',
+                        'ที่ปรึกษาโครงงานนี้ถูกลบแล้ว',
                         'success'
                     ).then(() => {
                         location.reload();

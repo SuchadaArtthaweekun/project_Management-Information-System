@@ -58,7 +58,7 @@ class Projects extends Model
     public function categories(){
         return $this->belongsTo(Categories::class, 'cate_id', 'cate_id');
     }
-    public function advisers(){
-        return $this->belongsTo(advisers::class, 'adviser_id', 'adviser');
+    public function adviser_lists(){
+        return $this->hasMany(Adviser_lists::class, 'adviser_id', 'adviser');
     }
 }

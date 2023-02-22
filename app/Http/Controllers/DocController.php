@@ -65,8 +65,15 @@ class DocController extends Controller
         // }else{
         //     $project = [];
         // }
+
+        // $project = Projects::where("project_id", "=", $project_id)->with("documents")
+        // ->with(['adviser_lists' => function ($query) {
+        //         $query->with('advisers');
+        //     }])
+        // ->first();
+
         $project = Projects::where("project_id", "=", $project_id)->with("documents")
-        ->with("advisers")
+        ->with('adviser_lists')
         ->first();
         
         dd($project);

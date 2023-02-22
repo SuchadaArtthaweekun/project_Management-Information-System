@@ -6,6 +6,7 @@ use App\Models\Document;
 use App\Models\File;
 use App\Models\Projects;
 use App\Models\User;
+use App\Models\Adviser_lists;
 use Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,6 +76,7 @@ class ProjectController extends Controller
         $gen = $request->input('gen');
         $published = ('1');
         $view_counter = ('0');
+
         // // $data=array('author'=>$author, 'co_auther'=>$co_auther	, 'title_th'=>$title_th, 'title_en'=>$title_en, 'edition'=>$edition, 
         // // 'article'=>$article, 'abtract'=>$abtract,'adviser'=>$adviser, 'co_adviser'=>$co_advisers, 'branch'=>$branch, 'gen'=>$gen,
         // // 'published'=>$published,'view_counter'=>$view_counter, 'cate_id'=>$cate_id, 'id'=>$id );
@@ -100,6 +102,16 @@ class ProjectController extends Controller
         $project->published = $published;
         $project->view_counter = $view_counter;
         $project->save();
+
+        $arrAdviser = array($adviser, $co_advisers);
+        if ($project->project_id) {
+            for ($i = 0; $i < count($arrAdviser); $i++) {
+                $adlists = new Adviser_lists();
+                $adlists->project_id = $project->project_id;
+                $adlists->adviser_id = $arrAdviser[$i];
+                $adlists->save();
+            }
+        }
 
         $pathDir = 'public/documents/' . $title_th;
         Storage::makeDirectory($pathDir, 0777, true, true);
@@ -153,7 +165,7 @@ class ProjectController extends Controller
 
         // echo $cate_id;
         // return redirect('tchProjects');
-        return redirect()->back(); 
+        return redirect()->back();
     }
     public function stdUpdateproject(Request $request)
     {
@@ -193,7 +205,7 @@ class ProjectController extends Controller
 
         // echo $cate_id;
         // return redirect('stdProjects');
-        return redirect()->back(); 
+        return redirect()->back();
     }
     public function updateproject(Request $request)
     {
@@ -274,13 +286,13 @@ class ProjectController extends Controller
         }
     }
 
-    public function publishProject(Request $request,$project_id)
+    public function publishProject(Request $request, $project_id)
     {
 
-        $data = DB::table('projects')->where('project_id','=', $project_id)
+        $data = DB::table('projects')->where('project_id', '=', $project_id)
             ->update(['published' => 1]);
 
-            return redirect()->back(); 
+        return redirect()->back();
     }
     public function stdProjects()
     {
@@ -298,7 +310,7 @@ class ProjectController extends Controller
         //     ->get();
 
 
-        return view('dashboard.std-projects', compact( 'projects', 'categories', 'advisers'));
+        return view('dashboard.std-projects', compact('projects', 'categories', 'advisers'));
     }
     public function tchProjects()
     {
@@ -316,7 +328,7 @@ class ProjectController extends Controller
         //     ->get();
 
 
-        return view('dashboard.tch-projects', compact( 'projects', 'categories', 'advisers'));
+        return view('dashboard.tch-projects', compact('projects', 'categories', 'advisers'));
     }
     public function stdAddProject(Request $request)
     {
@@ -338,7 +350,7 @@ class ProjectController extends Controller
         $gen = $request->input('gen');
         $published = ('0');
         $view_counter = ('0');
-       
+
 
         $project = new Projects();
         $project->author = $author;
@@ -363,7 +375,7 @@ class ProjectController extends Controller
 
         $pathDir = 'public/documents/' . $title_th;
         Storage::makeDirectory($pathDir, 0777, true, true);
-        
+
 
         return redirect()->back();
     }
@@ -387,7 +399,7 @@ class ProjectController extends Controller
         $gen = $request->input('gen');
         $published = ('1');
         $view_counter = ('0');
-       
+
 
         $project = new Projects();
         $project->author = $author;
@@ -418,37 +430,34 @@ class ProjectController extends Controller
     }
 
 
-     public function tctPublish(Request $request,$project_id)
+    public function tctPublish(Request $request, $project_id)
     {
         $data = DB::table('projects')
-            ->where('project_id','=', $project_id)
+            ->where('project_id', '=', $project_id)
             ->update(['published' => 1]);
 
-        
+
         return redirect()->route('tchPending');
     }
     public function tchPending()
     {
-        
-            $data = DB::table('categories')
-                ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
-                ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
-                ->where('published', '=', '0')
-                ->get();
 
-                return view('dashboard.tch-pending', compact('data'))->with('info', 'ไม่มีข้อมูล');
-       
+        $data = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+            ->where('published', '=', '0')
+            ->get();
+
+        return view('dashboard.tch-pending', compact('data'))->with('info', 'ไม่มีข้อมูล');
     }
 
 
 
-    public function countView(Projects $projects){
-       
-            $projects->visitsCounter()->increment();
-        
-            return view('projects.showDoc', ['projects' => $projects]);
-        
-    }
+    public function countView(Projects $projects)
+    {
 
-   
+        $projects->visitsCounter()->increment();
+
+        return view('projects.showDoc', ['projects' => $projects]);
+    }
 }

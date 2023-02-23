@@ -209,6 +209,7 @@ class ProjectController extends Controller
     }
     public function updateproject(Request $request)
     {
+        // dd($request);
         $project_id = $request->input('project_id');
         $author = $request->input('author');
         $co_author = $request->input('co_author');
@@ -221,11 +222,36 @@ class ProjectController extends Controller
         $edition = $request->input('edition');
         $abtract = $request->input('abtract');
         $adviser = $request->input('adviser');
-        $co_adviser = $request->input('co_adviser');
+        $co_adviser = $request->input('adviser2');
         $branch = $request->input('branch');
         $cate_id  = $request->input('edt_cate_id');
         $gen = $request->input('gen');
         $project = Projects::find($project_id);
+        // dd($project);
+        if ($project->adviser) {
+            $adviserList = Adviser_lists::where(
+                [
+                    ['adviser_id', '=', $project->adviser],
+                    ['project_id', '=', $project_id]
+                ]
+                
+            )
+                ->update(['adviser_id' => $adviser]);
+        }
+
+        if ($project->co_adviser) {
+            $co_adviserList = Adviser_lists::where(
+                [
+                    ['adviser_id', '=', $project->co_adviser],
+                    ['project_id', '=', $project_id]
+                ]
+                
+            )
+                ->update(['adviser_id' => $co_adviser]);
+        }
+        // $adviserList= Adviser_lists::all();
+        // dd($adviserList);
+
         $project->author = $author;
         $project->co_author = $co_author;
         $project->email_author = $email_author;
@@ -242,6 +268,9 @@ class ProjectController extends Controller
         $project->gen = $gen;
         $project->cate_id = $cate_id;
         $project->save();
+
+
+
 
         // echo $cate_id;
         return redirect('allproject');
@@ -373,6 +402,16 @@ class ProjectController extends Controller
         $project->view_counter = $view_counter;
         $project->save();
 
+        $arrAdviser = array($adviser, $co_advisers);
+        if ($project->project_id) {
+            for ($i = 0; $i < count($arrAdviser); $i++) {
+                $adlists = new Adviser_lists();
+                $adlists->project_id = $project->project_id;
+                $adlists->adviser_id = $arrAdviser[$i];
+                $adlists->save();
+            }
+        }
+
         $pathDir = 'public/documents/' . $title_th;
         Storage::makeDirectory($pathDir, 0777, true, true);
 
@@ -421,6 +460,16 @@ class ProjectController extends Controller
         $project->published = $published;
         $project->view_counter = $view_counter;
         $project->save();
+
+        $arrAdviser = array($adviser, $co_advisers);
+        if ($project->project_id) {
+            for ($i = 0; $i < count($arrAdviser); $i++) {
+                $adlists = new Adviser_lists();
+                $adlists->project_id = $project->project_id;
+                $adlists->adviser_id = $arrAdviser[$i];
+                $adlists->save();
+            }
+        }
 
         $pathDir = 'public/documents/' . $title_th;
         Storage::makeDirectory($pathDir, 0777, true, true);

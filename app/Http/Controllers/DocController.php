@@ -54,10 +54,10 @@ class DocController extends Controller
         //     ->first();
 
         // $project = DB::select(DB::raw("
-        //     SELECT projects.*, documents.*, advisers.*, categories.* FROM projects 
-        //     LEFT JOIN categories ON categories.cate_id = projects.cate_id 
+        //     SELECT projects.*, documents.*, advisers.*, categories.* FROM projects
+        //     LEFT JOIN categories ON categories.cate_id = projects.cate_id
         //     LEFT JOIN documents ON documents.project_id = projects.project_id
-        //     LEFT JOIN advisers ON advisers.adviser_id = projects.adviser 
+        //     LEFT JOIN advisers ON advisers.adviser_id = projects.adviser
         //     WHERE projects.project_id = $project_id"));
 
         // if ($project) {
@@ -73,10 +73,11 @@ class DocController extends Controller
         // ->first();
 
         $project = Projects::where("project_id", "=", $project_id)->with("documents")
-        ->with('adviser_lists')
+        ->with('advisers')
+        ->with('co_advisers')
         ->first();
-        
-        dd($project);
+
+        // dd($project);
         // return $project;
         return view('projects.allFiles', compact('project', 'categories', 'catebar'));
     }
@@ -205,7 +206,7 @@ class DocController extends Controller
         // echo $project_id;
 
     }
-    // 
+    //
     public function upFileDoc(Request $request)
     {
         $catebar = DB::table('categories')->get();
@@ -268,7 +269,7 @@ class DocController extends Controller
         // echo $project_id;
 
     }
-    // 
+    //
     public function stdUploadfile(Request $request)
     {
         $catebar = DB::table('categories')->get();
@@ -305,7 +306,7 @@ class DocController extends Controller
 
 
 
-    // 
+    //
     public function showDoc($project_id)
     {
         $documents = Document::all();

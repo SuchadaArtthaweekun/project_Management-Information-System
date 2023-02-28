@@ -35,76 +35,78 @@
                             <h3>{{ $project->title_th }}</h3>
                             <h4>{{ $project->title_en }}</h4>
                             <h5>ผู้จัดทำ : {{ $project->author }} {{ $project->co_author }}</h5>
-                            <h5>ที่ปรึกษา : 
-                                @json($project->advisers)
-                                {{-- {{$project->advisers->adviser_fullname_th }} --}}
-                                
-                                </li>
-                                <div class="doc_upload">
-                                    <p>อัปโหลดไฟล์</p>
-                                    <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                        data-bs-target="#modal_file_{{ $project->project_id }}">
-                                        <i class="fa-light fa-plus"></i>
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="modal_file_{{ $project->project_id }}" tabindex="-1"
-                                        aria-labelledby="modal_file_{{ $project->project_id }}" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">เพิ่มไฟล์เอกสาร</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                {{-- <form method="get" action="{{ route('addproject') }}"> --}}
-                                                <form method="post" action="{{ route('upFileDoc') }}"
-                                                    enctype="multipart/form-data">
-                                                    <div class="modal-body">
+                            <h5>ที่ปรึกษา :
+                                {{ $project->advisers->first()->adviser_fullname_th }}
+                            </h5>
+                            <h5>ที่ปรึกษาร่วม :
+                                {{ $project->co_advisers->first()->adviser_fullname_th }}
+                            </h5>
+                            </li>
+                            <div class="doc_upload">
+                                <p>อัปโหลดไฟล์</p>
+                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                    data-bs-target="#modal_file_{{ $project->project_id }}">
+                                    <i class="fa-light fa-plus"></i>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal_file_{{ $project->project_id }}" tabindex="-1"
+                                    aria-labelledby="modal_file_{{ $project->project_id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">เพิ่มไฟล์เอกสาร</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            {{-- <form method="get" action="{{ route('addproject') }}"> --}}
+                                            <form method="post" action="{{ route('upFileDoc') }}"
+                                                enctype="multipart/form-data">
+                                                <div class="modal-body">
+                                                    <div class="col-md-12">
+
+                                                        @csrf
+                                                        <div>
+
+                                                            <input type="text" name="project_id"
+                                                                placeholder="Choose file" id="project_id"
+                                                                value="{{ $project->project_id }}">
+
+                                                        </div>
                                                         <div class="col-md-12">
-
-                                                            @csrf
-                                                            <div>
-
-                                                                <input type="text" name="project_id"
-                                                                    placeholder="Choose file" id="project_id"
-                                                                    value="{{ $project->project_id }}">
-
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <input type="file" name="file[]"
-                                                                        placeholder="Choose file" id="file"
-                                                                        multiple="multiple">
-                                                                    @error('file')
-                                                                        <div class="alert alert-danger mt-1 mb-1">
-                                                                            {{ $message }}
-                                                                        </div>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">ประเเภทไฟล์</label>
-                                                                <select class="form-control" id="exampleFormControlSelect1"
-                                                                    name="type" placeholder="">
-                                                                    <option value="โครงงาน">โครงงาน</option>
-                                                                    <option value="แบบเสนอ">แบบเสนอ</option>
-                                                                    <option value="บทความวิจัย">บทความวิจัย</option>
-                                                                </select>
+                                                                <input type="file" name="file[]"
+                                                                    placeholder="Choose file" id="file"
+                                                                    multiple="multiple">
+                                                                @error('file')
+                                                                    <div class="alert alert-danger mt-1 mb-1">
+                                                                        {{ $message }}
+                                                                    </div>
+                                                                @enderror
                                                             </div>
                                                         </div>
+
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlSelect1">ประเเภทไฟล์</label>
+                                                            <select class="form-control" id="exampleFormControlSelect1"
+                                                                name="type" placeholder="">
+                                                                <option value="โครงงาน">โครงงาน</option>
+                                                                <option value="แบบเสนอ">แบบเสนอ</option>
+                                                                <option value="บทความวิจัย">บทความวิจัย</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">ยกเลิก</button>
-                                                        <button type="submit" class="btn btn-primary" onclick="conf()"
-                                                            href="{{ route('allproject') }}">บันทึก</button>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">ยกเลิก</button>
+                                                    <button type="submit" class="btn btn-primary" onclick="conf()"
+                                                        href="{{ route('allproject') }}">บันทึก</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
                         </div>
 

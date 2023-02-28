@@ -20,7 +20,7 @@ class Projects extends Model
 
     /**
      * Get the visits relation
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\Relation
      */
     public function visits()
@@ -28,7 +28,7 @@ class Projects extends Model
         return visits($this)->relation();
     }
     use HasFactory;
-    
+
 
     protected $fillable = [
         'author',
@@ -58,7 +58,10 @@ class Projects extends Model
     public function categories(){
         return $this->belongsTo(Categories::class, 'cate_id', 'cate_id');
     }
-    public function adviser_lists(){
-        return $this->hasMany(Adviser_lists::class, 'adviser_id', 'adviser');
+    public function advisers(){
+        return $this->hasMany(advisers::class, 'adviser_id', 'adviser')->limit(1);
+    }
+    public function co_advisers(){
+        return $this->hasMany(advisers::class, 'adviser_id', 'co_adviser')->limit(1);
     }
 }

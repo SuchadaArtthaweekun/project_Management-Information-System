@@ -36,10 +36,18 @@
                             <h4>{{ $project->title_en }}</h4>
                             <h5>ผู้จัดทำ : {{ $project->author }} {{ $project->co_author }}</h5>
                             <h5>ที่ปรึกษา :
-                                {{ $project->advisers->first()->adviser_fullname_th }}
+                                @if ($project->advisers && count($project->advisers) > 0)
+                                    {{ $project->advisers->first()->adviser_fullname_th }}
+                                @else
+                                    {{ '-' }}
+                                @endif
                             </h5>
                             <h5>ที่ปรึกษาร่วม :
-                                {{ $project->co_advisers->first()->adviser_fullname_th }}
+                                @if ($project->co_advisers && count($project->co_advisers) > 0)
+                                    {{ $project->co_advisers->first()->adviser_fullname_th }}
+                                @else
+                                    {{ '-' }}
+                                @endif
                             </h5>
                             </li>
                             <div class="doc_upload">

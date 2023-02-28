@@ -370,15 +370,7 @@ class ProjectController extends Controller
         $project->view_counter = $view_counter;
         $project->save();
 
-        $arrAdviser = array($adviser, $co_advisers);
-        if ($project->project_id) {
-            for ($i = 0; $i < count($arrAdviser); $i++) {
-                $adlists = new Adviser_lists();
-                $adlists->project_id = $project->project_id;
-                $adlists->adviser_id = $arrAdviser[$i];
-                $adlists->save();
-            }
-        }
+        
 
         $pathDir = 'public/documents/' . $title_th;
         Storage::makeDirectory($pathDir, 0777, true, true);
@@ -429,15 +421,7 @@ class ProjectController extends Controller
         $project->view_counter = $view_counter;
         $project->save();
 
-        $arrAdviser = array($adviser, $co_advisers);
-        if ($project->project_id) {
-            for ($i = 0; $i < count($arrAdviser); $i++) {
-                $adlists = new Adviser_lists();
-                $adlists->project_id = $project->project_id;
-                $adlists->adviser_id = $arrAdviser[$i];
-                $adlists->save();
-            }
-        }
+        
 
         $pathDir = 'public/documents/' . $title_th;
         Storage::makeDirectory($pathDir, 0777, true, true);

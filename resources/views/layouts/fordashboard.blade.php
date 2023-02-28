@@ -59,7 +59,7 @@
             <div class="logout">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                   
+
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault();
                                 this.closest('form').submit();">
@@ -91,7 +91,7 @@
                     {{-- <a href="#" class="d-block">
                         <div class="u_name">{{ Auth::user()->name }}</div>
                     </a> --}}
-                    
+
                 </div>
 
             </div>

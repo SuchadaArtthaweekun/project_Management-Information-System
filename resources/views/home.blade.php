@@ -50,7 +50,7 @@
                 <div class="col-6">
                     <div class="col title">
                         <div class="titlesearch">
-                            <form method="get" action="{{ route('searchindex') }}" enctype="multipart/form-data"
+                            <form method="get" action="{{ route('searchtest') }}" enctype="multipart/form-data"
                                 class="search">
                                 <h1 for="" class="searchtxt">สืบค้นโครงงานนักศึกษา</h1>
                                 <h4 class="searchtxt">สาขาวิชาเทคโนโลยีสารสนเทศ มหาวิทยาลัยราชภัฏบุรีรัมย์</h4>
@@ -60,7 +60,7 @@
                                         class="col-sm-4 col-form-label"><strong>หมวดหมู่โครงงาน</strong></label>
                                     <div class="col-sm-8">
                                         <select class="form-control" id="exampleFormControlSelect1" name="cate_id"
-                                            id="ate_id" placeholder="หมวดหมู่โครงงาน">
+                                            id="cate_id" placeholder="หมวดหมู่โครงงาน">
                                             <option value="all"><strong>ทั้งหมด</strong></option>
                                             @foreach ($categories as $cate)
                                                 <option value="{{ $cate->cate_id }}">

@@ -132,7 +132,9 @@ Route::get('konha', [\App\Http\Controllers\SearchController::class, 'konha'])->n
 Route::get('konhasearch', [\App\Http\Controllers\SearchController::class, 'konhasearch'])->name('konhasearch');
 Route::get('searchProject', [\App\Http\Controllers\SearchController::class, 'searchProject'])->name('searchProject');
 
+
 // Search Home
+Route::get('searchtest', [\App\Http\Controllers\SearchHomeController::class, 'searchtest'])->name('searchtest');
 Route::get('search', [\App\Http\Controllers\SearchHomeController::class, 'searchindex'])->name('searchindex');
 Route::get('searchsec', [\App\Http\Controllers\SearchController::class, 'showProjects'])->name('searchsec');
 Route::get('searchhome', [\App\Http\Controllers\SearchHomeController::class, 'searchhome'])->name('searchhome');

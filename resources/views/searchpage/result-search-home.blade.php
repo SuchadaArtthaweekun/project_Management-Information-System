@@ -7,15 +7,15 @@
     <div class="item">
         <div class="container">
             <div class="notfound">
-                <?php 
-                    if($data->count()==0){
-                        echo "ไม่พบข้อมูล";
-                    }
-                ?>
+                {{-- <?php
+                if ($data->count() == 0) {
+                    echo 'ไม่พบข้อมูล';
+                }
+                ?> --}}
             </div>
             <div class="countresult">
                 <p>ผลการค้นหา {{ $data->count() }}</p>
-                
+
             </div>
             @foreach ($data as $da)
                 <div class="result">
@@ -75,6 +75,13 @@
 
             <div class="pagination">
                 {{ $data->links('pagination::simple-bootstrap-4') }}
+                {{-- {{ $data->onEachSide(5)->links() }} --}}
+                {{-- {{ $data->links() }} --}}
+                {{-- @if (isset($query))
+                    {{ $data->appends($query)->links() }}
+                @else
+                    {{ $data->links() }}
+                @endif --}}
             </div>
 
         </div>

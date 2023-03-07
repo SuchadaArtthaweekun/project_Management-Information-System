@@ -134,6 +134,7 @@ Route::get('searchProject', [\App\Http\Controllers\SearchController::class, 'sea
 
 
 // Search Home
+Route::get('search_two', [\App\Http\Controllers\SearchHomeController::class, 'search_two'])->name('search_two');
 Route::get('searchtest', [\App\Http\Controllers\SearchHomeController::class, 'searchtest'])->name('searchtest');
 Route::get('search', [\App\Http\Controllers\SearchHomeController::class, 'searchindex'])->name('searchindex');
 Route::get('searchsec', [\App\Http\Controllers\SearchController::class, 'showProjects'])->name('searchsec');

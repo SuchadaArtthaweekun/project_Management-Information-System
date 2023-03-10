@@ -12,18 +12,13 @@
                         <option value="{{ $cate->cate_id }}">{{ $cate->catename }}</option>
                     @endforeach
                 </select>
+                <button onclick="window.print()">Print</button>
                 <table class="table table-striped table-hover table-condensed" name="project" id="project">
                     <thead>
                         <tr>
-                            <th><strong>No</strong></th>
+                            <th><strong></strong></th>
                             <th><strong>ชื่อโครงงาน</strong></th>
                             <th><strong>หมวดหมู่</strong></th>
-                            <th><strong>อีเมล</strong></th>
-                            <th><strong>ระดับผู้ใช้</strong></th>
-                            <th><strong>รหัสนักศึกษาหรือรหัสอาจารย์</strong></th>
-                            <th><strong>สถานะ</strong></th>
-                            <th><strong>เบอร์โทร</strong></th>
-                            <th><strong>Action</strong></th>
                         </tr>
                     </thead>
                     <tbody>

@@ -14,10 +14,12 @@
                 }
                 ?>
             </div>
-            
+            <div class="resultCount">
+                <h5> ผลการค้นหา : {{$data->count()}}</h5>
+            </div>
             @foreach ($data as $da)
                 <div class="result">
-
+                    
                     <div class="gard">
                         <a href="/Document/{{ $da->project_id }}">
                             <h5>{{ $da->title_th }}</h5>

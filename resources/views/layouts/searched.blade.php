@@ -38,12 +38,12 @@
                     @if (Route::has('login'))
                         <div class="navhome">
                             @auth
-                                <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
+                                <a href="{{ url('/dashboard') }}" class="nav-link">แผงควบคุม</a>
                             @else
-                                <a href="{{ route('login') }}" class="nav-link">Log in</a>
+                                <a href="{{ route('login') }}" class="nav-link">เข้าสู่ระบบ</a>
 
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="nav-link">Register</a>
+                                    <a href="{{ route('register') }}" class="nav-link">สมัครสมาชิก</a>
                                 @endif
                             @endauth
                         </div>

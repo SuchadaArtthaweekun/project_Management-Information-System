@@ -55,9 +55,9 @@
                                 <h3 for="" class="searchtxt">สืบค้นโครงงานนักศึกษา</h3>
                                 @csrf
                                 <div class="form-group row">
-                                    <label for="cate_id" class="col-sm-4 col-form-label">หมวดหมู่โครงงาน</label>
+                                    <label for="cate_id" class="col-sm-4 col-form-label home">หมวดหมู่โครงงาน</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control" id="exampleFormControlSelect1" name="cate_id"
+                                        <select class="form-select" id="exampleFormControlSelect1" name="cate_id"
                                             id="ate_id" placeholder="หมวดหมู่โครงงาน">
                                             <option value="all">ทั้งหมด</option>
                                             @foreach ($categories as $cate)
@@ -69,9 +69,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row search">
-                                    <label for="adviser" class="col-sm-4 col-form-label">ที่ปรึกษา</label>
+                                    <label for="adviser" class="col-sm-4 col-form-label home">ที่ปรึกษา</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control" id="exampleFormControlSelect1" name="adviser"
+                                        <select class="form-select" id="exampleFormControlSelect1" name="adviser"
                                             id="adviser" placeholder="ที่ปรึกษา">
                                             <option value="all">ทั้งหมด</option>
                                             @foreach ($advisers as $pro)
@@ -83,14 +83,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="title_th" class="col-sm-4 col-form-label">ชื่อโปรเจค</label>
+                                    <label for="title_th" class="col-sm-4 col-form-label home">ชื่อโปรเจค</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="title_th" placeholder="ชื่อโปรเจค"
                                             name="title_th">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="edition" class="col-sm-4 col-form-label">ปีที่พิมพ์</label>
+                                    <label for="edition" class="col-sm-4 col-form-label home">ปีที่พิมพ์</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="edition" placeholder="ปีที่พิมพ์"
                                             name="edition">
@@ -98,7 +98,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="author" class="col-sm-4 col-form-label">ชื่อผู้จัดทำ</label>
+                                    <label for="author" class="col-sm-4 col-form-label home">ชื่อผู้จัดทำ</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="author" placeholder="ชื่อผู้จัดทำ"
                                             name="author">

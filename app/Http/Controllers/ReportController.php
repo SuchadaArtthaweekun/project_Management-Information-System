@@ -96,6 +96,4 @@ class ReportController extends Controller
         }
         return view('report.downloadReport')->with('json',json_encode($array));
     }
-
-    
 }

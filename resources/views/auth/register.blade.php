@@ -123,12 +123,12 @@
             </div>
 
             <div class="flex items-center justify-end mt-4" onchange="fire">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
-                </a>
+                </a> --}}
 
-                <button class="ml-4" onclick="conf()">
-                    Register
+                <button class="ml-4 btn btn-primary" onclick="conf()">
+                    เสร็จสิ้น
                 <button>
 
             </div>

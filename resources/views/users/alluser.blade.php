@@ -10,14 +10,14 @@
             <div>
                 {{-- add users --}}
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_adduser">
-                    Add User
+                    เพิ่มผู้ใช้
                 </button>
                 <!-- Modal -->
                 <div class="modal fade" id="modal_adduser" tabindex="-1" aria-labelledby="modal_adduser" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">add user</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">เพิ่มผู้ใช้</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -77,7 +77,7 @@
 
                                         <div class="form-group">
                                             <label for="generation">รุ่น ปีการศึกษาที่เข้าเรียน</label>
-                                            <select class="form-control" id="exampleFormControlSelect1" name="generation"
+                                            <select class="form-select" id="exampleFormControlSelect1" name="generation"
                                                 placeholder="รุ่น ปีการศึกษาที่เข้าเรียน">
                                                 <option selected>เลือกปีการศึกษาที่เข้าเรียน</option>
                                                 <option value="65">65</option>
@@ -101,7 +101,7 @@
 
                                         <div class="form-group">
                                             <label for="level">ระดับผู้ใช้</label>
-                                            <select class="form-control" id="exampleFormControlSelect1" name="level"
+                                            <select class="form-select" id="exampleFormControlSelect1" name="level"
                                                 placeholder="รหัสนักศึกษา">
                                                 <option selected>เลือกระดับผู้ใช้</option>
                                                 <option value="ผู้ดูแลระบบ">1 : ผู้ดูแลระบบ</option>
@@ -111,7 +111,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="note">สถานะ</label>
-                                            <select class="form-control" id="exampleFormControlSelect1" name="status"
+                                            <select class="form-select" id="exampleFormControlSelect1" name="status"
                                                 placeholder="สถานะผู้ใช้">
                                                 <option value="0">off</option>
                                                 <option value="1">on</option>
@@ -123,9 +123,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" href="{{ route('alluser') }}">Save
-                                        changes</button>
+                                        data-bs-dismiss="modal">ปิด</button>
+                                    <button type="submit" class="btn btn-primary" href="{{ route('alluser') }}">บันทึก</button>
                                 </div>
                             </form>
                         </div>
@@ -179,7 +178,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">edit user</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">แก้ไขผู้ใช้</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
@@ -232,7 +231,7 @@
                                                       
                                                         <div class="form-group">
                                                             <label for="level">ระดับผู้ใช้</label>
-                                                            <select class="form-control" id="exampleFormControlSelect1"
+                                                            <select class="form-select" id="exampleFormControlSelect1"
                                                                 name="level" placeholder="รหัสนักศึกษา"
                                                                 value="{{ $user->level }}">
                                                                 <option value="{{ $user->level }}">{{ $user->level }}
@@ -244,7 +243,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="note">สถานะ</label>
-                                                            <select class="form-control" id="exampleFormControlSelect1"
+                                                            <select class="form-select" id="exampleFormControlSelect1"
                                                                 name="status" placeholder="สถานะผู้ใช้"
                                                                 value="{{ $user->status }}">
                                                                 <option value="{{ $user->status }}"><?php if ($user->status == '0') {
@@ -263,10 +262,9 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
+                                                        data-bs-dismiss="modal">ปิด</button>
                                                     <button type="submit" class="btn btn-primary"
-                                                        href="{{ route('alluser') }}">Save
-                                                        changes</button>
+                                                        href="{{ route('alluser') }}">บันทึก</button>
                                                 </div>
                                             </form>
                                         </div>

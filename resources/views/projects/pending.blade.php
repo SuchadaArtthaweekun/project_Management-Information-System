@@ -5,7 +5,7 @@
         <div class="titledashboard">
             <h3>โครงงานนักศึกษารอการอนุมัติ</h3>
         </div>
-        
+
         <div>
             <table class="table">
                 <thead>
@@ -37,7 +37,7 @@
                                             <i class="fa-solid fa-check"></i>
                                         </button>
                                     </a>
-                                    
+
                                     <button class="btn btn-danger" onclick="del({{ $pro->project_id }})">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
@@ -59,21 +59,22 @@
     <script>
         const del = (id) => {
             Swal.fire({
-                title: 'Are you sure? ' + id,
-                text: "You won't be able to revert this!",
+                title: 'ต้องการลบไฟล์ ' + name,
+                text: "คุณจะไม่สามารถย้อนกลับได้!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก'
             }).then((result) => {
                 if (result.isConfirmed) {
                     fetch(`http://127.0.0.1:8000/deleteUser/${id}`).then((respons) => {
                         console.log(respons)
                     })
                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
+                        'ลบสำเร็จ',
+                        'ไฟล์นี้ถูกลบแล้ว',
                         'success'
                     ).then(() => {
                         location.reload();

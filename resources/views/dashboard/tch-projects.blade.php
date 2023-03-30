@@ -701,7 +701,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="adviser">ที่ปรึกษา</label>
-                                                    <select class="form-control" id="exampleFormControlSelect1"
+                                                    <select class="form-select" id="exampleFormControlSelect1"
                                                         name="adviser" placeholder="ที่ปรึกษา">
                                                         <option value="{{ $pro->adviser }}">
                                                             @foreach ($advisers as $adv)
@@ -722,7 +722,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="co_adviser">ที่ปรึกษาร่วม</label>
-                                                    <select class="form-control" id="exampleFormControlSelect1"
+                                                    <select class="form-select" id="exampleFormControlSelect1"
                                                         name="adviser2" placeholder="ที่ปรึกษา">
                                                         <option value="{{ $pro->co_adviser }}">
                                                             @foreach ($advisers as $adv)
@@ -742,7 +742,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="branch">แขนงวิชา</label>
-                                                    <select class="form-control" id="exampleFormControlSelect1"
+                                                    <select class="form-select" id="exampleFormControlSelect1"
                                                         name="branch" placeholder="แขนงวิชา">
                                                         <option selected>{{ $pro->branch }}
                                                         <option value="CS">CS</option>
@@ -759,7 +759,7 @@
 
                                                 <div class="form-group">
                                                     <label for="cate_id">หมวดหมู่โครงงาน : {{ $pro->cate_id }} </label>
-                                                    <select class="form-control" id="exampleFormControlSelect1"
+                                                    <select class="form-select" id="exampleFormControlSelect1"
                                                         name="edt_cate_id" id="etd_cate_id"
                                                         placeholder="หมวดหมู่โครงงาน">
                                                         @foreach ($categories as $cate)
@@ -829,7 +829,7 @@
 
                                                 <div class="form-group">
                                                     <label for="exampleFormControlSelect1">ประเเภทไฟล์</label>
-                                                    <select class="form-control" id="exampleFormControlSelect1"
+                                                    <select class="form-select" id="exampleFormControlSelect1"
                                                         name="type" placeholder="">
                                                         <option value="โครงงาน">โครงงาน</option>
                                                         <option value="แบบเสนอ">แบบเสนอ</option>

@@ -118,53 +118,36 @@
     </div>
 
     <footer>
-        <div class="container-fluid">
-            <div class="footer-dark">
-                <footer>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6 col-md-3 item">
-                                <div class="foot">
-                                    <h3>ประเภทโครงงานนักศึกษา</h3>
-                                    <ul>
-                                        <li>
-                                            @foreach ($catebar as $item)
-                                                <a href="\searchcate/{{ $item->cate_id }}" class="nav-link link-light">
-                                                    <svg class="bi me-2" width="16" height="16">
-                                                        <use xlink:href="#grid"></use>
-                                                    </svg>
-                                                    {{ $item->catename }}
-                                                </a>
-                                            @endforeach
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-3 item">
-                                <div class="foot">
-                                    <h3>About</h3>
-                                    <ul>
-                                        <li><a href="#">Company</a></li>
-                                        <li><a href="#">Team</a></li>
-                                        <li><a href="#">Careers</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6 item text">
-                                <div class="foot">
-                                    <h3>สาขาเทคโนโลยีสารสนเทศ</h3>
-                                    <p>เทคโนโลยี​สาร​สนเทศ​เป็น​สาขา​วิชา​ที่​มี​ความ​ทัน​สมัย​
-                                        ผู้​เรียน​จะ​มี​ความ​สามารถ​ทั้ง​ด้าน​เทคโนโลยี​และ​การ​จัดการ​ด้าน​ธุรกิจ​ผสม​ผสาน​วิทยาการ​ที่​ก้าวหน้า​ด้าน​เทคโนโลยี​สาร​สนเทศ​ให้​เกิด​ประโยชน์​สูงสุด​ต่อ​การ​บริหาร​งาน​ของ​องค์กร
-                                    </p>
-                                </div>
-                            </div>
+        <div class="fthome">
+            <div class="container-fluid">
+                <div class="row ftrow">
+                    <div class="col ftcol">
+                        <h4>ติดต่อเรา</h4>
+                        <div class="social">
+                            <a href="https://web.facebook.com/it.bru.ac.th"><img src="{{ asset('/img/facebook.png') }}"
+                                    alt="" class="imgsocial"></a>
+                            <a href="https://www.facebook.com/IT.BRU"><img src="{{ asset('/img/facebook-2.png') }}"
+                                    alt="" class="imgsocial"></a>
+                            <a href="https://www.youtube.com/HelloBENZ"><img src="{{ asset('/img/youtube.png') }}"
+                                    alt="" class="imgsocial"></a>
+                            <a href="https://it.bru.ac.th/"><img src="{{ asset('/img/browser.png') }}" alt=""
+                                    class="imgsocial"></a>
                         </div>
+
                     </div>
-                </footer>
+                    <div class="col ftcol">
+
+                    </div>
+                    <div class="col ftcol">
+                        <h3>สาขาเทคโนโลยีสารสนเทศ</h3>
+                        <p>เทคโนโลยี​สาร​สนเทศ​เป็น​สาขา​วิชา​ที่​มี​ความ​ทัน​สมัย​
+                            ผู้​เรียน​จะ​มี​ความ​สามารถ​ทั้ง​ด้าน​เทคโนโลยี​และ​การ​จัดการ​ด้าน​ธุรกิจ​ผสม​ผสาน​วิทยาการ​ที่​ก้าวหน้า​ด้าน​เทคโนโลยี​สาร​สนเทศ​ให้​เกิด​ประโยชน์​สูงสุด​ต่อ​การ​บริหาร​งาน​ของ​องค์กร
+                        </p>
+                    </div>
+                </div>
             </div>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
         </div>
+
     </footer>
 
 </body>

@@ -293,7 +293,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="adviser">ที่ปรึกษา</label>
-                                                    <select class="form-control" id="exampleFormControlSelect1"
+                                                    <select class="form-select" id="exampleFormControlSelect1"
                                                         name="adviser" placeholder="ที่ปรึกษา">
                                                         <option value="{{ $pro->adviser }}">
                                                             @foreach ($advisers as $adv)
@@ -315,7 +315,7 @@
 
                                                 <div class="form-group">
                                                     <label for="co_adviser">ที่ปรึกษาร่วม</label>
-                                                    <select class="form-control" id="exampleFormControlSelect1"
+                                                    <select class="form-select" id="exampleFormControlSelect1"
                                                         name="adviser2" placeholder="ที่ปรึกษา">
                                                         <option value="{{ $pro->co_adviser }}">
                                                             @foreach ($advisers as $adv)

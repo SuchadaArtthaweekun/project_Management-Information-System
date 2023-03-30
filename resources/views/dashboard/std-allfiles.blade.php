@@ -77,7 +77,7 @@
 
                                                         <div class="form-group">
                                                             <label for="exampleFormControlSelect1">ประเเภทไฟล์</label>
-                                                            <select class="form-control" id="exampleFormControlSelect1"
+                                                            <select class="form-select" id="exampleFormControlSelect1"
                                                                 name="type" placeholder="">
                                                                 <option value="โครงงาน">โครงงาน</option>
                                                                 <option value="แบบเสนอ">แบบเสนอ</option>

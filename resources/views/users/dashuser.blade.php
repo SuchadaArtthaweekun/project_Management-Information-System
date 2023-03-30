@@ -55,7 +55,7 @@
 
             <div class="form-group">
                 <label for="level">ระดับผู้ใช้</label>
-                <select class="form-control" id="exampleFormControlSelect1"
+                <select class="form-select" id="exampleFormControlSelect1"
                     name="level" placeholder="รหัสนักศึกษา"
                     value="{{ $user->level }}">
                     <option value="{{ $user->level}}">{{ $user->level }}</option>
@@ -66,7 +66,7 @@
             </div>
             <div class="form-group">
                 <label for="note">สถานะ</label>
-                <select class="form-control" id="exampleFormControlSelect1"
+                <select class="form-select" id="exampleFormControlSelect1"
                     name="status" placeholder="สถานะผู้ใช้"
                     value="{{ $user->status }}">
                     <option value="{{ $user->status }}"><?php  if ($user->status == '0') {echo 'off' ;}elseif ($user->status == '1') {echo 'on' ; } ?></option>

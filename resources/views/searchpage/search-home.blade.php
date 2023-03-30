@@ -9,7 +9,7 @@
                 <div class="form-group row">
                     <label for="cate_id" class="col-sm-2 col-form-label">ประเภทการค้นหา</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="exampleFormControlSelect1" name="type" id="ate_id"
+                        <select class="form-select" id="exampleFormControlSelect1" name="type" id="ate_id"
                             placeholder="หมวดหมู่โครงงาน">
                             <option value="all">ทั้งหมด</option>
                             <option value="author">ชื่อผู้จัดทำ</option>

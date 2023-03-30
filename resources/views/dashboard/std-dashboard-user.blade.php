@@ -33,7 +33,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">edit user</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">แก้ไขผู้ใช้</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
@@ -47,24 +47,18 @@
                                                             <input type="hidden" value="{{ Auth::user()->id }}"
                                                                 name="id">
                                                             <input type="text" name="name" class="form-control"
-                                                                placeholder="Enter
-                      post title"
-                                                                value="{{ Auth::user()->name }}">
+                                                            value="{{ Auth::user()->name }}">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="title">ชื่อ-สกุล (อังกฤษ)</label>
                                                             <input type="text" name="name_en" class="form-control"
-                                                                placeholder="Enter
-                      post title"
                                                                 value="{{ Auth::user()->name_en }}">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="title">อีเมล</label>
                                                             <input type="text" name="email" class="form-control"
-                                                                placeholder="Enter
-                      post title"
                                                                 value="{{ Auth::user()->email }}">
                                                         </div>
 

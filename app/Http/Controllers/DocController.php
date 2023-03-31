@@ -46,40 +46,21 @@ class DocController extends Controller
         $projectslist = DB::select('select * from projects');
         // echo $project;
         $catebar = DB::table('categories')->get();
-        // $project = DB::table('categories')
-        //     ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
-        //     ->join('documents', 'documents.project_id', '=', 'projects.project_id')
-        //     ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
-        //     ->where('projects.project_id', '=', $project_id)
-        //     ->first();
-
-        // $project = DB::select(DB::raw("
-        //     SELECT projects.*, documents.*, advisers.*, categories.* FROM projects
-        //     LEFT JOIN categories ON categories.cate_id = projects.cate_id
-        //     LEFT JOIN documents ON documents.project_id = projects.project_id
-        //     LEFT JOIN advisers ON advisers.adviser_id = projects.adviser
-        //     WHERE projects.project_id = $project_id"));
-
-        // if ($project) {
-        //     $project = $project[0];
-        // }else{
-        //     $project = [];
-        // }
-
-        // $project = Projects::where("project_id", "=", $project_id)->with("documents")
-        // ->with(['adviser_lists' => function ($query) {
-        //         $query->with('advisers');
-        //     }])
-        // ->first();
-
+        $projects = DB::table('categories')
+        ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+        ->join('documents', 'documents.project_id', '=', 'projects.project_id')
+        ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+        ->where('projects.project_id', '=', $project_id)
+        ->get();
         $project = Projects::where("project_id", "=", $project_id)->with("documents")
         ->with('advisers')
         ->with('co_advisers')
+        ->with('categories')
         ->first();
 
         // dd($project);
         // return $project;
-        return view('projects.allFiles', compact('project', 'categories', 'catebar'));
+        return view('projects.allFiles', compact('project', 'categories', 'catebar','projects'));
     }
 
     public function stdAllFiles($project_id)

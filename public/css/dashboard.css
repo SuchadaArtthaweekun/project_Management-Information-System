@@ -134,3 +134,12 @@ select.report {
 .viewCountReport {
     display: flex;
 }
+h4.titleallfile {
+    text-align: center;
+  }
+
+
+  
+p.txtreport {
+    margin: 20px 0px;
+}

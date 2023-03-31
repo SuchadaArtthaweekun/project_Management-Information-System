@@ -5,35 +5,13 @@
     <body>
         <div class="container">
             <div class="row">
-                {{-- @if (Session::get('status'))
-                    <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>อัปโหลดเสร็จสิ้นแล้ว</strong>
-                    </div>
-                @endif --}}
-
-                {{-- @if (!isset($project))
-                    @php
-                        $project = objects['title_th'];
-                    @endphp
-
-                    <h3> {{ $project->title_th }} </h3>
-                @endif
-                <div>
-                    @if ($project->title_th)
-                        {{ $project->title_th }}
-                    @endif
-                </div> --}}
-
-
-
                 <div class="col-12">
                     <div class="showDoc">
                         <h2 style="text-align: center">เอกสารโครงงานนักศึกษา</h2>
 
                         <div>
-                            <h3>{{ $project->title_th }}</h3>
-                            <h4>{{ $project->title_en }}</h4>
+                            <h4 class="titleallfile">{{ $project->title_th }}</h4>
+                            <h4 class="titleallfile">{{ $project->title_en }}</h4>
                             <h5>ผู้จัดทำ : {{ $project->author }} {{ $project->co_author }}</h5>
                             <h5>ที่ปรึกษา :
                                 @if ($project->advisers && count($project->advisers) > 0)
@@ -48,6 +26,9 @@
                                 @else
                                     {{ '-' }}
                                 @endif
+                            </h5>
+                            <h5>หมวดหมู่โครงงาน : 
+    
                             </h5>
                             </li>
                             <div class="doc_upload">
@@ -121,13 +102,13 @@
 
                         <table class="table">
                             <tr>
-                                <th>No.</th>
-                                <th>document</th>
-                                <th>type</th>
+                                <th>#</th>
+                                <th>ชื่อเอกสาร</th>
+                                <th>ประเเภทไฟล์</th>
                                 {{-- <th>project</th> --}}
-                                <th>View</th>
-                                <th>Download</th>
-                                {{-- <th>action</th> --}}
+                                <th>ดู</th>
+                                <th>ดาวน์โหลด</th>
+                                <th>ลบ</th>
                             </tr>
                             {{-- @foreach ($files as $key => $file) --}}
 
@@ -151,10 +132,6 @@
                                             <i class="fa-solid fa-trash"></i></button>
 
                                     </td>
-                                    <td>
-
-                                    </td>
-
                                 </tr>
                             @endforeach
                         </table>

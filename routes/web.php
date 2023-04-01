@@ -169,7 +169,7 @@ Route::get('approveUser/{id}', [\App\Http\Controllers\UserController::class, 'ap
 Route::get('user-report', [\App\Http\Controllers\ReportController::class, 'userReport'])->name('userReport');
 Route::get('Project-categories-port', [\App\Http\Controllers\ReportController::class, 'projectCateReport'])->name('projectCateReport');
 Route::get('Project-port', [\App\Http\Controllers\ReportController::class, 'projectReport'])->name('projectReport');
-Route::get('total-doawnload', [\App\Http\Controllers\ReportController::class, 'show'])->name('chartDownload');
+Route::get('total-doawnload', [\App\Http\Controllers\ReportController::class, 'reportDownload'])->name('reportDownload');
 
 Route::get('/forgot', [\App\Http\Controllers\PasswordResetLinkController::class, 'create'])->name('forgot');
 

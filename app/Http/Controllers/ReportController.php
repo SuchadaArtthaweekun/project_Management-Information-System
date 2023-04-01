@@ -44,7 +44,7 @@ class ReportController extends Controller
     {
 
         $categories = DB::table('categories')->get();
-        $project = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')->get();
+        $project = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')->simplePaginate(10);
         return view('report.projectReport', compact('categories', 'project'));
     }
     public function viewReport()
@@ -52,8 +52,8 @@ class ReportController extends Controller
 
         $categories = DB::table('categories')->get();
         $project = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
-        ->orderBy('projects.cate_id')
-        ->get();
+            ->orderBy('projects.cate_id')
+            ->get();
         $coutView = DB::table('projects')->where('published', '=', '1')->where('', '=', 0)->count();
         return view('report.projectReport', compact('categories', 'project'));
     }
@@ -73,27 +73,35 @@ class ReportController extends Controller
         return $pdf->download('report.projectReport');
     }
 
-    public function chartDownload()
+    public function reportDownload()
     {
         $download = DB::table('projects')
             ->select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as total'))
             ->groupBy('month')
             ->get();
-        return view('report.downloadReport',compact('download'));
+        $total = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('documents', 'documents.project_id', '=', 'projects.project_id')
+            ->orderByDesc('download_counter')
+            ->get();
+        return view('report.downloadReport', compact('download','total'));
     }
 
-   
-    public function show(){
+
+    public function show()
+    {
         $data = DB::table('documents')
-        ->select(
-            DB::raw('updated_at as month'),
-            DB::raw('download_counter as download')
-        )
-        ->get();
-        $array[]=['month','Num'];
-        foreach($data as $key => $value){
-            $array[++$key] = [$value->month,$value->download];
+            ->select(
+                DB::raw('updated_at as month'),
+                DB::raw('download_counter as download')
+            )
+            ->get();
+        $array[] = ['month', 'Num'];
+        foreach ($data as $key => $value) {
+            $array[++$key] = [$value->month, $value->download];
         }
-        return view('report.downloadReport')->with('json',json_encode($array));
+        return view('report.downloadReport')->with('json', json_encode($array));
     }
+
+    
 }

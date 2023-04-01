@@ -178,6 +178,9 @@ class SearchHomeController extends Controller
                 ->orderByDesc('updated_at')
                 ->simplePaginate(2);
         }
+
+        // $countData = count($data);
+        // $countData = $data->count();
         return view('searchpage.result-search-home', compact('data', 'list', 'catebar'));
     }
 

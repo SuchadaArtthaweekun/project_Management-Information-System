@@ -5,18 +5,24 @@
     <body>
         <div class="table-responsive">
             <div>
-                <h3>Project Report</h3>
+                <h3>รายงานโครงงานนักศึกษา</h3>
                 <div class="titileReport">
-                    <h5>รายงานโครงงานนนักศึกษาจำแนกตามหมวดหมู่โครงงาน</h5>
-                    <button onclick="window.print()">Print</button>
+                    {{-- <h5>รายงานโครงงานนนักศึกษาจำแนกตามหมวดหมู่โครงงาน</h5> --}}
+                   
                 </div>
                 {{-- show user --}}
+                <p class="txtreport">
+                    โครงงานนักศึกษาทั้งหมด :{{ $project->count() }}
+                    
+                </p>
+
+                <button onclick="window.print()"><i class="fa-sharp fa-solid fa-print"></i></button>
             
 
                 <table class="table table-striped table-hover table-condensed" name="edition" id="edition">
                     <thead>
                         <tr>
-                            <th><strong>No</strong></th>
+                            <th><strong>#</strong></th>
                             <th><strong>ชื่อโครงงาน</strong></th>
                             <th><strong>ปีที่พิมพ์</strong></th>
                             <th><strong>หมวดหมู่</strong></th>

@@ -5,14 +5,14 @@
     <body>
         <div class="table-responsive">
             <div>
-                <h3>PC Report</h3>
+                <h3>รายงานโครงงานนนักศึกษาจำแนกตามหมวดหมู่โครงงาน</h3>
                 {{-- show user --}}
                 <select name="" id="" onchange="filter(this)">เลือกหมวดหมู่
                     @foreach ($categories as $cate)
                         <option value="{{ $cate->cate_id }}">{{ $cate->catename }}</option>
                     @endforeach
                 </select>
-                <button onclick="window.print()">Print</button>
+                <button onclick="window.print()"><i class="fa-sharp fa-solid fa-print"></i></button>
                 <table class="table table-striped table-hover table-condensed" name="project" id="project">
                     <thead>
                         <tr>

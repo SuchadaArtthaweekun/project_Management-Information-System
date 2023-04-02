@@ -2,49 +2,18 @@
 
 @section('content')
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.69/pdfmake.js"></script>
+    {{-- <script type="text/javascript" src="<?php echo asset('js/vfs_font.js'); ?>"></script> --}}
+   
     <div id="chart_div"></div>
     <div class="table-responsive">
         <div>
-            <h3>รายงานสรุปยอดดาวน์โฆลด</h3>
-            <button onclick="window.print()"><i class="fa-sharp fa-solid fa-print"></i></button>
+            <h3>รายงานสรุปยอดดาวน์โหลด</h3>
+            <button name="exportPdf" id="exportPdf" onclick="exportPdf()"><i class="fa-sharp fa-solid fa-print"></i></button>
 
             <p class="txtreport">
-               
+
             </p>
-
-
-
-
-
-            {{-- show user --}}
-            {{-- <table class="table table-striped table-hover table-condensed">
-            <h3>รายชื่อผู้ดูแลระบบ</h3>
-            <thead>
-                <tr>
-                    <th><strong>No</strong></th>
-                    <th><strong>ชื่อ</strong></th>
-                    <th><strong>อีเมล</strong></th>
-                    <th><strong>ระดับผู้ใช้</strong></th>
-                    <th><strong>รหัสประจำตัว</strong></th>
-                    <th><strong>สถานะ</strong></th>
-                    <th><strong>เบอร์โทร</strong></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($userAdmin as $user)
-                    <tr>
-                        <th>{{ $user->id }}</th>
-                        <th>{{ $user->name }} <br>  {{ $user->name_en }}</th>
-                        <th>{{ $user->email }}</th>
-                        <th>{{ $user->level }}</th>
-                        <th>{{ $user->username }}</th>
-                        <th>{{ $user->status }}</th>
-                        <th>{{ $user->user_tel }}</th>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table> --}}
-
 
             <table class="table table-striped table-hover table-condensed">
                 <thead>
@@ -52,7 +21,7 @@
                         <th><strong>#</strong></th>
                         <th><strong>ชื่อ</strong></th>
                         <th><strong>ยอดดาวน์โหลด</strong></th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
@@ -61,11 +30,54 @@
                             <th>{{ $totald->id }}</th>
                             <th>{{ $totald->title_th }} </th>
                             <th>{{ $totald->download_counter }}</th>
-                            
+
                         </tr>
                     @endforeach
 
                 </tbody>
             </table>
+
+            <script type="text/javascript">
+            var pdfFonts = require('<?php echo asset('js/vfs_font.js'); ?>');
+                pdfMake.vfs = pdfFonts.pdfMake.vfs;
+                pdfMake.fonts = {
+                    THSarabunNew: {
+                        normal: "https://github.com/sathittham/pdfmake-customfont/blob/main/examples/fonts/THSarabunNew.ttf",
+                        bold: "https://github.com/sathittham/pdfmake-customfont/blob/main/examples/fonts/THSarabunNew%20Bold.ttf",
+                        italics: "https://github.com/sathittham/pdfmake-customfont/blob/main/examples/fonts/THSarabunNew%20Italic.ttf",
+                        bolditalics: "https://github.com/sathittham/pdfmake-customfont/blob/main/examples/fonts/THSarabunNew%20BoldItalic.ttf",
+                    },
+                    Roboto: {
+                        normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
+                        bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
+                        italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf',
+                        bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf'
+                    },
+                    Fontello: {
+                        normal: "fontello.ttf",
+                        bold: "fontello.ttf",
+                        italics: "fontello.ttf",
+                        bolditalics: "fontello.ttf",
+                    },
+                };
+
+                function examplealrt() {
+                    alert('mayang')
+                }
+
+                function exportPdf() {
+                    var docDefinition = {
+                        content: [{
+                            text: "สร้าง pdf ภาษาไทยด้วย pdfmake",
+                            fontSize: 15,
+                        }, ],
+                        defaultStyle: {
+                            font: "THSarabunNew",
+                        },
+                    };
+                    pdfMake.createPdf(docDefinition).open();
+                }
+            </script>
+
         </div>
     @endsection

@@ -5,8 +5,15 @@
     <div id="chart_div"></div>
     <div class="table-responsive">
         <div>
-            <h3>รายงานสรุปยอดเข้าชม</h3>
+            <h3>รายงานสรุปยอดดาวน์โหลด</h3>
             <button name="exportPdf" id="exportPdf" onclick="exportPdf()"><i class="fa-sharp fa-solid fa-print"></i></button>
+
+            {{-- <p class="txtreport">
+                {{$projects}}
+            </p>
+            <div>
+                {{$totalD}}
+            </div> --}}
 
             <table class="table table-striped table-hover table-condensed">
                 <thead>
@@ -18,12 +25,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($View as $total)
+                    @foreach ($totalD as $totald)
                         <tr>
                             <th></th>
-                            <th>{{ $total->title_th }} </th>
-                            <th>{{ $total->view }}</th>
-                            <th>{{ $totalV}}</th>
+                            <th>{{ $totald->title_th }} </th>
+                            <th>{{ $totald->download }}</th>
+
                         </tr>
                     @endforeach
 

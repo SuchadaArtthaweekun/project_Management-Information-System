@@ -84,7 +84,56 @@ class ReportController extends Controller
             ->join('documents', 'documents.project_id', '=', 'projects.project_id')
             ->orderByDesc('download_counter')
             ->get();
-        return view('report.downloadReport', compact('download','total'));
+        return view('report.downloadReport', compact('download', 'total'));
+    }
+
+    public function reportDownloadTotal()
+    {
+        $download = DB::table('projects')
+            ->select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as total'))
+            ->groupBy('month')
+            ->get();
+        $total = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('documents', 'documents.project_id', '=', 'projects.project_id')
+            ->orderByDesc('download_counter')
+            ->get();
+        $projects = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('documents', 'documents.project_id', '=', 'projects.project_id')
+            // ->select(DB::raw("projects.project_id"))
+            // ->select(DB::raw("projects.title_th"))
+            ->select(DB::raw("SUM(download_counter) as download", 'projects.project_id', 'title_th'))
+            ->groupBy(DB::raw("(documents.project_id)"))
+            ->orderByDesc(DB::raw("download"))
+            // ->SUM('download_counter')
+            ->get();
+        $totalD = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('documents', 'documents.project_id', '=', 'projects.project_id')
+            ->select(array(DB::raw("SUM(download_counter) as download"), 'projects.project_id', 'title_th'))
+            ->groupBy('documents.project_id')
+            ->orderByDesc(DB::raw("download"))
+            ->get();
+
+        return view('report.downloadTotalReport', compact('download', 'total', 'projects', 'totalD'));
+    }
+
+    public function reportViewTotal()
+    {
+        $View = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('documents', 'documents.project_id', '=', 'projects.project_id')
+            ->select(array(DB::raw("SUM(view_counter) as view"), 'projects.project_id', 'title_th'))
+            ->groupBy('documents.project_id')
+            ->orderByDesc(DB::raw("view"))
+            ->get();
+        $totalV = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('documents', 'documents.project_id', '=', 'projects.project_id')
+            ->select(DB::raw("SUM(view_counter) as view"))
+            ->get();
+        return view('report.viewReport', compact('View','totalV'));
     }
 
 
@@ -102,6 +151,4 @@ class ReportController extends Controller
         }
         return view('report.downloadReport')->with('json', json_encode($array));
     }
-
-    
 }

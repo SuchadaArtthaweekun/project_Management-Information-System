@@ -170,7 +170,8 @@ Route::get('user-report', [\App\Http\Controllers\ReportController::class, 'userR
 Route::get('Project-categories-port', [\App\Http\Controllers\ReportController::class, 'projectCateReport'])->name('projectCateReport');
 Route::get('Project-port', [\App\Http\Controllers\ReportController::class, 'projectReport'])->name('projectReport');
 Route::get('total-doawnload', [\App\Http\Controllers\ReportController::class, 'reportDownload'])->name('reportDownload');
-
+Route::get('totaldoawnload', [\App\Http\Controllers\ReportController::class, 'reportDownloadTotal'])->name('reportDownloadTotal');
+Route::get('totalview', [\App\Http\Controllers\ReportController::class, 'reportViewTotal'])->name('reportViewTotal');
 Route::get('/forgot', [\App\Http\Controllers\PasswordResetLinkController::class, 'create'])->name('forgot');
 
 

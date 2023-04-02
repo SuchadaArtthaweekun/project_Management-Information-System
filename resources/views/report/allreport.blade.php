@@ -41,7 +41,9 @@
             <div class="col-6">
                 <div class="report_dash">
                     <div class="col-10">
+                        <a href="{{ route('reportDownloadTotal') }}">
                         <h5>รายงานยอดดาวน์โหลด</h5>
+                    </a>
                     </div>
 
                 </div>
@@ -51,7 +53,9 @@
             <div class="col-6">
                 <div class="report_dash">
                     <div class="col-10">
+                        <a href="{{ route('reportViewTotal') }}">
                         <h5>รายงานยอดเข้าชม</h5>
+                    </a>
                     </div>
 
                 </div>

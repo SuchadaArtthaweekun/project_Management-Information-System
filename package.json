@@ -24,6 +24,7 @@
         "@sweetalert2/themes": "^5.0.12",
         "bootstrap": "^5.2.2",
         "chart.js": "^4.2.1",
+        "pdfmake": "^0.2.7",
         "sweetalert2": "^11.5.1"
     }
 }

@@ -51,13 +51,13 @@
                                         </div> --}}
 
                                         <div class="mt-4">
-                                            <x-label for="password" :value="__('Password')" />
+                                            <x-label for="password" :value="__('รหัสผ่าน')" />
 
                                             <x-input id="password" class="form-control" type="password"
                                                 name="password" required autocomplete="new-password" />
                                         </div>
                                         <div class="mt-4">
-                                            <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                                            <x-label for="password_confirmation" :value="__('ยืนยันรหัสผ่าน')" />
 
                                             <x-input id="password_confirmation" class="form-control" type="password"
                                                 name="password_confirmation" required />
@@ -137,21 +137,21 @@
             <table class="table table-striped table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th><strong>รหัส</strong></th>
+                        <th><strong>ลำดับ</strong></th>
                         <th><strong>ชื่อ</strong></th>
                         <th><strong>ชื่อ (อังกฤษ)</strong></th>
                         <th><strong>อีเมล</strong></th>
                         <th><strong>ระดับผู้ใช้</strong></th>
-                        <th><strong>รหัสนักศึกษาหรือรหัสอาจารย์</strong></th>
+                        <th><strong>รหัสประจำตัว</strong></th>
                         <th><strong>สถานะ</strong></th>
                         <th><strong>เบอร์โทร</strong></th>
-                        <th><strong>เพิ่มเติม</strong></th>
+                        <th><strong>แก้ไข ลบ</strong></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($users as $key=>$user)
                         <tr>
-                            <th>{{ $user->id }}</th>
+                            <th>{{ ++$key }}</th>
                             <th>{{ $user->name }}</th>
                             <th>{{ $user->name_en }}</th>
                             <th>{{ $user->email }}</th>
@@ -192,23 +192,18 @@
                                                             <input type="hidden" value="{{ $user->id }}"
                                                                 name="id">
                                                             <input type="text" name="name" class="form-control"
-                                                                placeholder="Enter
-                                                      post title"
                                                                 value="{{ $user->name }}">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="title">ชื่อ-สกุล (อังกฤษ)</label>
                                                             <input type="text" name="name_en" class="form-control"
-                                                                placeholder="Enter
-                                                      post title"
                                                                 value="{{ $user->name_en }}">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="title">อีเมล</label>
                                                             <input type="text" name="email" class="form-control"
-                                                               
                                                                 value="{{ $user->email }}">
                                                         </div>
 
@@ -263,7 +258,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">ปิด</button>
-                                                    <button type="submit" class="btn btn-primary"
+                                                    <button type="submit" class="btn btn-primary" onclick="conf()"
                                                         href="{{ route('alluser') }}">บันทึก</button>
                                                 </div>
                                             </form>
@@ -302,6 +297,10 @@
                     ).then(()=>{location.reload();})
                 }
             })
+        }
+        
+        const conf = (id) => {
+            Swal.fire('บันทึกสำเร็จ')
         }
     </script>
 @endsection

@@ -81,8 +81,29 @@ class UserController extends Controller
         // }else if(Auth::user()->level == 'อาจารย์'){
         //     return redirect('tchDashUser');
         // }
-
+            // echo $users;
         return redirect()->back(); 
+        
+    }
+
+    public function edituser(Request $request)
+    {
+        $name = $request->name;
+        $name_en = $request->name_en;
+        $email = $request->email;
+        $user_tel = $request->user_tel;
+        $username = $request->note;
+        $users = User::find(Auth::user()->id);
+        $users->name = $name;
+        $users->name_en = $name_en;
+        $users->email = $email;
+        $users->user_tel = $user_tel;
+        $users->username = $username;
+        $users->save();
+
+        
+       
+        // return redirect()->back(); 
         
     }
 
@@ -138,5 +159,11 @@ class UserController extends Controller
     {
         $users = DB::table('users')->get();
         return view('dashboard.tch-dashboard', compact('users'));
+    }
+
+    public function stdUser()
+    {
+        $users = DB::table('users')->get();
+        return view('dashboard.std-edituser', compact('users'));
     }
 }

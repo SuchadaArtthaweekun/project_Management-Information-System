@@ -56,7 +56,7 @@
                 </table>
 
                 <div class="titileReport">
-                    <h5>รายงานโครงงานนนักศึกษาจำแนกตามหมวดหมู่โครงงาน</h5>
+                    <h5>รายงานโครงงานนนักศึกษาจำแนกตามรุ่น</h5>
                     <select name="" id="" onchange="gen(this)" class="report">เลือกโครงงานนักศึกษาตามรุ่น
                         <option value="51">51</option>
                         <option value="52">52</option>

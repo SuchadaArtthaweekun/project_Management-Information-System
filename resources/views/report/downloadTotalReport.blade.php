@@ -18,16 +18,16 @@
             <table class="table table-striped table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th><strong>#</strong></th>
+                        <th><strong>ลำดับ</strong></th>
                         <th><strong>ชื่อ</strong></th>
                         <th><strong>ยอดดาวน์โหลด</strong></th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($totalD as $totald)
+                    @foreach ($totalD as $key =>$totald)
                         <tr>
-                            <th></th>
+                            <th> ++$key</th>
                             <th>{{ $totald->title_th }} </th>
                             <th>{{ $totald->download }}</th>
 

@@ -1,4 +1,4 @@
-@extends('layouts.tch-dashboard')
+@extends('layouts.std-dashboard')
 
 @section('content')
     <div class="container">
@@ -20,16 +20,18 @@
                             <p>เบอร์โทร : {{ Auth::user()->user_tel }}</p>
                             <p>รหัสนักศึกษา : {{ Auth::user()->note }}</p>
                         </div>
+                        
+                        
                         <div class="btneditmembr">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#modal_{{ Auth::user()->id }}">
+                                data-bs-target="#modal_editself{{ Auth::user()->id }}">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
                             <div class="editmember">
                                 <!-- Modal -->
-                                <div class="modal fade" id="modal_{{ Auth::user()->id }}" tabindex="-1"
-                                    aria-labelledby="modal_{{ Auth::user()->id }}" aria-hidden="true">
+                                <div class="modal fade" id="modal_editself{{ Auth::user()->id }}" tabindex="-1"
+                                    aria-labelledby="modal_editself{{ Auth::user()->id }}" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -37,13 +39,12 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
-                                            <form method="get" action="{{ route('updateuser') }}">
+                                            <form method="get" action="{{ route('edituser') }}">
                                                 <div class="modal-body">
                                                     <div class="col-md-12">
-
                                                         @csrf
                                                         <div class="form-group">
-                                                            <label for="name" class="lbtxtfrm">ชื่อ-สกุล</label>
+                                                            <label for="title" class="lbtxtfrm">ชื่อ-สกุล</label>
                                                             <input type="hidden" value="{{ Auth::user()->id }}"
                                                                 name="id">
                                                             <input type="text" name="name" class="form-control"
@@ -75,20 +76,12 @@
                                                             <input type="text" name="user_tel" class="form-control"
                                                                 value="{{ Auth::user()->user_tel }}">
                                                         </div>
-
-                                                        <div class="form-group">
-                                                            <label for="note" class="lbtxtfrm">รหัสนักศึกษาหรือรหัสอาจารย์</label>
-                                                            <input type="text" name="note" class="form-control"
-                                                                value="{{ Auth::user()->note }}">
-                                                        </div>
-
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">ปิด</button>
-                                                    <button type="submit" class="btn btn-primary"
-                                                        href="{{ route('alluser') }}">บันทึก</button>
+                                                    <button type="submit" class="btn btn-primary" >บันทึก</button>
                                                 </div>
                                             </form>
                                         </div>

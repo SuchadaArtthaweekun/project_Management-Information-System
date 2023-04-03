@@ -144,9 +144,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" href="{{ route('allproject') }}">Save
-                                changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                            <button type="submit" class="btn btn-primary" href="{{ route('allproject') }}">บันทึก</button>
                         </div>
                     </form>
                 </div>

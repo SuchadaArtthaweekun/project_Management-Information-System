@@ -1,89 +1,106 @@
 @extends('layouts.fordashboard')
 
 @section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div>
+                {{-- <h3>Your Profile</h3> --}}
+                {{-- {{ $users }} --}}
 
-    <body>
-        <div class="container">
+                <form action="" class="memberUser">
+                    <div>
+                       รหัสผู้ใช้ : {{ Auth::user()->id }}
+                    </div>
+                    <div>
+                        <p> ชื่อ-สกุล : {{ Auth::user()->name }} </p <p>ชื่อ-สกุล(อังกฤษ) : {{ Auth::user()->name_en }}
+                        </p>
+                        <p>อีเมล : {{ Auth::user()->email }}</p>
+                        <p>ระดับผู้ใช้ : {{ Auth::user()->level }}</p>
+                        <p>เบอร์โทร : {{ Auth::user()->user_tel }}</p>
+                        <p>รหัสนักศึกษา : {{ Auth::user()->note }}</p>
+                    </div>
+                    <div class="btneditmembr">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#modal_{{ Auth::user()->id }}">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <div class="editmember">
+                            <!-- Modal -->
+                            <div class="modal fade" id="modal_{{ Auth::user()->id }}" tabindex="-1"
+                                aria-labelledby="modal_{{ Auth::user()->id }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">แก้ไขผู้ใช้</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <form method="get" action="{{ route('updateuser') }}">
+                                            <div class="modal-body">
+                                                <div class="col-md-12">
 
-            <div class="row">
-                <div class="col-md-6">
-                    <form method="get" action="{{ route('updateuser') }}">
-                        @csrf
-                        <div class="form-group">
-                            <label for="title">ชื่อ-สกุล</label>
-                            <input type="hidden" value="{{ $users->id }}" name="id">
-                            <input type="text" name="name" class="form-control"
-                                placeholder="Enter
-                        post title" value="{{ $users->name }}">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label for="title">ชื่อ-สกุล</label>
+                                                        <input type="hidden" value="{{ Auth::user()->id }}"
+                                                            name="id">
+                                                        <input type="text" name="name" class="form-control"
+                                                            value="{{ Auth::user()->name }}">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="title">ชื่อ-สกุล (อังกฤษ)</label>
+                                                        <input type="text" name="name_en" class="form-control"
+                                                            value="{{ Auth::user()->name_en }}">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="title">อีเมล</label>
+                                                        <input type="text" name="email" class="form-control"
+                                                            value="{{ Auth::user()->email }}">
+                                                    </div>
+
+
+                                                    <input type="hidden" name="password" class="form-control"
+                                                        value="{{ Auth::user()->password }}">
+                                                    <input type="hidden" name="level" class="form-control"
+                                                        value="{{ Auth::user()->level }}">
+                                                    <input type="hidden" name="status" class="form-control"
+                                                        value="{{ Auth::user()->status }}">
+
+                                                    <div class="form-group">
+                                                        <label for="user_tel">เบอร์โทร</label>
+                                                        <input type="text" name="user_tel" class="form-control"
+                                                            value="{{ Auth::user()->user_tel }}">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="note">รหัสนักศึกษาหรือรหัสอาจารย์</label>
+                                                        <input type="text" name="note" class="form-control"
+                                                            value="{{ Auth::user()->note }}">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">ปิด</button>
+                                                <button type="submit" class="btn btn-primary"
+                                                    href="{{ route('alluser') }}">บันทึก</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- end modal --}}
                         </div>
+                </form>
 
-                        <div class="form-group">
-                            <label for="title">ชื่อ-สกุล (อังกฤษ)</label>
-                            <input type="text" name="name_en" class="form-control"
-                                placeholder="Enter
-                        post title" value="{{ $users->name_en }}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="title">อีเมล</label>
-                            <input type="text" name="email" class="form-control"
-                                placeholder="Enter
-                        post title" value="{{ $users->email }}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="title">รหัสผ่าน</label>
-                            <input type="text" name="password" class="form-control"
-                                placeholder="Enter
-                        post title" value="{{ $users->password }}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="user_tel">เบอร์โทร</label>
-                            <input type="text" name="user_tel" class="form-control"
-                                placeholder="Enter
-                        post title" value="{{ $users->user_tel }}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="note">รหัสนักศึกษาหรือรหัสอาจารย์</label>
-                            <input type="text" name="note" class="form-control"
-                                placeholder="Enter
-                        post title" value="{{ $users->note }}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="level">ระดับผู้ใช้</label>
-                            <select class="form-select" id="exampleFormControlSelect1" name="level"
-                                placeholder="รหัสนักศึกษา" value="{{ $users->level }}">
-                                <option selected>เลือกระดับผู้ใช้</option>
-                                <option value="ผู้ดูแลระบบ">1 : ผู้ดูแลระบบ</option>
-                                <option value="อาจารย์">2 : อาจารย์</option>
-                                <option value="นักศึกษา">3 : นักศึกษา</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="note">สถานะ</label>
-                            <select class="form-select" id="exampleFormControlSelect1" name="status"
-                                placeholder="สถานะผู้ใช้" value="{{ $users->status }}">
-                                <option value="0">off</option>
-                                <option value="1">on</option>
-                            </select>
-                        </div>
-
-
-
-                        <button type="submit" href="allcate">ยืนยัน</button>
-                    </form>
-                </div>
             </div>
         </div>
-
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+Or
-        CXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu
-        735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMM
-        V+rV" crossorigin="anonymous"></script>
-    </body>
+    </div>
+</div>
+</div>
 @endsection

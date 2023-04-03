@@ -133,7 +133,29 @@ class ReportController extends Controller
             ->join('documents', 'documents.project_id', '=', 'projects.project_id')
             ->select(DB::raw("SUM(view_counter) as view"))
             ->get();
-        return view('report.viewReport', compact('View','totalV'));
+        return view('report.viewReport', compact('View', 'totalV'));
+    }
+
+    public function reportGenTotal()
+    {
+        $selectGen  = DB::table('projects')
+            ->select('gen')
+            ->distinct()
+            ->orderByDesc(DB::raw("gen"))
+            ->get();
+        $project = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')->simplePaginate(10);
+        $gen = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->select(array(DB::raw("SUM(gen) as sumGen"), 'projects.project_id', 'title_th', 'gen'))
+            ->groupBy('projects.gen')
+            ->orderByDesc(DB::raw("gen"))
+            ->get();
+        $totalG = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('documents', 'documents.project_id', '=', 'projects.project_id')
+            ->select(DB::raw("SUM(gen) as sumGen"))
+            ->get();
+        return view('report.genReport', compact('gen', 'totalG', 'project', 'selectGen'));
     }
 
 

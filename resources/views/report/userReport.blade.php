@@ -55,7 +55,7 @@
                 <table class="table table-striped table-hover table-condensed">
                     <thead>
                         <tr>
-                            <th><strong>#</strong></th>
+                            <th><strong>ลำดับ</strong></th>
                             <th><strong>ชื่อ</strong></th>
                             <th><strong>อีเมล</strong></th>
                             <th><strong>ระดับผู้ใช้</strong></th>
@@ -64,9 +64,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $user)
+                        @foreach ($users as $key =>$user)
                             <tr>
-                                <th>{{ $user->id }}</th>
+                                <th>{{  ++$key }}</th>
                                 <th>{{ $user->name }} <br> {{ $user->name_en }}</th>
                                 <th>{{ $user->email }}</th>
                                 <th>{{ $user->level }}</th>

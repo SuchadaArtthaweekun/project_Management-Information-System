@@ -72,7 +72,7 @@ Route::get('/alluser', [\App\Http\Controllers\UserController::class, 'allUser'])
 Route::get('/addUser', [\App\Http\Controllers\UserController::class, 'addUser'])->name('addUser');
 Route::get('/addUserForm', [\App\Http\Controllers\UserController::class, 'addUserForm'])->name('addUserForm');
 Route::get('/deleteUser/{id}', [\App\Http\Controllers\UserController::class, 'deleteUser'])->name('deleteUser');
-Route::get('edituser', [\App\Http\Controllers\UserController::class, 'updateuser'])->name('updateuser');
+Route::get('updateuser', [\App\Http\Controllers\UserController::class, 'updateuser'])->name('updateuser');
 Route::get('edituser/{id}', [\App\Http\Controllers\UserController::class, 'updateFormUser'])->name('updateFormUser');
 
 //Project
@@ -90,7 +90,9 @@ Route::post('/stdUpdateproject', [\App\Http\Controllers\ProjectController::class
 Route::get('/stdProjects', [\App\Http\Controllers\ProjectController::class, 'stdProjects'])->name('stdProjects');
 Route::get('/stdAddProject', [\App\Http\Controllers\ProjectController::class, 'stdAddProject'])->name('stdAddProject');
 Route::get('/stdAllFiles/{project_id}', [\App\Http\Controllers\DocController::class, 'stdAllFiles'])->name('stdAllFiles');
+Route::get('/std-EditUser', [\App\Http\Controllers\UserController::class, 'stdUser'])->name('stdUser');
 
+Route::get('edituserself', [\App\Http\Controllers\UserController::class, 'edituser'])->name('edituser');
 Route::post('/tchUpdateproject', [\App\Http\Controllers\ProjectController::class, 'tchUpdateproject'])->name('tchUpdateproject');
 Route::get('/tchProjects', [\App\Http\Controllers\ProjectController::class, 'tchProjects'])->name('tchProjects');
 Route::get('/tchAddProject', [\App\Http\Controllers\ProjectController::class, 'tchAddProject'])->name('tchAddProject');
@@ -154,8 +156,7 @@ Route::get('cate4Project', [\App\Http\Controllers\SearchHomeController::class, '
 Route::get('/get-file/{doc_id}/{docname}', [DocController::class, 'Download']);
 Route::get('/get-pdf/{doc_path}', [DocController::class, 'getpdf']);
 
-// report
-Route::get('all-report', [\App\Http\Controllers\ReportController::class, 'index'])->name('allreport');
+
 
 // pending
 Route::get('pending-projects', [\App\Http\Controllers\ProjectController::class, 'pendingProject'])->name('pendingProject');
@@ -166,12 +167,14 @@ Route::get('approveUser/{id}', [\App\Http\Controllers\UserController::class, 'ap
 // dash
 
 //Report
+Route::get('all-report', [\App\Http\Controllers\ReportController::class, 'index'])->name('allreport');
 Route::get('user-report', [\App\Http\Controllers\ReportController::class, 'userReport'])->name('userReport');
 Route::get('Project-categories-port', [\App\Http\Controllers\ReportController::class, 'projectCateReport'])->name('projectCateReport');
 Route::get('Project-port', [\App\Http\Controllers\ReportController::class, 'projectReport'])->name('projectReport');
 Route::get('total-doawnload', [\App\Http\Controllers\ReportController::class, 'reportDownload'])->name('reportDownload');
 Route::get('totaldoawnload', [\App\Http\Controllers\ReportController::class, 'reportDownloadTotal'])->name('reportDownloadTotal');
 Route::get('totalview', [\App\Http\Controllers\ReportController::class, 'reportViewTotal'])->name('reportViewTotal');
+Route::get('totalgen', [\App\Http\Controllers\ReportController::class, 'reportGenTotal'])->name('reportGenTotal');
 Route::get('/forgot', [\App\Http\Controllers\PasswordResetLinkController::class, 'create'])->name('forgot');
 
 

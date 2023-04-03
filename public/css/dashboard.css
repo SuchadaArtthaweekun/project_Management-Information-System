@@ -143,3 +143,18 @@ h4.titleallfile {
 p.txtreport {
     margin: 20px 0px;
 }
+
+label.lbtxtfrm {
+    font-weight: 200;
+    text-align: left;
+    font-size: 16px;
+}
+
+/* report */
+.selectGen {
+    display: flex;
+}
+select.reportSelectGen {
+    font-size: 15px;
+    margin: 0px 20px;
+}

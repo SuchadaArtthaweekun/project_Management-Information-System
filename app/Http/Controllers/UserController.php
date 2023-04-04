@@ -86,25 +86,27 @@ class UserController extends Controller
         
     }
 
-    public function edituser(Request $request)
+    public function updateuserself(Request $request)
     {
         $name = $request->name;
         $name_en = $request->name_en;
         $email = $request->email;
         $user_tel = $request->user_tel;
-        $username = $request->note;
-        $users = User::find(Auth::user()->id);
+
+        $users = User::find($request->id);
         $users->name = $name;
         $users->name_en = $name_en;
         $users->email = $email;
         $users->user_tel = $user_tel;
-        $users->username = $username;
         $users->save();
+            // echo $users;
+        return redirect()->back(); 
+    }
 
-        
-       
-        // return redirect()->back(); 
-        
+    public function edituserself($id)
+    {
+        $user = User::find($id);
+        return view('dashboard.std-edituser', compact('user'));
     }
 
     public function updateFormUser($id)

@@ -128,7 +128,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('stdUser') }}" class="nav-link">
+                                <a href="/edituserself/{{Auth::user()->id}}" class="nav-link">
                                     <i class="fa-solid fa-user"></i>
                                     <p>แก้ไขข้อมูลส่วนตัว</p>
                                 </a>

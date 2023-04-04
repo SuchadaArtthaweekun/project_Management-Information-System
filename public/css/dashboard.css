@@ -1,38 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300&display=swap');
-*{
+
+* {
     font-family: 'Noto Sans Thai', sans-serif;
 
 }
+
 .titledashboard {
     margin: 15px 0;
     text-align: center;
 }
+
 aside.main-sidebar.sidebar-dark-primary.elevation-4 {
-    background-color:#6FA8DC;
+    background-color: #6FA8DC;
     /* background-image: linear-gradient(to top,#d8b5ff, #1eae98); */
 }
+
 a.nav-link p {
     color: black;
 }
+
 a.nav-link i {
     color: black;
 }
 
-.logo{
+.logo {
     height: 72px;
 }
-.brand-link{
+
+.brand-link {
     display: contents;
-    text-align: center;    
+    text-align: center;
 }
-.txtbrandlink{
+
+.txtbrandlink {
     margin: 25%;
 }
+
 .content {
     padding: 1%;
     width: 80%;
     float: right;
 }
+
 .logout a {
     margin: 15px;
     padding: 8px;
@@ -40,29 +49,35 @@ a.nav-link i {
     border-radius: 16px;
     text-decoration: none;
 }
-body:not(.layout-fixed) .main-sidebar{
+
+body:not(.layout-fixed) .main-sidebar {
     height: inherit;
     min-height: 100%;
     position: absolute;
     top: 0;
-    width: 20%; 
+    width: 20%;
 }
-ul.navbar-nav{
+
+ul.navbar-nav {
     width: 80%;
     justify-content: right;
 }
-.showdatafile{
+
+.showdatafile {
     justify-content: center;
 }
-.showdoc{
+
+.showdoc {
     width: 80%;
 }
-.result{
+
+.result {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin: 20px;
     border-radius: 10px;
     padding: 20px;
 }
+
 /* dashboard */
 .content_dash {
     padding: 20px;
@@ -70,13 +85,16 @@ ul.navbar-nav{
     border-radius: 16px;
     margin-bottom: 20px;
 }
-th.abtract{
+
+th.abtract {
     text-overflow: ellipsis;
     overflow: scroll;
 }
-.hideid{
+
+.hideid {
     display: none;
 }
+
 .report_dash {
     display: flex;
     background-color: #A8DADC;
@@ -84,33 +102,41 @@ th.abtract{
     border-radius: 10px;
     margin: 10px 10px;
 }
+
 .doc_upload {
     display: flex;
 }
+
 .doc_upload button {
     justify-content: center;
-    margin:11px;
+    margin: 11px;
 }
+
 .doc_upload p {
     margin-top: 15px;
     justify-content: center;
     align-self: center;
 }
+
 button.btn.btn-danger {
     background: #e76f51;
 }
+
 button.btn.btn-primary {
     background: #2a9d8f;
 }
+
 button.btn.btn-warning {
     background: #fca311;
 }
+
 th.btnAction button {
     margin: 5px;
     width: 37px;
     height: 37px;
     font-size: 15px;
 }
+
 form.memberUser {
     justify-content: center;
     font-size: 20px;
@@ -121,25 +147,30 @@ form.memberUser {
     width: 45%;
     box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
 }
-form.memberUser button{
+
+form.memberUser button {
     justify-content: center;
     text-align: center;
 }
+
 select.report {
     width: 7%;
 }
+
 .titileReport {
     margin-top: 50px;
 }
+
 .viewCountReport {
     display: flex;
 }
+
 h4.titleallfile {
     text-align: center;
-  }
+}
 
 
-  
+
 p.txtreport {
     margin: 20px 0px;
 }
@@ -154,7 +185,26 @@ label.lbtxtfrm {
 .selectGen {
     display: flex;
 }
+
 select.reportSelectGen {
     font-size: 15px;
     margin: 0px 20px;
+}
+
+.row.editUser {
+    justify-content: center;
+    margin: 30px 0;
+    padding: 20px;
+    /* border: solid blue; */
+
+}
+
+.row.editUser .col-8 {
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.headEditUserPage h4 {
+    text-align: center;
 }

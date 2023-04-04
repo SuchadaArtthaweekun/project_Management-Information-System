@@ -13,6 +13,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DashController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -40,8 +41,10 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/dashboard', [\App\Http\Controllers\DashController::class, 'sum'])->middleware(['auth'])->name('dashboard');
 Route::get('dashuser', [\App\Http\Controllers\UserController::class, 'dashuser'])->middleware('level')->name('dashuser');
-Route::get('stddashboard', [\App\Http\Controllers\UserController::class, 'stddashboard'])->name('stddashboard')->middleware('std');
-Route::get('tchdashboard', [\App\Http\Controllers\UserController::class, 'tchdashboard'])->name('tchdashboard')->middleware('tch');
+// Route::get('stddashboard', [\App\Http\Controllers\UserController::class, 'stddashboard'])->name('stddashboard')->middleware('std');
+// Route::get('tchdashboard', [\App\Http\Controllers\UserController::class, 'tchdashboard'])->name('tchdashboard')->middleware('tch');
+Route::get('stddashboard', [\App\Http\Controllers\UserController::class, 'stddashboard'])->name('stddashboard');
+Route::get('tchdashboard', [\App\Http\Controllers\UserController::class, 'tchdashboard'])->name('tchdashboard');
 Route::get('tchDashUser', [\App\Http\Controllers\UserController::class, 'tchDashUser'])->name('tchDashUser')->middleware('tch');
 require __DIR__ . '/auth.php';
 
@@ -66,6 +69,17 @@ Route::get('/sum', [\App\Http\Controllers\DashHomeController::class, 'sum'])->na
 //dashboard
 Route::get('/allcate', [\App\Http\Controllers\cateController::class, 'allcate'])->name('allcate');
 Route::get('/dasd', [\App\Http\Controllers\DashController::class, 'eachDash'])->name('eachDash');
+Route::get('/loginDash', [\App\Http\Controllers\DashController::class, 'loginDash'])->name('loginDash');
+Route::get('/dashboardUser', function () {
+    $user = Auth::user()->level; // assuming you're using Laravel's authentication system
+    if (auth()->user()->level == 'ผู้ดูแลระบบ') {
+        return redirect()->route('dashboard');
+    } else if (auth()->user()->level == 'อาจารย์') {
+        return redirect()->route('tchdashboard');
+    } else{
+        return redirect()->route('stddashboard');
+    }
+});
 
 //user
 Route::get('/alluser', [\App\Http\Controllers\UserController::class, 'allUser'])->name('alluser');
@@ -91,7 +105,10 @@ Route::get('/stdProjects', [\App\Http\Controllers\ProjectController::class, 'std
 Route::get('/stdAddProject', [\App\Http\Controllers\ProjectController::class, 'stdAddProject'])->name('stdAddProject');
 Route::get('/stdAllFiles/{project_id}', [\App\Http\Controllers\DocController::class, 'stdAllFiles'])->name('stdAllFiles');
 Route::get('/std-EditUser', [\App\Http\Controllers\UserController::class, 'stdUser'])->name('stdUser');
-
+// 
+Route::post('/edituserself', [\App\Http\Controllers\UserController::class, 'updateuserself'])->name('updateuserself');
+Route::get('/edituserself/{id}', [\App\Http\Controllers\UserController::class, 'edituserself'])->name('edituserself');
+// 
 Route::get('edituserself', [\App\Http\Controllers\UserController::class, 'edituser'])->name('edituser');
 Route::post('/tchUpdateproject', [\App\Http\Controllers\ProjectController::class, 'tchUpdateproject'])->name('tchUpdateproject');
 Route::get('/tchProjects', [\App\Http\Controllers\ProjectController::class, 'tchProjects'])->name('tchProjects');

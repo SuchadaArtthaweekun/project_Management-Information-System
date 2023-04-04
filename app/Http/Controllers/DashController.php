@@ -40,4 +40,15 @@ class DashController extends Controller
         }
         
     }
+
+    public function loginDash(){
+        if (auth()->user()->level == 'ผู้ดูแลระบบ') {
+            return redirect()->route('dashboard');
+        } else if (auth()->user()->level == 'อาจารย์') {
+            return redirect()->route('tchdashboard');
+        } else if (auth()->user()->level == 'นักศึกษา') {
+            return redirect()->route('stddashboard');
+        }
+        
+    }
 }

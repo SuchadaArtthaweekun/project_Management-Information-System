@@ -29,32 +29,32 @@
 
                                 @csrf
                                 <div class="form-group">
-                                    <label for="author">ชื่อผู้ทำคนที่ 1</label>
+                                    <label for="author">ชื่อสมาชิกคนที่ 1</label>
                                     <input type="text" name="author" class="form-control"
-                                        placeholder="ชื่อผู้ทำคนที่ 1">
+                                        placeholder="ชื่อสมาชิกคนที่ 1">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="co_author">ชื่อผู้ทำคนที่ 2</label>
+                                    <label for="co_author">ชื่อสมาชิกคนที่ 2</label>
                                     <input type="text" name="co_author" class="form-control"
                                         placeholder="ชื่อ-สกุล (อังกฤษ)">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email_author">อีเมลผู้ทำคนที่ 1</label>
+                                    <label for="email_author">อีเมลสมาชิกคนที่ 1</label>
                                     <input type="text" class="form-control" name="email_author">
                                 </div>
                                 <div class="form-group">
-                                    <label for="email_co_author">อีเมลผู้ทำคนที่ 2</label>
-                                    <input type="text"  class="form-control" name="email_co_author">
+                                    <label for="email_co_author">อีเมลสมาชิกคนที่ 2</label>
+                                    <input type="text" class="form-control" name="email_co_author">
                                 </div>
                                 <div class="form-group">
-                                    <label for="tel_author">เบอร์โทรผู้ทำคนที่ 1</label>
+                                    <label for="tel_author">เบอร์โทรสมาชิกคนที่ 1</label>
                                     <input type="text" class="form-control" name="tel_author" maxlength="10">
                                 </div>
                                 <div class="form-group">
-                                    <label for="tel_co_author">เบอร์โทรผู้ทำคนที่ 2</label>
-                                    <input type="text"  class="form-control" name="tel_co_author" maxlength="10">
+                                    <label for="tel_co_author">เบอร์โทรสมาชิกคนที่ 2</label>
+                                    <input type="text" class="form-control" name="tel_co_author" maxlength="10">
                                 </div>
 
 
@@ -76,7 +76,7 @@
                                         action="datepicker" class="form-control">
                                 </div>
 
-                               
+
 
                                 <div class="form-group">
                                     <label for="abtract">บทคัดย่อ</label>
@@ -88,7 +88,8 @@
                                     <select class="form-control" id="exampleFormControlSelect1" name="adviser"
                                         placeholder="ที่ปรึกษา">
                                         @foreach ($advisers as $adv)
-                                            <option value="{{ $adv->adviser_id }}">{{ $adv->adviser_fullname_th }}</option>
+                                            <option value="{{ $adv->adviser_id }}">{{ $adv->name_prefix_th }}
+                                                {{ $adv->adviser_fullname_th }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -99,7 +100,8 @@
                                         placeholder="ที่ปรึกษา">
                                         <option value="">ไม่มีที่ปรึกษาร่วม</option>
                                         @foreach ($advisers as $adv)
-                                            <option value="{{ $adv->adviser_id }}">{{ $adv->adviser_fullname_th }}</option>
+                                            <option value="{{ $adv->adviser_id }}">{{ $adv->name_prefix_th }}
+                                                {{ $adv->adviser_fullname_th }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -116,13 +118,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="branch">แขนงวิชา</label>
+                                    <label for="branch">กล่มการเรียน</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="branch"
                                         placeholder="แขนงวิชา">
                                         <option selected>
-                                        <option value="CS">CS</option>
-                                        <option value="CN">CN</option>
-                                        <option value="MG">MG</option>
+                                        <option value="การพัฒนาซอฟต์แวร์คอมพิวเตอร์">การพัฒนาซอฟต์แวร์คอมพิวเตอร์</option>
+                                        <option value="เทคโนโลยีคอมพิวเตอร์และเครือข่าย">เทคโนโลยีคอมพิวเตอร์และเครือข่าย</option>
+                                        <option value="การพัฒนามัลติมีเดียและเกม">การพัฒนามัลติมีเดียและเกม</option>
                                     </select>
                                 </div>
 
@@ -141,13 +143,14 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-                            <button type="submit" class="btn btn-primary" href="{{ route('allproject') }}">บันทึก</button>
+                            <button type="submit" class="btn btn-primary"
+                                href="{{ route('allproject') }}">บันทึก</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        
+
     </div>
     <table class="table table-striped table-hover table-condensed">
         <thead>
@@ -167,7 +170,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($projects as $key=>$pro)
+            @foreach ($projects as $key => $pro)
                 <tr>
                     <td>{{ ++$key }}</ะ>
                     <td>
@@ -186,7 +189,7 @@
                             
                             ?>
                         @endforeach --}}
-                        </td>
+                    </td>
 
 
 
@@ -195,14 +198,14 @@
                     <td>{{ $pro->gen }}</td>
                     <td>{{ $pro->catename }}</td>
                     <td>
-                            <?php
-                            if ($pro->published == '0') {
-                                echo 'ยังไม่เผยแพร่';
-                            }elseif ($pro->published == '1'){
-                                echo 'เผยแพร่แล้ว';
-                            }
-                            
-                            ?>
+                        <?php
+                        if ($pro->published == '0') {
+                            echo 'ยังไม่เผยแพร่';
+                        } elseif ($pro->published == '1') {
+                            echo 'เผยแพร่แล้ว';
+                        }
+                        
+                        ?>
                     </td>
                     <td class="btnAction">
 
@@ -228,36 +231,36 @@
 
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="author">ชื่อผู้ทำคนที่ 1</label>
+                                                    <label for="author">ชื่อสมาชิกคนที่ 1</label>
                                                     <input type="hidden" value="{{ $pro->project_id }}"
                                                         name="project_id">
                                                     <input type="text"
                                                         value="{{ $pro->author }}"class="form-control" name="author">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="co_author">ชื่อผู้ทำคนที่ 2</label>
+                                                    <label for="co_author">ชื่อสมาชิกคนที่ 2</label>
                                                     <input type="text" value="{{ $pro->co_author }}"
                                                         class="form-control" name="co_author">
                                                 </div>
 
 
                                                 <div class="form-group">
-                                                    <label for="email_author">อีเมลผู้ทำคนที่ 1</label>
+                                                    <label for="email_author">อีเมลสมาชิกคนที่ 1</label>
                                                     <input type="text" value="{{ $pro->email_author }}"
                                                         class="form-control" name="email_author">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="email_co_author">อีเมลผู้ทำคนที่ 2</label>
+                                                    <label for="email_co_author">อีเมลสมาชิกคนที่ 2</label>
                                                     <input type="text" value="{{ $pro->email_co_author }}"
                                                         class="form-control" name="email_co_author">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="tel_author">เบอร์โทรผู้ทำคนที่ 1</label>
+                                                    <label for="tel_author">เบอร์โทรสมาชิกคนที่ 1</label>
                                                     <input type="text" value="{{ $pro->tel_author }}"
                                                         class="form-control" name="tel_author">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="tel_co_author">เบอร์โทรผู้ทำคนที่ 2</label>
+                                                    <label for="tel_co_author">เบอร์โทรสมาชิกคนที่ 2</label>
                                                     <input type="text" value="{{ $pro->tel_co_author }}"
                                                         class="form-control" name="tel_co_author">
                                                 </div>
@@ -280,7 +283,7 @@
                                                     <input type="text" value="{{ $pro->edition }}"
                                                         class="form-control" name="edition">
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="abtract">บทคัดย่อ</label>
                                                     <textarea name="abtract" id="abtract" cols="30" rows="4" class="form-control"
@@ -316,7 +319,7 @@
                                                             @foreach ($advisers as $adv)
                                                                 <?php
                                                                 if ($pro->co_adviser == $adv->adviser_id) {
-                                                                    echo $adv->adviser_fullname_th;
+                                                                    echo $adv->name_prefix_th, $adv->adviser_fullname_th;
                                                                 }
                                                                 ?>
                                                             @endforeach
@@ -324,18 +327,21 @@
                                                         <option value="">ไม่มีที่ปรึกษาร่วม</option>
                                                         @foreach ($advisers as $adv)
                                                             <option value="{{ $adv->adviser_id }}">
-                                                                {{ $adv->adviser_fullname_th }}</option>
+                                                                {{ $adv->name_prefix_th }} {{ $adv->adviser_fullname_th }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="branch">แขนงวิชา</label>
+                                                    <label for="branch">กล่มการเรียน</label>
                                                     <select class="form-control" id="exampleFormControlSelect1"
                                                         name="branch" placeholder="แขนงวิชา">
                                                         <option selected>{{ $pro->branch }}
-                                                        <option value="CS">CS</option>
-                                                        <option value="CN">CN</option>
-                                                        <option value="MG">MG</option>
+                                                        <option value="การพัฒนาซอฟต์แวร์คอมพิวเตอร์">
+                                                            การพัฒนาซอฟต์แวร์คอมพิวเตอร์</option>
+                                                        <option value="เทคโนโลยีคอมพิวเตอร์และเครือข่าย">
+                                                            เทคโนโลยีคอมพิวเตอร์และเครือข่าย</option>
+                                                        <option value="การพัฒนามัลติมีเดียและเกม">การพัฒนามัลติมีเดียและเกม
+                                                        </option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
@@ -401,7 +407,7 @@
                                                 @csrf
                                                 <div>
 
-                                                    <input type="text" name="project_id" placeholder="Choose file"
+                                                    <input type="hidden" name="project_id" placeholder="Choose file"
                                                         id="project_id" value="{{ $pro->project_id }}">
 
                                                 </div>
@@ -447,7 +453,7 @@
                         </a>
 
 
-                    </th>
+                        </th>
                 </tr>
             @endforeach
         </tbody>
@@ -457,7 +463,7 @@
     <script>
         const del = (id) => {
             Swal.fire({
-                title: 'ต้องการลบโครงงาน ' + name,
+                title: 'ต้องการลบโครงงาน ',
                 text: "คุณจะไม่สามารถย้อนกลับได้!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -467,7 +473,7 @@
                 cancelButtonText: 'ยกเลิก'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://127.0.0.1:8000/deletepro`).then((respons) => {
+                    fetch(`http://127.0.0.1:8000/deletepro/${id}`).then((respons) => {
                         console.log(respons)
                     })
                     Swal.fire(

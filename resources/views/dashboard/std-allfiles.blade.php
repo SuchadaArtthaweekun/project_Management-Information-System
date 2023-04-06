@@ -57,7 +57,7 @@
                                                         @csrf
                                                         <div>
 
-                                                            <input type="text" name="project_id"
+                                                            <input type="hidden" name="project_id"
                                                                 placeholder="Choose file" id="project_id"
                                                                 value="{{ $project[0]->project_id }}">
 

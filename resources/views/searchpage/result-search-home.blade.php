@@ -14,9 +14,9 @@
                 }
                 ?>
             </div>
-            <div class="resultCount">
+            {{-- <div class="resultCount">
                 <h5> ผลการค้นหา : {{$data->count()}}</h5>
-            </div>
+            </div> --}}
             @foreach ($data as $da)
                 <div class="result">
                     

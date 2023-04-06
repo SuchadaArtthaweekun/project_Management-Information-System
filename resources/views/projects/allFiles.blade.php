@@ -27,8 +27,11 @@
                                     {{ '-' }}
                                 @endif
                             </h5>
-                            <h5>หมวดหมู่โครงงาน : 
-    
+                            {{-- <h5>หมวดหมู่โครงงาน : 
+                                @if( $project->cate_id ==  $projects->cate_id ){
+                                    {{ $projects->catename }}
+                                }
+                                @endif --}}
                             </h5>
                             </li>
                             <div class="doc_upload">
@@ -56,7 +59,7 @@
                                                         @csrf
                                                         <div>
 
-                                                            <input type="text" name="project_id"
+                                                            <input type="hidden" name="project_id"
                                                                 placeholder="Choose file" id="project_id"
                                                                 value="{{ $project->project_id }}">
 
@@ -102,7 +105,7 @@
 
                         <table class="table">
                             <tr>
-                                <th>#</th>
+                                <th>อันดับ</th>
                                 <th>ชื่อเอกสาร</th>
                                 <th>ประเเภทไฟล์</th>
                                 {{-- <th>project</th> --}}
@@ -110,8 +113,6 @@
                                 <th>ดาวน์โหลด</th>
                                 <th>ลบ</th>
                             </tr>
-                            {{-- @foreach ($files as $key => $file) --}}
-
                             @foreach ($project->documents as $key => $file)
                                 <tr>
                                     <td>{{ ++$key }}</td>

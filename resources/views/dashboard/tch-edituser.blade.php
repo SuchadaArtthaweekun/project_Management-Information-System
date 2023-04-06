@@ -33,10 +33,10 @@
                                 <input type="text" name="user_tel" class="form-control" maxlength="10" value="{{ Auth::user()->user_tel }}">
                             </div>
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="username">รหัสประจำตัว</label>
                                 <input type="text" name="note" class="form-control" value="{{ Auth::user()->username }}">
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="modal-footer">

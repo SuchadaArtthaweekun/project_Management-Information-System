@@ -14,7 +14,6 @@ class Categories extends Model
     
     protected $primaryKey = "cate_id";
     // rest of your class
-
     protected $table = "categories";
     
     

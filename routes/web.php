@@ -199,6 +199,7 @@ Route::get('totaldoawnload', [\App\Http\Controllers\ReportController::class, 're
 Route::get('totalview', [\App\Http\Controllers\ReportController::class, 'reportViewTotal'])->name('reportViewTotal');
 Route::get('totalgen', [\App\Http\Controllers\ReportController::class, 'reportGenTotal'])->name('reportGenTotal');
 Route::get('genOld', [\App\Http\Controllers\ReportController::class, 'genOld'])->name('genOld');
+Route::get('genReport2', [\App\Http\Controllers\ReportController::class, 'genReport2'])->name('genReport2');
 Route::get('/forgot', [\App\Http\Controllers\PasswordResetLinkController::class, 'create'])->name('forgot');
 
 

@@ -13,33 +13,35 @@
                 {{-- show user --}}
 
                 <div id="reportView">
-            
                     <div>
-                            <h4 style="text-align: center"> สาขาวิชาเทคโนโลยีสารสนเทศ <br>
+                        <h4 style="text-align: center"> สาขาวิชาเทคโนโลยีสารสนเทศ <br>
                             คณะวิทยาศาสตรื มหาวิทยาลัยราชภัฏบุรีรัมย์</h4>
-                        <p style="text-align: center">   
+                        <p style="text-align: center">
                             รายงานโครงงานนักศึกษารายปี
                         </p>
                     </div>
                     <p class="txtreport">
-                      
+
                     </p>
                     {{-- show user --}}
-                    <div  style="display: flex">
+                    <div style="display: flex">
                         <p>โครงงานนักศึกษาจากปีที่พิมพ์</p>
-                        <select name="" id="" onchange="edition(this)" class="report" style="justify-content: center;height: 26;">เลือกปีที่พิมพ์ 
-                        @foreach ($projectselect as $pro)
-                            <option value="{{ $pro->edition }}">{{ $pro->edition }}</option>
-                        @endforeach
-                    </select>
-                    </div>
-                    
-                    <div class="viewCountReport" style="display: flex">
+                        <select name="" id="" onchange="edition(this)" class="report"
+                            style="border: none;">เลือกปีที่พิมพ์
+                            @foreach ($projectselect as $pro)
+                                <option value="{{ $pro->edition }}">{{ $pro->edition }}</option>
+                            @endforeach
+                        </select>
                         <p>จำนวนโครงงานนักศึกษา :</p>
                         <p id="countEdition"></p>
                     </div>
 
-                    <table class="table table-striped table-hover table-condensed" name="edition" id="edition" style="width:100%">
+                    <div class="viewCountReport" style="display: flex">
+
+                    </div>
+
+                    <table class="table table-striped table-hover table-condensed" name="edition" id="edition"
+                        style="width:100%">
                         <thead>
                             <tr>
                                 <th style="text-align: left"><strong>อันดับ</strong></th>
@@ -66,7 +68,7 @@
     </body>
     <script>
         function edition(event) {
-            var select, filter, table, tr, td, txtValue, i, count, c,img
+            var select, filter, table, tr, td, txtValue, i, count, c, div, p, h4
             select = event.options[event.selectedIndex].text
             // console.log (select) 
 
@@ -95,17 +97,16 @@
         }
 
         function printData() {
+            var div, p, h4
             var divToPrint = document.getElementById("reportView");
             var divToPrint2 = document.getElementsByTagName("tr");
             var divToPrint3 = document.getElementsByTagName("td");
-            var imgsrc = document.getElementById("img").getAttribute('src');
             // var tr = table.getElementsByTagName("tr");
             newWin = window.open("");
             newWin.document.write(divToPrint.outerHTML);
             newWin.print();
             newWin.close();
         }
-        console.log(imgsrc)
         console.log(
             $('#reportView').css('color')
         )

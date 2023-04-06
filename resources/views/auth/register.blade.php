@@ -91,7 +91,7 @@
                 <x-label for="user_tel" :value="__('เบอร์โทร')" style="font-size: 16px" />
 
                 <x-input id="user_tel" class="block mt-1 w-full" type="text" name="user_tel" :value="old('user_tel')"
-                    required style="font-size: 16px"  maxlength="10 />
+                    required style="font-size: 16px"  maxlength="10" />
             </div>
 
             <!-- level -->

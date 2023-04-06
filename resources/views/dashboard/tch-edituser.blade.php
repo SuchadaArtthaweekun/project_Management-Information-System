@@ -1,4 +1,4 @@
-@extends('layouts.std-dashboard')
+@extends('layouts.tch-dashboard')
 
 @section('content')
     <div class="container">
@@ -31,6 +31,11 @@
                             <div class="form-group">
                                 <label for="user_tel">เบอร์โทร</label>
                                 <input type="text" name="user_tel" class="form-control" maxlength="10" value="{{ Auth::user()->user_tel }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username">รหัสประจำตัว</label>
+                                <input type="text" name="note" class="form-control" value="{{ Auth::user()->username }}">
                             </div>
                         </div>
                     </div>

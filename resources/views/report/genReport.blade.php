@@ -54,13 +54,12 @@
 
 
 
-                itbru
                 <table class="table table-striped table-hover table-condensed" name="gen" id="gen">
                     <thead>
                         <tr>
-                            <th><strong>ลำดับ</strong></th>
-                            <th><strong>ชื่อโครงงาน</strong></th>
-                            <th><strong>ของรุ่น</strong></th>
+                            <th style="text-align: left"><strong>ลำดับ</strong></th>
+                            <th style="text-align: left"><strong>ชื่อโครงงาน</strong></th>
+                            <th style="text-align: left"><strong>ของรุ่น</strong></th>
                             {{-- <th><strong>หมวดหมู่</strong></th> --}}
                         </tr>
                     </thead>
@@ -86,7 +85,7 @@
 
         <script>
             function gen(event) {
-                var select, filter, table, tr, td, txtValue, i, count, c
+                var select, filter, table, tr, td, txtValue, i, count, c,div,p
                 select = event.options[event.selectedIndex].text
                 // console.log (select) 
 

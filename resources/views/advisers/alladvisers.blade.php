@@ -82,18 +82,18 @@
             <table class="table table-striped table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th><strong>No</strong></th>
+                        <th><strong>อันดับ</strong></th>
                         <th><strong>ชื่อ-สกุล (ไทย)</strong></th>
                         <th><strong>ชื่อ-สกุล (อังกฤษ)</strong></th>
                         <th><strong>เบอร์โทร</strong></th>
                         <th><strong>อีเมล</strong></th>
-                        <th><strong>Action</strong></th>
+                        <th><strong>แก้ไข ลบ</strong></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($advisers as $ads)
+                    @foreach ($advisers as $key=>$ads)
                         <tr>
-                            <th>{{ $ads->adviser_id }}</th>
+                            <th>{{ ++$key }}</th>
                             <th>{{ $ads->name_prefix_th }} {{ $ads->adviser_fullname_th }}</th>
                             <th>{{ $ads->name_prefix_eng }} {{ $ads->adviser_fullname_en }}</th>
                             <th>{{ $ads->adviser_tel }}</th>

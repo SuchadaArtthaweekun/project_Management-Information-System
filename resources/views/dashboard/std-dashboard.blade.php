@@ -156,10 +156,10 @@
     <table class="table table-striped table-hover table-condensed">
         <thead>
             <tr>
-                <th>รหัส</th>
+                <th>ลำดับ</th>
                 <th>ผู้จัดทำ</th>
                 <th>ชื่อโครงงาน (ไทย)</th>
-                <th>ชื่อโครงงาน (อังกฤษ)</th>
+                {{-- <th>ชื่อโครงงาน (อังกฤษ)</th> --}}
                 <th>ปีที่พิมพ์</th>
                 {{-- <th><strong>บทความ</strong></th> --}}
                 {{-- <th><strong>บทคัดย่อ</strong></th> --}}
@@ -167,23 +167,18 @@
                 <th>เผยแพร่</th>
                 <th>รุ่น</th>
                 <th>หมวดหมู่โครงงาน</th>
-                <th>แก้ไข / ลบ</th>
+                <th>แก้ไข ลบ</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($projects as $pro)
+            @foreach ($projects as $key=>$pro)
                 <tr>
-
-
-                    <th>{{ $pro->project_id }}</th>
+                    <th>{{ ++$key }}</th>
                     <th class="tauthor">{{ $pro->author }} {{ $pro->co_author }}
                     </th>
                     <th>{{ $pro->title_th }}</th>
-                    <th>{{ $pro->title_en }}</th>
+                    {{-- <th>{{ $pro->title_en }}</th> --}}
                     <th>{{ $pro->edition }}</th>
-
-
-
                     <th><?php if ($pro->published == '0') {
                         echo 'ยังไม่เผยแพร่';
                     } elseif ($pro->published == '1') {

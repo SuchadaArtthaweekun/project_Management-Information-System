@@ -103,7 +103,7 @@ class ProjectController extends Controller
         $project->view_counter = $view_counter;
         $project->save();
 
-        
+
         $pathDir = 'public/documents/' . $title_th;
         Storage::makeDirectory($pathDir, 0777, true, true);
 
@@ -218,7 +218,7 @@ class ProjectController extends Controller
         $cate_id  = $request->input('edt_cate_id');
         $gen = $request->input('gen');
         $project = Projects::find($project_id);
-        
+
 
         $project->author = $author;
         $project->co_author = $co_author;
@@ -275,8 +275,9 @@ class ProjectController extends Controller
                 ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
                 ->where('published', '=', '0')
                 ->get();
-
-            return view('projects.pending', compact('data'));
+            $adviser = DB::table('advisers')
+                ->get();
+            return view('projects.pending', compact('data','adviser'));
         } else {
 
             return view('dashboard')->with('info', 'ไม่มีข้อมูล');
@@ -370,7 +371,7 @@ class ProjectController extends Controller
         $project->view_counter = $view_counter;
         $project->save();
 
-        
+
 
         $pathDir = 'public/documents/' . $title_th;
         Storage::makeDirectory($pathDir, 0777, true, true);
@@ -421,7 +422,7 @@ class ProjectController extends Controller
         $project->view_counter = $view_counter;
         $project->save();
 
-        
+
 
         $pathDir = 'public/documents/' . $title_th;
         Storage::makeDirectory($pathDir, 0777, true, true);
@@ -448,8 +449,10 @@ class ProjectController extends Controller
             ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
             ->where('published', '=', '0')
             ->get();
+        $adviser = DB::table('advisers')
+            ->get();
 
-        return view('dashboard.tch-pending', compact('data'))->with('info', 'ไม่มีข้อมูล');
+        return view('dashboard.tch-pending', compact('data', 'adviser'))->with('info', 'ไม่มีข้อมูล');
     }
 
 

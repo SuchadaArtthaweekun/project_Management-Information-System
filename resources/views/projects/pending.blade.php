@@ -7,7 +7,7 @@
         </div>
 
         <div>
-            <table class="table">
+            {{-- <table class="table">
                 <thead>
                     <tr>
                         <th>รหัส</th>
@@ -22,10 +22,10 @@
                 <tbody>
 
                     @if (is_array($data) || is_object($data))
-                        @foreach ($data as $pro)
+                        @foreach ($data as $key => $pro)
                             <tr>
 
-                                <th>{{ $pro->project_id }}</th>
+                                <th>{{ ++$key }}</th>
                                 <th>{{ $pro->title_th }}</th>
                                 <th>{{ $pro->edition }}</th>
                                 <th>{{ $pro->author }} {{ $pro->co_author }}</th>
@@ -50,10 +50,70 @@
                             </tr>
                         @endforeach
                     @endif
-
                 </tbody>
+            </table> --}}
 
+            {{-- new colume --}}
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ลำดับ</th>
+                        <th>ข้อมูล</th>
+                        <th>อนุมัติ ลบ ดู</th>
+                    </tr>
+                </thead>
+                @if (is_array($data) || is_object($data))
+                    @foreach ($data as $key => $dt)
+                        <tbody>
+                            <tr>
+                                <th>{{ ++$key }}</th>
+                                <th>
+                                    <div class="dt">
+                                        <p>ชื่อโครงงาน: {{ $dt->title_th }} <br>
+                                            ผู้จัดทำ: {{ $dt->author }} {{ $dt->co_author }} <br>
+                                            ปีที่พิมพ์: {{ $dt->edition }} หมวดหมู่โครงงาน: {{ $dt->catename }} <br>
+                                            ที่ปรึกษา:
+
+                                            @foreach ($adviser as $adv)
+                                                @if ($dt->adviser == $adv->adviser_id)
+                                                    {{ $adv->name_prefix_th }} {{ $adv->adviser_fullname_th }}
+                                                @endif
+                                            @endforeach
+                                            <br>
+                                            ที่ปรึกษาร่วม:
+                                            @foreach ($adviser as $adv)
+                                                @if ($dt->co_adviser == $adv->adviser_id)
+                                                    {{ $adv->name_prefix_th }} {{ $adv->adviser_fullname_th }}
+                                                @endif
+                                            @endforeach
+                                        </p>
+                                        <br>
+                                    </div>
+                                </th>
+                                <th>
+                                    <a href="/publishProject/{{ $dt->project_id }}">
+                                        <button class="btn btn-success">
+                                            <i class="fa-solid fa-check"></i>
+                                        </button>
+                                    </a>
+
+                                    <button class="btn btn-danger" onclick="del({{ $dt->project_id }})">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+
+                                    <a href="/allfiles/{{ $dt->project_id }}">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-file"></i></button>
+                                    </a>
+                                </th>
+                            </tr>
+                        </tbody>
+                    @endforeach
+                @endif
             </table>
+
+
         </div>
     </div>
     <script>

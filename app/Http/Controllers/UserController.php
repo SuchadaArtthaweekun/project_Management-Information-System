@@ -102,12 +102,23 @@ class UserController extends Controller
             // echo $users;
         return redirect()->back(); 
     }
+    public function edituser($id)
+    {
+        $user = User::find($id);
+        if(Auth::user()->level == 'นักศึกษา'){
+            return view('dashboard.std-edituser', compact('user'));
+        }else if(Auth::user()->level == 'อาจารย์'){
+            return view('dashboard.tch-edituser', compact('user'));
+        }
+        
+    }
 
     public function edituserself($id)
     {
         $user = User::find($id);
-        return view('dashboard.std-edituser', compact('user'));
+            return view('dashboard.std-edituser', compact('user'));
     }
+    
 
     public function updateFormUser($id)
     {
@@ -140,6 +151,8 @@ class UserController extends Controller
         $users = DB::table('users')->get();
         return view('users.dashuser', compact('users'));
     }
+
+    
     public function stddashboard()
     {
         $id =  Auth::user()->id;
@@ -154,8 +167,17 @@ class UserController extends Controller
     }
     public function tchdashboard()
     {
-        $users = DB::table('users')->get();
-        return view('dashboard.tch-dashboard', compact('users'));
+        // $id =  Auth::user()->id;
+        $users = DB::table('users')->where('users.id', '=', '$id');
+        // $user = User::find('id');
+        $projects = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('advisers', 'advisers.adviser_id', '=', 'projects.adviser')
+            ->where('projects.id', '=', Auth()->user()->id)
+            ->get();
+        $categories = DB::table('categories')->get();
+        $advisers = DB::table('advisers')->get();
+        return view('dashboard.tch-dashboard', compact('users','advisers','categories','projects'));
     }
     public function tchDashUser()
     {
@@ -163,9 +185,21 @@ class UserController extends Controller
         return view('dashboard.tch-dashboard', compact('users'));
     }
 
-    public function stdUser()
+
+    public function tchEditUser($id)
     {
-        $users = DB::table('users')->get();
-        return view('dashboard.std-edituser', compact('users'));
+        $user = User::find($id);
+        return view('dashboard.tch-edituser', compact('user'));
     }
+    public function stdEditUser($id)
+    {
+        $user = User::find($id);
+        return view('dashboard.std-edituser', compact('user'));
+    }
+    public function adEditUser($id)
+    {
+        $user = User::find($id);
+        return view('users.edituser', compact('user'));
+    }
+
 }

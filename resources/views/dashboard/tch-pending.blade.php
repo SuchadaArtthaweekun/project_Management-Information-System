@@ -24,7 +24,7 @@
             <table class="table table-striped table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>ลำดับ</th>
                         <th>ชื่อโครงงาน</th>
                         <th>ปีที่พิมพ์</th>
                         <th>ผู้จัดทำ</th>
@@ -34,11 +34,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $pro)
+                    @foreach ($data as $key=>$pro)
                      <tr>
                     {{-- @if (is_array($data) || is_object($data)) --}}
                         
-                        <th>{{ $pro->project_id }}</th>
+                        <th>{{ ++$key }}</th>
                         <th>{{ $pro->title_th }}</th>
                         <th>{{ $pro->edition }}</th>
                         <th>{{ $pro->author }} <br> {{ $pro->co_author }}</th>

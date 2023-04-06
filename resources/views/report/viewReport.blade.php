@@ -11,9 +11,9 @@
             <table class="table table-striped table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th><strong>ลำดับ</strong></th>
-                        <th><strong>ชื่อ</strong></th>
-                        <th><strong>ยอดดาวน์โหลด</strong></th>
+                        <th style="text-align: left"><strong>ลำดับ</strong></th>
+                        <th style="text-align: left"><strong>ชื่อ</strong></th>
+                        <th style="text-align: left"><strong>ยอดดาวน์โหลด</strong></th>
 
                     </tr>
                 </thead>

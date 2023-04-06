@@ -11,7 +11,7 @@
                 <div class="report_dash">
                     <div class="col-10">
                         <a href="{{ route('projectReport') }}">
-                            <h5>รายงานโครงงานนักศึกษา</h5>
+                            <h5>รายงานโครงงานนักศึกษารายปี</h5>
                         </a>
                     </div>
 
@@ -21,7 +21,7 @@
                 <div class="report_dash">
                     <div class="col-10">
                         <a href="{{ route('userReport') }}">
-                            <h5>รายงานผู้ใช้</h5>
+                            <h5>รายงานสมาชิก</h5>
                         </a>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="report_dash">
                     <div class="col-10">
                         <a href="{{ route('projectCateReport') }}">
-                            <h5>รายงานหมวดหมู่โครงงาน</h5>
+                            <h5>รายงานโครงงานนักศึกษาตามหมวดหมู่โครงงาน</h5>
                         </a>
                     </div>
 

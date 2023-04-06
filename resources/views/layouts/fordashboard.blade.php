@@ -30,7 +30,7 @@
         <ul class="navbar-nav">
 
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="/" class="nav-link">หน้าแรก</a>
+                <a href="/" class="nav-link"></a>
             </li>
 
         </ul>
@@ -53,9 +53,9 @@
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <!-- Messages Dropdown Menu -->
-            <a href="#" class="d-block">
+            
                 <div class="u_name">{{ Auth::user()->name }}</div>
-            </a>
+           
             <div class="logout">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -63,7 +63,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault();
                                 this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('ออกจากระบบ') }}
                     </x-responsive-nav-link>
                 </form>
             </div>
@@ -140,6 +140,12 @@
                                 <a href="{{ route('alladviser') }}" class="nav-link">
                                     <i class="fa-solid fa-user-tie"></i>
                                     <p>ที่ปรึกษาโครงงานนักศึกษา</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/adEditUser/{{ Auth::user()->id }}" class="nav-link">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <p>แก้ไขข้อมูลส่วนตัว</p>
                                 </a>
                             </li>
                             <li class="nav-item">

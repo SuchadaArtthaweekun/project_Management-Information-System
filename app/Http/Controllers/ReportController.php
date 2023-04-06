@@ -42,10 +42,14 @@ class ReportController extends Controller
     }
     public function projectReport()
     {
-
+        $projectselect = DB::table('projects')
+        ->select('edition')
+        ->distinct()
+        ->orderByDesc(DB::raw("edition"))
+        ->get();
         $categories = DB::table('categories')->get();
         $project = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')->simplePaginate(10);
-        return view('report.projectReport', compact('categories', 'project'));
+        return view('report.projectReport', compact('categories', 'project','projectselect'));
     }
     public function viewReport()
     {
@@ -156,6 +160,27 @@ class ReportController extends Controller
             ->select(DB::raw("SUM(gen) as sumGen"))
             ->get();
         return view('report.genReport', compact('gen', 'totalG', 'project', 'selectGen'));
+    }
+    public function genOld()
+    {
+        $selectGen  = DB::table('projects')
+            ->select('gen')
+            ->distinct()
+            ->orderByDesc(DB::raw("gen"))
+            ->get();
+        $project = DB::table('categories')->join('projects', 'projects.cate_id', '=', 'categories.cate_id')->simplePaginate(10);
+        $gen = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->select(array(DB::raw("SUM(gen) as sumGen"), 'projects.project_id', 'title_th', 'gen'))
+            ->groupBy('projects.gen')
+            ->orderByDesc(DB::raw("gen"))
+            ->get();
+        $totalG = DB::table('categories')
+            ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
+            ->join('documents', 'documents.project_id', '=', 'projects.project_id')
+            ->select(DB::raw("SUM(gen) as sumGen"))
+            ->get();
+        return view('report.genOld', compact('gen', 'totalG', 'project', 'selectGen'));
     }
 
 

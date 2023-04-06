@@ -97,7 +97,7 @@
 
                         <table class="table">
                             <tr>
-                                <th>#</th>
+                                <th>อันดับ</th>
                                 <th>ชื่อไฟล์</th>
                                 <th>ประเเภทไฟล์</th>
                                 {{-- <th>project</th> --}}

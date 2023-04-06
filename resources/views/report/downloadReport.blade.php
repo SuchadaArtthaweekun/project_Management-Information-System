@@ -18,18 +18,18 @@
             <table class="table table-striped table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th><strong>#</strong></th>
-                        <th><strong>ชื่อ</strong></th>
-                        <th><strong>ยอดดาวน์โหลด</strong></th>
+                        <th style="text-align: left"><strong>#</strong></th>
+                        <th style="text-align: left"><strong>ชื่อ</strong></th>
+                        <th style="text-align: left"><strong>ยอดดาวน์โหลด</strong></th>
 
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($total as $totald)
                         <tr>
-                            <th>{{ $totald->id }}</th>
-                            <th>{{ $totald->title_th }} </th>
-                            <th>{{ $totald->download_counter }}</th>
+                            <th style="text-align: left">{{ $totald->id }}</th>
+                            <th style="text-align: left">{{ $totald->title_th }} </th>
+                            <th style="text-align: left">{{ $totald->download_counter }}</th>
 
                         </tr>
                     @endforeach

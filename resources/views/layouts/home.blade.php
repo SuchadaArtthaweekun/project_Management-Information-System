@@ -71,55 +71,6 @@
 
     </div>
 
-    {{-- <footer>
-        <div class="container-fluid">
-            <div class="footer-dark">
-                <footer>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6 col-md-3 item">
-                                <div class="foot">
-                                    <h3>ประเภทโครงงานนักศึกษา</h3>
-                                    <ul>
-                                        <li>
-                                            @foreach ($catebar as $item)
-                                                <a href="\searchcate/{{ $item->cate_id }}" class="nav-link link-light">
-                                                    <svg class="bi me-2" width="16" height="16">
-                                                        <use xlink:href="#grid"></use>
-                                                    </svg>
-                                                    {{ $item->catename }}
-                                                </a>
-                                            @endforeach
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-3 item">
-                                <div class="foot">
-                                    <h3>ติดต่อเรา</h3>
-                                    <ul>
-                                        <li><a href="https://web.facebook.com/IT.BRU?_rdc=1&_rdr">Facebook</a></li>
-                                        <li><a href="https://web.facebook.com/it.bru.ac.th">Facebook</a></li>
-                                        <li><a href="https://it.bru.ac.th/">website</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6 item text">
-                                <div class="foot">
-                                    <h3>สาขาเทคโนโลยีสารสนเทศ</h3>
-                                    <p>เทคโนโลยี​สาร​สนเทศ​เป็น​สาขา​วิชา​ที่​มี​ความ​ทัน​สมัย​
-                                        ผู้​เรียน​จะ​มี​ความ​สามารถ​ทั้ง​ด้าน​เทคโนโลยี​และ​การ​จัดการ​ด้าน​ธุรกิจ​ผสม​ผสาน​วิทยาการ​ที่​ก้าวหน้า​ด้าน​เทคโนโลยี​สาร​สนเทศ​ให้​เกิด​ประโยชน์​สูงสุด​ต่อ​การ​บริหาร​งาน​ของ​องค์กร
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-        </div>
-    </footer> --}}
 
     <footer>
         <div class="fthome">

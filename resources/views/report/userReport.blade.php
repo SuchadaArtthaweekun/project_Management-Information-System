@@ -6,77 +6,81 @@
         <div class="table-responsive">
             <div>
                 <h3>รายชื่อผู้ใช้</h3>
-                <button onclick="window.print()"><i class="fa-sharp fa-solid fa-print"></i></button>
+                <button onclick="printData('reportView')"><i class="fa-solid fa-print"></i></button>
 
-                <p class="txtreport">
-                    ผู้ใช้ทั้งหมด :{{ $coutAllUser }}
-                    แอดมิน :{{ $coutAdmin }}
-                    อาจารย์ :{{ $coutTch }}
-                    นักศึกษา :{{ $coutStd }} <br>
-                    อาจารย์ที่ยังไม่ได้รับอนุมัติ :{{ $coutUnTch }}
-                    นักศึกษาที่ยังไม่ได้รับอนุมัติ :{{ $coutUnStd }}
-                    รวมทั้งหมด :{{ $users->count() }}
-                </p>
+                <div id="reportView" style="font-family: 'Kanit', sans-serif;">
+                    <div style="font-family: 'Kanit', sans-serif;">
+                        <h4 style="text-align: center;font-family: 'Kanit', sans-serif;"> สาขาวิชาเทคโนโลยีสารสนเทศ <br>
+                            คณะวิทยาศาสตรื มหาวิทยาลัยราชภัฏบุรีรัมย์</h4>
+                        <p style="text-align: center; font-family: 'Kanit', sans-serif;">
+                            รายงานสมาชิก
+                        </p>
+                    </div>
+                    <p class="txtreport" style=" font-family: 'Kanit', sans-serif;">
+                        ผู้ใช้ทั้งหมด :{{ $coutAllUser }}
+                        แอดมิน :{{ $coutAdmin }}
+                        อาจารย์ :{{ $coutTch }}
+                        นักศึกษา :{{ $coutStd }} <br>
+                        อาจารย์ที่ยังไม่ได้รับอนุมัติ :{{ $coutUnTch }}
+                        นักศึกษาที่ยังไม่ได้รับอนุมัติ :{{ $coutUnStd }}
+                        รวมทั้งหมด :{{ $users->count() }}
+                    </p>
 
-
-
-
-
-                {{-- show user --}}
-                {{-- <table class="table table-striped table-hover table-condensed">
-                <h3>รายชื่อผู้ดูแลระบบ</h3>
-                <thead>
-                    <tr>
-                        <th><strong>No</strong></th>
-                        <th><strong>ชื่อ</strong></th>
-                        <th><strong>อีเมล</strong></th>
-                        <th><strong>ระดับผู้ใช้</strong></th>
-                        <th><strong>รหัสประจำตัว</strong></th>
-                        <th><strong>สถานะ</strong></th>
-                        <th><strong>เบอร์โทร</strong></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($userAdmin as $user)
-                        <tr>
-                            <th>{{ $user->id }}</th>
-                            <th>{{ $user->name }} <br>  {{ $user->name_en }}</th>
-                            <th>{{ $user->email }}</th>
-                            <th>{{ $user->level }}</th>
-                            <th>{{ $user->username }}</th>
-                            <th>{{ $user->status }}</th>
-                            <th>{{ $user->user_tel }}</th>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table> --}}
-
-
-                <table class="table table-striped table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th><strong>ลำดับ</strong></th>
-                            <th><strong>ชื่อ</strong></th>
-                            <th><strong>อีเมล</strong></th>
-                            <th><strong>ระดับผู้ใช้</strong></th>
-                            <th><strong>รหัสประจำตัว</strong></th>
-                            <th><strong>สถานะ</strong></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($users as $key =>$user)
-                            <tr>
-                                <th>{{  ++$key }}</th>
-                                <th>{{ $user->name }} <br> {{ $user->name_en }}</th>
-                                <th>{{ $user->email }}</th>
-                                <th>{{ $user->level }}</th>
-                                <th>{{ $user->username }}</th>
-                                <th>{{ $user->status }}</th>
+                    <table class="table table-striped table-hover table-condensed"
+                    style=" font-family: 'Kanit', sans-serif;">
+                        <thead>
+                            <tr style="text-align: left">
+                                <th style="text-align: left">ลำดับ</th>
+                                <th style="text-align: left"><strong>ชื่อ</strong></th>
+                                <th style="text-align: left"><strong>อีเมล</strong></th>
+                                <th style="text-align: left"><strong>ระดับผู้ใช้</strong></th>
+                                <th style="text-align: left"><strong>รหัสประจำตัว</strong></th>
+                                <th style="text-align: left"><strong>สถานะ</strong></th>
                             </tr>
-                        @endforeach
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $key => $user)
+                                <tr style="text-align: left">
+                                    <th style="text-align: leftl; font-family: 'Kanit', sans-serif;">{{ ++$key }}</th>
+                                    <th style="text-align: leftl;">{{ $user->name }} <br> {{ $user->name_en }}</th>
+                                    <th style="text-align: left">{{ $user->email }}</th>
+                                    <th style="text-align: left">{{ $user->level }}</th>
+                                    <th style="text-align: left">{{ $user->username }}</th>
+                                    <th style="text-align: left">
+                                        <?php
+                                        if ($user->status == 1) {
+                                            echo 'เปิดใช้งาน';
+                                        } else {
+                                            echo 'ปิดใช้งาน';
+                                        }
+                                        ?>
 
-                    </tbody>
-                </table>
+                                    </th>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
+        </div>
     </body>
+    <script>
+        function printData() {
+            var divToPrint = document.getElementById("reportView");
+            var divToPrint2 = document.getElementsByTagName("tr");
+            var divToPrint3 = document.getElementsByTagName("td");
+            // var tr = table.getElementsByTagName("tr");
+            newWin = window.open("");
+            newWin.document.write(divToPrint.outerHTML);
+            newWin.print();
+            newWin.close();
+        }
+        console.log(
+            $('#reportView').css('color')
+        )
+        $('button').on('click', function() {
+            printData();
+        })
+    </script>
 @endsection

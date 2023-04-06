@@ -12,14 +12,14 @@
     </div>
     <div class="btnadd">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_addProject">
-            เพิ่มโครงงาน
+            เพิ่มโครงงานนักศึกษา
         </button>
         <!-- Modal -->
         <div class="modal fade" id="modal_addProject" tabindex="-1" aria-labelledby="modal_addProject" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add project</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">เพิ่มโครงงานนักศึกษา</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     {{-- <form method="get" action="{{ route('addproject') }}"> --}}
@@ -50,11 +50,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="tel_author">เบอร์โทรผู้ทำคนที่ 1</label>
-                                    <input type="text" class="form-control" name="tel_author">
+                                    <input type="text" class="form-control" name="tel_author" maxlength="10">
                                 </div>
                                 <div class="form-group">
                                     <label for="tel_co_author">เบอร์โทรผู้ทำคนที่ 2</label>
-                                    <input type="text"  class="form-control" name="tel_co_author">
+                                    <input type="text"  class="form-control" name="tel_co_author" maxlength="10">
                                 </div>
 
 
@@ -71,7 +71,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="edition">ปีที่เผยแพร่</label>
+                                    <label for="edition">ปีที่เผยแพร่ (พ.ศ.)</label>
                                     <input type="number" placeholder="YYYY" min="2530" max="2600" name="edition"
                                         action="datepicker" class="form-control">
                                 </div>
@@ -104,8 +104,6 @@
                                     </select>
                                 </div>
 
-
-
                                 <div class="form-group">
                                     <label for="cate_id">หมวดหมู่โครงงาน</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="cate_id"
@@ -121,12 +119,10 @@
                                     <label for="branch">แขนงวิชา</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="branch"
                                         placeholder="แขนงวิชา">
-
                                         <option selected>
                                         <option value="CS">CS</option>
                                         <option value="CN">CN</option>
                                         <option value="MG">MG</option>
-
                                     </select>
                                 </div>
 
@@ -156,12 +152,12 @@
     <table class="table table-striped table-hover table-condensed">
         <thead>
             <tr>
-                <th>id</th>
+                <th>อันดับ</th>
                 <th>ผู้จัดทำ</th>
                 <th>ชื่อโครงงาน (ไทย)</th>
                 {{-- <th><strong>ชื่อโครงงาน (อังกฤษ)</strong></th> --}}
                 <th>ปีที่เผยแพร่</th>
-                <th>ที่ปรึกษา</th>
+                {{-- <th>ที่ปรึกษา</th> --}}
                 <th>แขนงวิชา</th>
                 <th>รุ่น</th>
                 <th>หมวดหมู่โครงงาน</th>
@@ -171,9 +167,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($projects as $pro)
+            @foreach ($projects as $key=>$pro)
                 <tr>
-                    <td>{{ $pro->project_id }}</ะ>
+                    <td>{{ ++$key }}</ะ>
                     <td>
                         <p>{{ $pro->author }}</p>
                         <p></p>{{ $pro->co_author }}
@@ -181,7 +177,7 @@
                     <td>{{ $pro->title_th }}</td>
                     {{-- <th>{{ $pro->title_en }}</th> --}}
                     <td>{{ $pro->edition }}</td>
-                    <td>
+                    {{-- <td>
                         @foreach ($advisers as $adv)
                             <?php
                             if ($pro->adviser == $adv->adviser_id) {
@@ -189,7 +185,7 @@
                             }
                             
                             ?>
-                        @endforeach
+                        @endforeach --}}
                         </td>
 
 

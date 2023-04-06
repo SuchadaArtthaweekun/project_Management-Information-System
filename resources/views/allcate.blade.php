@@ -51,15 +51,15 @@
             <table class="table table-striped table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th><strong>รหัส</strong></th>
+                        <th><strong>อันดับ</strong></th>
                         <th><strong>ชื่อ</strong></th>
                         <th><strong>แก้ไข / ลบ</strong></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $category)
+                    @foreach ($categories as $key=>$category)
                         <tr>
-                            <th>{{ $category->cate_id }}</th>
+                            <th>{{ ++$key }}</th>
                             <th>{{ $category->catename }}</th>
                             <th>
                                 {{-- <a href="/editcate/{{ $category->cate_id }}">

@@ -43,7 +43,7 @@ class AuthenticatedSessionController extends Controller
                 return redirect()->route('dashboard');
             } else if (auth()->user()->level == 'อาจารย์') {
                 return redirect()->route('tchdashboard');
-            } else if (auth()->user()->level == 'นักศึกษา') {
+            } else  {
                 return redirect()->route('stddashboard');
             }
         }
@@ -81,7 +81,7 @@ class AuthenticatedSessionController extends Controller
                 return redirect()->route('dashuser');
             } else if ((auth()->user()->level = 'อาจารย์')) {
                 return redirect()->route('dashuser');
-            } else if ((auth()->user()->level = 'นักศึกษา')) {
+            } else {
                 return redirect()->route('dashuser');
             }
         }

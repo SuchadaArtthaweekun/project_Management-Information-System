@@ -16,9 +16,9 @@
                 <table class="table table-striped table-hover table-condensed" name="project" id="project">
                     <thead>
                         <tr>
-                            <th><strong></strong></th>
-                            <th><strong>ชื่อโครงงาน</strong></th>
-                            <th><strong>หมวดหมู่</strong></th>
+                            <th style="text-align: left"><strong></strong></th>
+                            <th style="text-align: left"><strong>ชื่อโครงงาน</strong></th>
+                            <th style="text-align: left"><strong>หมวดหมู่</strong></th>
                         </tr>
                     </thead>
                     <tbody>

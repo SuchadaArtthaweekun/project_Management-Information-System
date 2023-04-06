@@ -87,7 +87,7 @@ Route::get('/addUser', [\App\Http\Controllers\UserController::class, 'addUser'])
 Route::get('/addUserForm', [\App\Http\Controllers\UserController::class, 'addUserForm'])->name('addUserForm');
 Route::get('/deleteUser/{id}', [\App\Http\Controllers\UserController::class, 'deleteUser'])->name('deleteUser');
 Route::get('updateuser', [\App\Http\Controllers\UserController::class, 'updateuser'])->name('updateuser');
-Route::get('edituser/{id}', [\App\Http\Controllers\UserController::class, 'updateFormUser'])->name('updateFormUser');
+// Route::get('edituser/{id}', [\App\Http\Controllers\UserController::class, 'updateFormUser'])->name('updateFormUser');
 
 //Project
 Route::get('/allproject', [\App\Http\Controllers\ProjectController::class, 'allProject'])->name('allproject');
@@ -108,6 +108,12 @@ Route::get('/std-EditUser', [\App\Http\Controllers\UserController::class, 'stdUs
 // 
 Route::post('/edituserself', [\App\Http\Controllers\UserController::class, 'updateuserself'])->name('updateuserself');
 Route::get('/edituserself/{id}', [\App\Http\Controllers\UserController::class, 'edituserself'])->name('edituserself');
+Route::get('/edituserselftch/{id}', [\App\Http\Controllers\UserController::class, 'edituserself'])->name('edituserself');
+Route::get('/edituser/{id}', [\App\Http\Controllers\UserController::class, 'edituser'])->name('edituser');
+
+Route::get('/stdEditUser/{id}', [\App\Http\Controllers\UserController::class, 'stdEditUser']);
+Route::get('/tchEditUser/{id}', [\App\Http\Controllers\UserController::class, 'tchEditUser']);
+Route::get('/adEditUser/{id}', [\App\Http\Controllers\UserController::class, 'adEditUser']);
 // 
 Route::get('edituserself', [\App\Http\Controllers\UserController::class, 'edituser'])->name('edituser');
 Route::post('/tchUpdateproject', [\App\Http\Controllers\ProjectController::class, 'tchUpdateproject'])->name('tchUpdateproject');
@@ -192,6 +198,7 @@ Route::get('total-doawnload', [\App\Http\Controllers\ReportController::class, 'r
 Route::get('totaldoawnload', [\App\Http\Controllers\ReportController::class, 'reportDownloadTotal'])->name('reportDownloadTotal');
 Route::get('totalview', [\App\Http\Controllers\ReportController::class, 'reportViewTotal'])->name('reportViewTotal');
 Route::get('totalgen', [\App\Http\Controllers\ReportController::class, 'reportGenTotal'])->name('reportGenTotal');
+Route::get('genOld', [\App\Http\Controllers\ReportController::class, 'genOld'])->name('genOld');
 Route::get('/forgot', [\App\Http\Controllers\PasswordResetLinkController::class, 'create'])->name('forgot');
 
 

@@ -9,22 +9,24 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>รหัส</th>
+                        <th>อันดับ</th>
+                        {{-- <th>รหัส</th> --}}
                         <th>ชื่อ</th>
                         <th>ชื่อ (อังกฤษ)</th>
                         <th>อีเมล</th>
                         <th>ระดับผู้ใช้</th>
                         <th>สถานะ</th>
-                        <th>รหัสนักศึกษา หรือ รหัสอาจารย์</th>
+                        <th>รหัสประจำตัว</th>
                         <th>เพิ่มเติม</th>
                     </tr>
                 </thead>
                 <tbody>
                    
                         @if (is_array($data) || is_object($data))
-                            @foreach ($data as $usr)
+                            @foreach ($data as $key=> $usr)
                              <tr>
-                                <th>{{ $usr->id }}</th>
+                                <th>{{ ++$key }}</th>
+                                {{-- <th>{{ $usr->id }}</th> --}}
                                 <th>{{ $usr->name }}</th>
                                 <th>{{ $usr->name_en }}</th>
                                 <th>{{ $usr->email }} </th>
@@ -57,7 +59,8 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'ลบผู้ใช้นี้',
+                cancelButtonText: 'ยกเลิก'
             }).then((result) => {
                 if (result.isConfirmed) {
                     fetch(`http://127.0.0.1:8000/deleteUser/${id}`).then((respons) => {

@@ -29,7 +29,7 @@
         <ul class="navbar-nav">
             
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="/" class="nav-link">หน้าแรก</a>
+                <a href="/" class="nav-link"></a>
             </li>
            
         </ul>
@@ -52,16 +52,14 @@
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <!-- Messages Dropdown Menu -->
-            <a href="#" class="d-block">
-                <div class="u_name">{{ Auth::user()->name }}</div>
-            </a>
+            <div class="u_name">{{ Auth::user()->name }}</div>
             <div class="logout">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault();
                                 this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('ออกจากระบบ') }}
                     </x-responsive-nav-link>
                 </form>
             </div>
@@ -86,9 +84,7 @@
                     {{-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> --}}
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">
-                        <div class="u_name">{{ Auth::user()->name }}</div>
-                    </a>
+                    
                 </div>
 
             </div>
@@ -105,7 +101,7 @@
                                 <a href="{{ route('tchdashboard') }}" class="nav-link">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
-                                        dashboard
+                                        แผงควบคุม
                                     </p>
                                 </a>
                             </li>
@@ -122,9 +118,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('tchProjects') }}" class="nav-link">
+                                <a href="/tchEditUser/{{Auth::user()->id}}" class="nav-link">
                                     <i class="fa-solid fa-folder"></i>
-                                    <p>โครงงานนักศึกษาของฉัน</p>
+                                    <p>แก้ไขข้อมูลส่วนตัว</p>
                                 </a>
                             </li>
                            

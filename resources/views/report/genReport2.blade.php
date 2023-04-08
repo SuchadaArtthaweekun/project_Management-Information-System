@@ -3,7 +3,6 @@
 @section('content')
     <button onclick="printData('reportView')">พิมพ์</button>
     <div class="titileReport">
-        <h5>รายงานโครงงานนนักศึกษาจำแนกตามรุ่น</h5>
         <div id="reportView">
             <div>
                 <h4 style="text-align: center"> สาขาวิชาเทคโนโลยีสารสนเทศ <br>
@@ -13,9 +12,9 @@
                 </p>
             </div>
             <div style="display: flex">
-                <p>เลือกโครงงานนักศึกษาตามรุ่น</p>
-                <select name="" id="" onchange="gen(this)">เลือกโครงงานนักศึกษาตามรุ่น
-                    <option value="">ทั้งหมด</option>
+                <p style="margin-right: 10px;margin-bottom: 0px">เลือกโครงงานนักศึกษาตามรุ่น</p>
+                <select name="" id="" onchange="gen(this)" >เลือกโครงงานนักศึกษาตามรุ่น
+                    <option value="" selected>ทั้งหมด</option>
                     @foreach ($selectGen as $key => $pro)
                         <option value="{{ $pro->gen }}">{{ $pro->gen }}</option>
                     @endforeach
@@ -23,13 +22,13 @@
                 
                 
             </div>
-            <div style="display: flex;">
-                    <p>ข้อมูล ณ วันที่</p>
-                    <p></p>
-                    <p id="datetime"></p>
-                </div>
-            <div class="viewCountReport">
-                <p>จำนวน :</p>
+
+            <div style="display: flex;text-align: right;margin-bottom: 0px">
+                    <p style="margin-right: 10px;margin-bottom: 0px">ข้อมูล ณ วันที่ </p>
+                    <p id="datetime" style="margin-bottom: 0px" ></p>
+            </div>
+            <div class="viewCountReport" style="display: flex;">
+                <p style="margin-right: 10px">จำนวน :</p>
                 <p id="countGen"></p>
             </div>
 
@@ -45,9 +44,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($project as $pro)
+                    @foreach ($project as$key=> $pro)
                         <tr>
-                            <td>{{ $pro->project_id }}</td>
+                            <td>{{ ++$key }}</td>
                             <td>{{ $pro->title_th }}</td>
                             <td>{{ $pro->gen }}</td>
                         </tr>

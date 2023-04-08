@@ -5,7 +5,6 @@
     <body>
         <div class="table-responsive">
             <div>
-                <h3>รายงานโครงงานนนักศึกษาจำแนกตามหมวดหมู่โครงงาน</h3>
                 {{-- show user --}}
                 <button onclick="printData('reportView')">พิมพ์</button>
                 <div id="reportView">
@@ -13,21 +12,27 @@
                         <h4 style="text-align: center"> สาขาวิชาเทคโนโลยีสารสนเทศ <br>
                             คณะวิทยาศาสตรื มหาวิทยาลัยราชภัฏบุรีรัมย์</h4>
                         <p style="text-align: center">
-                            รายงานโครงงานนักศึกษารายปี
+                            รายงานโครงงานนักศึกษาจากหมวดหมู่โครงงานนักศึกษา
                         </p>
                     </div>
                     <div style="display: flex">
+                        <p style="margin-right: 10px;margin-bottom: 0px;">โครงงานนักศึกษาจากหมวดหมู่โครงงานนักศึกษา</p>
                         <select name="" id="" onchange="filter(this)">เลือกหมวดหมู่
                             @foreach ($categories as $cate)
                                 <option value="{{ $cate->cate_id }}">{{ $cate->catename }}</option>
                             @endforeach
                         </select>
                     </div>
+                    <div style="display: flex;text-align: right;margin-bottom: 0px;">
+                        <p style="margin-right: 10px;margin-bottom: 0px;">ข้อมูล ณ
+                            วันที่ </p>
+                        <p id="datetime" style="margin-bottom: 0px;"></p>
+                    </div>
 
                     <table class="table table-striped table-hover table-condensed" name="project" id="project">
                         <thead>
                             <tr>
-                                <th style="text-align: left"><strong></strong></th>
+                                <th style="text-align: left"><strong>อันดับ</strong></th>
                                 <th style="text-align: left"><strong>ชื่อโครงงาน</strong></th>
                                 <th style="text-align: left"><strong>หมวดหมู่</strong></th>
                             </tr>
@@ -56,8 +61,14 @@
             </div>
     </body>
     <script>
+
+        var today = new Date();
+        var datetime = today.toLocaleString();
+        document.getElementById("datetime").innerHTML = datetime;  
+
+
         function filter(event) {
-            var select, filter, table, tr, td, txtValue, i, count,div,p,h4,h5
+            var select, filter, table, tr, td, txtValue, i, count, div, p, h4, h5
             select = event.options[event.selectedIndex].text
             // console.log (select) 
 

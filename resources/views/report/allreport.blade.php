@@ -63,7 +63,7 @@
             <div class="col-6">
                 <div class="report_dash">
                     <div class="col-10">
-                        <a href="{{ route('genOld') }}">
+                        <a href="{{ route('genReport2') }}">
                         <h5>รายงานสรุปยอดโครงานนักศึกษาตามรุ่น</h5>
                     </a>
                     </div>

@@ -5,7 +5,6 @@
     <body>
         <div class="table-responsive">
             <div>
-                <h3>รายงานโครงงานนักศึกษารายปี</h3>
                 <div class="titileReport">
                 </div>
                 {{-- <button onclick="printData('reportView')"><i class="fa-solid fa-print"></i></button> --}}
@@ -17,7 +16,7 @@
                         <h4 style="text-align: center"> สาขาวิชาเทคโนโลยีสารสนเทศ <br>
                             คณะวิทยาศาสตรื มหาวิทยาลัยราชภัฏบุรีรัมย์</h4>
                         <p style="text-align: center">
-                            รายงานโครงงานนักศึกษารายปี
+                            รายงานโครงงานนักศึกษาจากปีที่พิมพ์
                         </p>
                     </div>
                     <p class="txtreport">
@@ -32,10 +31,15 @@
                                 <option value="{{ $pro->edition }}">{{ $pro->edition }}</option>
                             @endforeach
                         </select>
+
                         <p>จำนวนโครงงานนักศึกษา :</p>
                         <p id="countEdition"></p>
                     </div>
-
+                    <div style="display: flex;text-align: right;margin-bottom: 0px;">
+                        <p style="margin-right: 10px;margin-bottom: 0px;">ข้อมูล ณ
+                            วันที่ </p>
+                        <p id="datetime" style="margin-bottom: 0px;"></p>
+                    </div>
                     <div class="viewCountReport" style="display: flex">
 
                     </div>
@@ -67,6 +71,10 @@
             </div>
     </body>
     <script>
+        var today = new Date();
+        var datetime = today.toLocaleString();
+        document.getElementById("datetime").innerHTML = datetime;
+
         function edition(event) {
             var select, filter, table, tr, td, txtValue, i, count, c, div, p, h4
             select = event.options[event.selectedIndex].text

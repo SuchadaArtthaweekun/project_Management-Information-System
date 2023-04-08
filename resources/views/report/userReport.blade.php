@@ -8,15 +8,16 @@
                 <h3>รายชื่อผู้ใช้</h3>
                 <button onclick="printData('reportView')"><i class="fa-solid fa-print"></i></button>
 
-                <div id="reportView" style="font-family: 'Kanit', sans-serif;">
-                    <div style="font-family: 'Kanit', sans-serif;">
-                        <h4 style="text-align: center;font-family: 'Kanit', sans-serif;"> สาขาวิชาเทคโนโลยีสารสนเทศ <br>
+                <div id="reportView" >
+                    <div >
+                        <h4 style="text-align: center;"> สาขาวิชาเทคโนโลยีสารสนเทศ <br>
                             คณะวิทยาศาสตรื มหาวิทยาลัยราชภัฏบุรีรัมย์</h4>
-                        <p style="text-align: center; font-family: 'Kanit', sans-serif;">
+                        <p style="text-align: center;">
                             รายงานสมาชิก
                         </p>
                     </div>
-                    <p class="txtreport" style=" font-family: 'Kanit', sans-serif;">
+                   
+                    <p class="txtreport" style="">
                         ผู้ใช้ทั้งหมด :{{ $coutAllUser }}
                         แอดมิน :{{ $coutAdmin }}
                         อาจารย์ :{{ $coutTch }}
@@ -25,9 +26,12 @@
                         นักศึกษาที่ยังไม่ได้รับอนุมัติ :{{ $coutUnStd }}
                         รวมทั้งหมด :{{ $users->count() }}
                     </p>
-
+                    <div style="display: flex;text-align: right;margin-bottom: 0px;">
+                        <p style="margin-right: 10px;margin-bottom: 0px;">ข้อมูล ณ วันที่ </p>
+                        <p id="datetime" style="margin-bottom: 0px;"></p>
+                    </div>
                     <table class="table table-striped table-hover table-condensed"
-                    style=" font-family: 'Kanit', sans-serif;">
+                        style="">
                         <thead>
                             <tr style="text-align: left">
                                 <th style="text-align: left">ลำดับ</th>
@@ -41,7 +45,8 @@
                         <tbody>
                             @foreach ($users as $key => $user)
                                 <tr style="text-align: left">
-                                    <th style="text-align: leftl; font-family: 'Kanit', sans-serif;">{{ ++$key }}</th>
+                                    <th style="text-align: leftl; ">{{ ++$key }}
+                                    </th>
                                     <th style="text-align: leftl;">{{ $user->name }} <br> {{ $user->name_en }}</th>
                                     <th style="text-align: left">{{ $user->email }}</th>
                                     <th style="text-align: left">{{ $user->level }}</th>
@@ -66,6 +71,10 @@
         </div>
     </body>
     <script>
+        var today = new Date();
+        var datetime = today.toLocaleString();
+        document.getElementById("datetime").innerHTML = datetime;
+
         function printData() {
             var divToPrint = document.getElementById("reportView");
             var divToPrint2 = document.getElementsByTagName("tr");

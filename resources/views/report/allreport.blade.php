@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
+            {{-- <div class="col-6">
                 <div class="report_dash">
                     <div class="col-10">
                         <a href="{{ route('reportViewTotal') }}">
@@ -59,7 +59,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> --}}
             <div class="col-6">
                 <div class="report_dash">
                     <div class="col-10">

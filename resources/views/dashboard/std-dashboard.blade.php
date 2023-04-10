@@ -31,13 +31,13 @@
 
                                 @csrf
                                 <div class="form-group">
-                                    <label for="author">ชื่อผู้ทำคนที่ 1</label>
+                                    <label for="author">ชื่อสมาชิกคนที่ 1</label>
                                     <input type="text" name="author" class="form-control"
-                                        placeholder="ชื่อผู้ทำคนที่ 1">
+                                        placeholder="ชื่อสมาชิกคนที่ 1">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="co_author">ชื่อผู้ทำคนที่ 2</label>
+                                    <label for="co_author">ชื่อสมาชิกคนที่ 2</label>
                                     <input type="text" name="co_author" class="form-control"
                                         placeholder="ชื่อ-สกุล (อังกฤษ)">
                                 </div>
@@ -61,19 +61,19 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email_author">อีเมลผู้ทำคนที่ 1</label>
+                                    <label for="email_author">อีเมลสมาชิกคนที่ 1</label>
                                     <input type="text" class="form-control" name="email_author">
                                 </div>
                                 <div class="form-group">
-                                    <label for="email_co_author">อีเมลผู้ทำคนที่ 2</label>
+                                    <label for="email_co_author">อีเมลสมาชิกคนที่ 2</label>
                                     <input type="text" class="form-control" name="email_co_author">
                                 </div>
                                 <div class="form-group">
-                                    <label for="tel_author">เบอร์โทรผู้ทำคนที่ 1</label>
+                                    <label for="tel_author">เบอร์โทรสมาชิกคนที่ 1</label>
                                     <input type="text" class="form-control" name="tel_author">
                                 </div>
                                 <div class="form-group">
-                                    <label for="tel_co_author">เบอร์โทรผู้ทำคนที่ 2</label>
+                                    <label for="tel_co_author">เบอร์โทรสมาชิกคนที่ 2</label>
                                     <input type="text" class="form-control" name="tel_co_author">
                                 </div>
 
@@ -211,35 +211,35 @@
 
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="author">ชื่อผู้ทำคนที่ 1</label>
+                                                    <label for="author">ชื่อสมาชิกคนที่ 1</label>
                                                     <input type="hidden" value="{{ $pro->project_id }}"
                                                         name="project_id">
                                                     <input type="text"
                                                         value="{{ $pro->author }}"class="form-control" name="author">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="co_author">ชื่อผู้ทำคนที่ 2</label>
+                                                    <label for="co_author">ชื่อสมาชิกคนที่ 2</label>
                                                     <input type="text" value="{{ $pro->co_author }}"
                                                         class="form-control" name="co_author">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="email_author">อีเมลผู้ทำคนที่ 1</label>
+                                                    <label for="email_author">อีเมลสมาชิกคนที่ 1</label>
                                                     <input type="text" value="{{ $pro->email_author }}"
                                                         class="form-control" name="email_author">
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="email_co_author">อีเมลผู้ทำคนที่ 2</label>
+                                                    <label for="email_co_author">อีเมลสมาชิกคนที่ 2</label>
                                                     <input type="text" value="{{ $pro->email_co_author }}"
                                                         class="form-control" name="email_co_author">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="tel_author">เบอร์โทรผู้ทำคนที่ 1</label>
+                                                    <label for="tel_author">เบอร์โทรสมาชิกคนที่ 1</label>
                                                     <input type="text" value="{{ $pro->tel_author }}"
                                                         class="form-control" name="tel_author">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="tel_co_author">เบอร์โทรผู้ทำคนที่ 2</label>
+                                                    <label for="tel_co_author">เบอร์โทรสมาชิกคนที่ 2</label>
                                                     <input type="text" value="{{ $pro->tel_co_author }}"
                                                         class="form-control" name="tel_co_author">
                                                 </div>

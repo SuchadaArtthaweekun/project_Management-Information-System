@@ -87,7 +87,7 @@ class ReportController extends Controller
             ->join('projects', 'projects.cate_id', '=', 'categories.cate_id')
             ->join('documents', 'documents.project_id', '=', 'projects.project_id')
             ->orderByDesc('download_counter')
-            ->get();
+            ->paginate(10);
         return view('report.downloadReport', compact('download', 'total'));
     }
 
@@ -118,6 +118,7 @@ class ReportController extends Controller
             ->select(array(DB::raw("SUM(download_counter) as download"), 'projects.project_id', 'title_th'))
             ->groupBy('documents.project_id')
             ->orderByDesc(DB::raw("download"))
+            // ->paginate(10);
             ->get();
 
         return view('report.downloadTotalReport', compact('download', 'total', 'projects', 'totalD'));

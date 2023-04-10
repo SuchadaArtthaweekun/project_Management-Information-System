@@ -104,9 +104,9 @@
                                             <select class="form-select" id="exampleFormControlSelect1" name="level"
                                                 placeholder="รหัสนักศึกษา">
                                                 <option selected>เลือกระดับผู้ใช้</option>
-                                                <option value="ผู้ดูแลระบบ">1 : ผู้ดูแลระบบ</option>
-                                                <option value="อาจารย์">2 : อาจารย์</option>
-                                                <option value="นักศึกษา">3 : นักศึกษา</option>
+                                                <option value="ผู้ดูแลระบบ">ผู้ดูแลระบบ</option>
+                                                <option value="อาจารย์">อาจารย์</option>
+                                                <option value="นักศึกษา">นักศึกษา</option>
                                             </select>
                                         </div>
                                         <div class="form-group">

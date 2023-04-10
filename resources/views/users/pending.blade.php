@@ -31,7 +31,11 @@
                                 <th>{{ $usr->name_en }}</th>
                                 <th>{{ $usr->email }} </th>
                                 <th>{{ $usr->level }}</th>
-                                <th>{{ $usr->status }}</th>
+                                <th><?php if ($usr->status == '0') {
+                                    echo 'off';
+                                } elseif ($usr->status == '1') {
+                                    echo 'on';
+                                } ?></th>
                                 <th>{{ $usr->username }}</th>
                                 <th>
                                     
@@ -80,7 +84,7 @@
 
         const conf = (id) => {
             Swal.fire({
-                title: 'อนุญาตผู้ใช้หรือไม่',
+                title: 'อนุมัติผู้ใช้หรือไม่',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

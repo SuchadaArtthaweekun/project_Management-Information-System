@@ -5,7 +5,6 @@
     <body>
         <div class="table-responsive">
             <div>
-                <h3>รายชื่อผู้ใช้</h3>
                 <button onclick="printData('reportView')"><i class="fa-solid fa-print"></i></button>
 
                 <div id="reportView" >

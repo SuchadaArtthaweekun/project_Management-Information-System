@@ -150,7 +150,8 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: 'ตกลง',
+                    cancelButtonText: 'ยกเลิก'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         fetch(`http://127.0.0.1:8000/deletedoc/${id}`).then((respons) => {
@@ -158,7 +159,7 @@
                         })
                         Swal.fire(
                             'ลบสำเร็จ!',
-                            'โครงงานนี้ถูกลบแล้ว',
+                            'ไฟล์นี้ถูกลบแล้ว',
                             'success'
                         ).then(() => {
                             location.reload();

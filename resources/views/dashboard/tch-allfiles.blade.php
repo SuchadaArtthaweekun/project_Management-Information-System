@@ -13,7 +13,7 @@
                         <div>
                             <h3>{{ $project[0]->title_th }}</h3>
                             <h4>{{ $project[0]->title_en }}</h4>
-                            <h5>ผู้จัดทำ : {{ $project[0]->author }} {{ $project[0]->co_author }}</h5>
+                            <h5>สมาชิก : {{ $project[0]->author }} {{ $project[0]->co_author }}</h5>
                             <h5>ที่ปรึกษา :
                                 <?php if ($project[0]->adviser == $project[0]->adviser_id) {
                                     echo $project[0]->adviser_fullname_th;

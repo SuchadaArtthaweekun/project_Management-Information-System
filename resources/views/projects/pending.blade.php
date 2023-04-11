@@ -92,11 +92,9 @@
                                     </div>
                                 </th>
                                 <th>
-                                    <a href="/publishProject/{{ $dt->project_id }}">
-                                        <button class="btn btn-success">
+                                        <button class="btn btn-success"  onclick="conf({{ $dt->project_id }})">
                                             <i class="fa-solid fa-check"></i>
                                         </button>
-                                    </a>
 
                                     <button class="btn btn-danger" onclick="del({{ $dt->project_id }})">
                                         <i class="fa-solid fa-trash"></i>
@@ -119,7 +117,7 @@
     <script>
         const del = (id) => {
             Swal.fire({
-                title: 'ต้องการลบไฟล์ ' + name,
+                title: 'ต้องการลบโครงงานนักศึกษา',
                 text: "คุณจะไม่สามารถย้อนกลับได้!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -136,6 +134,29 @@
                         'ลบสำเร็จ',
                         'ไฟล์นี้ถูกลบแล้ว',
                         'success'
+                    ).then(() => {
+                        location.reload();
+                    })
+                }
+            })
+        }
+
+        const conf = (id) => {
+            Swal.fire({
+                title: 'อนุมัติโครงงานนักศึกษาหรือไม่',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://127.0.0.1:8000/publishProject/${id}`).then((respons) => {
+                        console.log(respons)
+                    })
+                    Swal.fire(
+                        'อนุมัติสำเร็จ!'
                     ).then(() => {
                         location.reload();
                     })

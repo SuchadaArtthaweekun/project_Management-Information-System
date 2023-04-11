@@ -94,7 +94,7 @@
 
         const pending = (id) => {
             Swal.fire({
-                title: 'ต้องการเผยแพร่โครงงานนี้? ',
+                title: 'อนุมัติโครงงานนักศึกษาหรือไม่ ',
                 icon: 'info',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
